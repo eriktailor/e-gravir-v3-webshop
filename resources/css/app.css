@@ -36,6 +36,10 @@ select {
     @apply appearance-none placeholder:text-gray-400 bg-none;
 }
 
+label {
+    @apply block mb-1 text-sm text-gray-500;
+}
+
 /* --------------------------------------------------------------
 FILEPOND
 -------------------------------------------------------------- */

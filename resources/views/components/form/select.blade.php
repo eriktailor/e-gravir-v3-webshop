@@ -1,17 +1,24 @@
 @props([
     'for',
+    'label' => null,
     'placeholder' => null,
     'isPreSelected' => false,
 ])
 
-<div class="form-group">
+<div class="form-control">
+    
+    @if(isset($label) && $label)
+        <label for="{{ $for }}" class="form-label">{{ $label }}</label>
+    @endif
+
     <div class="relative">
         <select 
             name="{{ $for }}" 
             id="{{ $for }}" 
-            value="{{ old($for) }}" 
+            aria-describedby="{{ $for }}-error"
             {{ $attributes->merge([
-                'class' => 'input' . ($errors->has($for) ? ' is-invalid' : '') . ($isPreSelected && old($for) ? '' : ' text-gray-400')
+                'class' => 'input' . ($errors->has($for) ? ' is-invalid' : '') . 
+                (($isPreSelected && old($for)) ? '' : ' text-gray-400')
             ]) }}
         >
             @if ($placeholder)
@@ -21,10 +28,19 @@
             @endif
             {{ $slot }}
         </select>
-        <x-icon class="pointer-events-none absolute right-4 top-4 text-gray-400" name="chevron-down" width="20" height="20"/>
+
+        <!-- Dropdown Icon -->
+        <x-icon 
+            class="pointer-events-none absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400" 
+            name="chevron-down" 
+            width="20" 
+            height="20"
+            aria-hidden="true"
+        />
     </div>
 
     @error($for)
-        <span class="error-message">{{ $message }}</span>
+        <span id="{{ $for }}-error" class="error-message">{{ $message }}</span>
     @enderror
+    
 </div>

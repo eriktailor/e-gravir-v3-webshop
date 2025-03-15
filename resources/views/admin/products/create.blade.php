@@ -12,23 +12,23 @@
             <h3 class="text-lg mb-8">Adatok</h3>
             <div class="flex flex-col gap-4">
                 <div class="form-group">
-                    <x-form.input for="name" placeholder="Név" type="text"/>
+                    <x-form.input for="name" label="Név" type="text"/>
                 </div>
                 <div class="form-group">
-                    <x-form.select for="category" placeholder="Kategória" type="text">
+                    <x-form.select for="category" label="Kategória" placeholder="Válassz" type="text">
                         <option value="1">Első</option>
                         <option value="2">Második</option>
                         <option value="3">Harmadik</option>
                     </x-form.select>
                 </div>
                 <div class="form-group">
-                    <x-form.input for="price" placeholder="Ár" type="number"/>
+                    <x-form.input for="price" label="Normál ár" type="number"/>
                 </div>
                 <div class="form-group">
-                    <x-form.input for="sale_price" placeholder="Akciós Ár" type="number"/>
+                    <x-form.input for="sale_price" label="Akciós ár" type="number"/>
                 </div>
                 <div class="form-group">
-                    <x-form.input for="stock" placeholder="Készlet" type="number" min="0"/>
+                    <x-form.input for="stock" label="Készlet" type="number" min="0"/>
                 </div>
             </div>
         </div>
@@ -36,10 +36,10 @@
             <h3 class="text-lg mb-8">Leírások</h3>
             <div class="flex flex-col gap-4">
                 <div class="form-group">
-                    <x-form.textarea for="excerpt" placeholder="Rövid leírás" rows="3"></x-form.textarea>
+                    <x-form.textarea for="excerpt" label="Rövid leírás" rows="3"></x-form.textarea>
                 </div>
                 <div class="form-group">
-                    <x-form.textarea for="description" placeholder="Hosszú leírás" rows="8"></x-form.textarea>
+                    <x-form.textarea for="description" label="Hosszú leírás" rows="10"></x-form.textarea>
                 </div>
             </div>
         </div>
