@@ -16,7 +16,7 @@
     
     $buttonColors = $color === 'white' 
         ? 'bg-white text-slate-900 hover:bg-gray-100 border shadow' 
-        : 'bg-primary hover:bg-red-500 text-white enabled:hover:bg-red-600';
+        : 'bg-red-600 hover:bg-red-500 text-white enabled:hover:bg-red-600';
 
     if ($disabled) {
         $btnClasses .= ' cursor-not-allowed bg-stone-300 pointer-events-none';

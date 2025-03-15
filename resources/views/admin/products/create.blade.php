@@ -74,6 +74,13 @@
         // Create a FilePond instance
         const pond = FilePond.create(inputElement, {
             allowMultiple: true,
+            className: 'imageupload',
+            allowPaste: false,
+            maxFiles: 9,
+            itemInsertLocation: 'after',
+            allowReorder: true,
+            credits: false,
+            dropValidation: true,
             server: {
                 process: '{{ route("file.upload") }}', // Laravel route
                 headers: {

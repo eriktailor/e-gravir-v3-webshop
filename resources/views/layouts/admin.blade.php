@@ -29,14 +29,17 @@
         
         <header class="py-16">
             <div class="container">
-                <h1 class="text-5xl text-center">@yield('title')</h1>
+                <div class="flex justify-between items-center">
+                    <h1 class="text-5xl">@yield('title')</h1>
+                    <x-button>Mentés</x-button>
+                </div>
             </div>
         </header>
         
         @yield('content')
 
         @stack('scripts')
-        
+
         @vite('resources/js/app.js')
         
     </body>
