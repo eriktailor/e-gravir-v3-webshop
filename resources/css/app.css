@@ -20,7 +20,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight;
+    @apply font-bold tracking-tight leading-tight text-stone-950;
 }
 
 /* --------------------------------------------------------------
@@ -29,5 +29,9 @@ INPUTS
 input:not([type='checkbox']):not([type='radio']), 
 textarea, 
 select {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-orange-500 focus:border-orange-500;
+    @apply w-full px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg placeholder:text-gray-400 transition-all duration-200 focus:outline-none focus:ring focus:ring-stone-950;
+}
+
+select {
+    @apply appearance-none placeholder:text-gray-400 bg-none;
 }

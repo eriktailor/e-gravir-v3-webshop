@@ -11,7 +11,7 @@
             id="{{ $for }}" 
             value="{{ old($for) }}" 
             {{ $attributes->merge([
-                'class' => 'input' . ($errors->has($for) ? ' is-invalid' : '') . ($isPreSelected && old($for) ? '' : ' placeholder')
+                'class' => 'input' . ($errors->has($for) ? ' is-invalid' : '') . ($isPreSelected && old($for) ? '' : ' text-gray-400')
             ]) }}
         >
             @if ($placeholder)
@@ -21,7 +21,7 @@
             @endif
             {{ $slot }}
         </select>
-        <x-icon class="pointer-events-none absolute right-4 top-4 text-slate-500" name="chevron-down" width="20" height="20"/>
+        <x-icon class="pointer-events-none absolute right-4 top-4 text-gray-400" name="chevron-down" width="20" height="20"/>
     </div>
 
     @error($for)
