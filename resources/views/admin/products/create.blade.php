@@ -6,7 +6,11 @@
 
 <div class="container max-w-2xl">
     <form action="" class="flex flex-col gap-y-4">
-
+        
+        
+        <div class="form-group">
+            <input type="file" id="filepond" name="file">
+        </div>
         <div class="form-group">
             <x-form.input for="name" placeholder="Név" type="text"/>
         </div>
@@ -37,3 +41,31 @@
 </div>
 
 @endsection
+
+@push('styles')
+    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+@endpush
+
+@push('scripts')
+    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+    <script>
+        // Register FilePond plugins (optional)
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+    
+        // Select the input element
+        const inputElement = document.querySelector("#filepond");
+    
+        // Create a FilePond instance
+        const pond = FilePond.create(inputElement, {
+            allowMultiple: true,
+            server: {
+                process: '{{ route("file.upload") }}', // Laravel route
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // CSRF Token for security
+                }
+            }
+        });
+    </script>
+@endpush

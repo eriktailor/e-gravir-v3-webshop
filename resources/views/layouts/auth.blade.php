@@ -15,6 +15,8 @@
             <img class="w-full h-full object-cover" src="{{ asset('/img/backgrounds/login_bg.webp') }}" alt="Belépés">
         </div>
 
+        @stack('scripts')
+        
         @vite('resources/js/app.js')
         
     </body>

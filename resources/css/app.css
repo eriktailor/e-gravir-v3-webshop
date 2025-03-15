@@ -35,3 +35,14 @@ select {
 select {
     @apply appearance-none placeholder:text-gray-400 bg-none;
 }
+
+/* --------------------------------------------------------------
+FILEPOND
+-------------------------------------------------------------- */
+.filepond--root {
+    @apply w-full font-sans;
+}
+
+.filepond--list {
+    @apply grid grid-cols-2 gap-4;
+}

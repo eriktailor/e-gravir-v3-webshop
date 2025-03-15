@@ -35,6 +35,8 @@
         
         @yield('content')
 
+        @stack('scripts')
+        
         @vite('resources/js/app.js')
         
     </body>
