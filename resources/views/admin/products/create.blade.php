@@ -6,13 +6,28 @@
 
 <div class="container">
     <form action="" class="grid grid-cols-3 gap-6">
-        
-        
+         
         <div class="p-8 bg-white shadow-md rounded-lg">
             <h3 class="text-lg mb-8">Adatok</h3>
             <div class="flex flex-col gap-4">
                 <div class="form-group">
                     <x-form.input for="name" label="Név" type="text"/>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="form-group">
+                        <x-form.input for="price" label="Normál ár" type="number"/>
+                    </div>
+                    <div class="form-group">
+                        <x-form.input for="sale_price" label="Akciós ár" type="number"/>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="form-group">
+                        <x-form.input for="stock" label="Készlet (db)" type="number" min="0"/>
+                    </div>
+                    <div class="form-group">
+                        <x-form.input for="menu_order" label="Sorrend" type="number"/>
+                    </div>
                 </div>
                 <div class="form-group">
                     <x-form.select for="category" label="Kategória" placeholder="Válassz" type="text">
@@ -22,16 +37,11 @@
                     </x-form.select>
                 </div>
                 <div class="form-group">
-                    <x-form.input for="price" label="Normál ár" type="number"/>
-                </div>
-                <div class="form-group">
-                    <x-form.input for="sale_price" label="Akciós ár" type="number"/>
-                </div>
-                <div class="form-group">
-                    <x-form.input for="stock" label="Készlet" type="number" min="0"/>
+                    <x-form.checkbox for="is_featured" label="Kiemelt termék"/>                   
                 </div>
             </div>
         </div>
+
         <div class="p-8 bg-white shadow-md rounded-lg">
             <h3 class="text-lg mb-8">Leírások</h3>
             <div class="flex flex-col gap-4">
@@ -39,10 +49,11 @@
                     <x-form.textarea for="excerpt" label="Rövid leírás" rows="3"></x-form.textarea>
                 </div>
                 <div class="form-group">
-                    <x-form.textarea for="description" label="Hosszú leírás" rows="10"></x-form.textarea>
+                    <x-form.textarea for="description" label="Hosszú leírás" rows="11"></x-form.textarea>
                 </div>
             </div>
         </div>
+
         <div class="p-8 bg-white shadow-md rounded-lg">
             <h3 class="text-lg mb-8">Képek</h3>
             <div class="form-group">
@@ -57,11 +68,15 @@
 @endsection
 
 @push('styles')
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.css" rel="stylesheet">
+
     <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
 @endpush
 
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
+
     <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script>
@@ -81,6 +96,9 @@
             allowReorder: true,
             credits: false,
             dropValidation: true,
+            labelIdle: 'Húzd ide a képeket, vagy <span class="filepond--label-action"> tallózd </span>',
+            imagePreviewHeight: 160,
+            //imageCropAspectRatio: '1:1',
             server: {
                 process: '{{ route("file.upload") }}', // Laravel route
                 headers: {
