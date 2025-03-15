@@ -12,6 +12,16 @@ Route::prefix('admin')->controller(AuthController::class)->group(function() {
     Route::post('/logout', 'logout')->name('logout');
 });
 
+/**
+ * Admin routes
+ */
+Route::prefix('admin')->controller(AdminController::class)->middleware('auth')->group(function () {
+    Route::get('/products/create', 'index')->name('admin.index'); 
+});
+
 Route::get('/', function () {
     return view('auth.login');
+});
+Route::get('/admin/products/create', function () {
+    return view('admin.products.create');
 });

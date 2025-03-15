@@ -1,0 +1,39 @@
+@extends('layouts.admin')
+
+@section('title', 'Új termék')
+
+@section('content')
+
+<div class="container max-w-2xl">
+    <form action="" class="flex flex-col gap-y-4">
+
+        <div class="form-group">
+            <x-form.input for="name" placeholder="Név" type="text"/>
+        </div>
+        <div class="form-group">
+            <x-form.select for="category" placeholder="Kategória" type="text">
+                <option value="1">Első</option>
+                <option value="2">Második</option>
+                <option value="3">Harmadik</option>
+            </x-form.select>
+        </div>
+        <div class="form-group">
+            <x-form.textarea for="excerpt" placeholder="Rövid leírás" rows="3"></x-form.textarea>
+        </div>
+        <div class="form-group">
+            <x-form.textarea for="description" placeholder="Hosszú leírás" rows="8"></x-form.textarea>
+        </div>
+        <div class="form-group">
+            <x-form.input for="price" placeholder="Ár" type="number"/>
+        </div>
+        <div class="form-group">
+            <x-form.input for="sale_price" placeholder="Akciós Ár" type="number"/>
+        </div>
+        <div class="form-group">
+            <x-form.input for="stock" placeholder="Készlet" type="number" min="0"/>
+        </div>
+
+    </form>
+</div>
+
+@endsection
