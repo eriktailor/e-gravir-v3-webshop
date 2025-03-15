@@ -4,38 +4,52 @@
 
 @section('content')
 
-<div class="container max-w-2xl">
-    <form action="" class="flex flex-col gap-y-4">
+<div class="container">
+    <form action="" class="grid grid-cols-3 gap-6">
         
         
-        <div class="form-group">
-            <input type="file" id="filepond" name="file">
+        <div class="p-8 bg-white shadow-md rounded-lg">
+            <h3 class="text-lg mb-8">Adatok</h3>
+            <div class="flex flex-col gap-4">
+                <div class="form-group">
+                    <x-form.input for="name" placeholder="Név" type="text"/>
+                </div>
+                <div class="form-group">
+                    <x-form.select for="category" placeholder="Kategória" type="text">
+                        <option value="1">Első</option>
+                        <option value="2">Második</option>
+                        <option value="3">Harmadik</option>
+                    </x-form.select>
+                </div>
+                <div class="form-group">
+                    <x-form.input for="price" placeholder="Ár" type="number"/>
+                </div>
+                <div class="form-group">
+                    <x-form.input for="sale_price" placeholder="Akciós Ár" type="number"/>
+                </div>
+                <div class="form-group">
+                    <x-form.input for="stock" placeholder="Készlet" type="number" min="0"/>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <x-form.input for="name" placeholder="Név" type="text"/>
+        <div class="p-8 bg-white shadow-md rounded-lg">
+            <h3 class="text-lg mb-8">Leírások</h3>
+            <div class="flex flex-col gap-4">
+                <div class="form-group">
+                    <x-form.textarea for="excerpt" placeholder="Rövid leírás" rows="3"></x-form.textarea>
+                </div>
+                <div class="form-group">
+                    <x-form.textarea for="description" placeholder="Hosszú leírás" rows="8"></x-form.textarea>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <x-form.select for="category" placeholder="Kategória" type="text">
-                <option value="1">Első</option>
-                <option value="2">Második</option>
-                <option value="3">Harmadik</option>
-            </x-form.select>
+        <div class="p-8 bg-white shadow-md rounded-lg">
+            <h3 class="text-lg mb-8">Képek</h3>
+            <div class="form-group">
+                <input type="file" id="filepond" name="file">
+            </div>
         </div>
-        <div class="form-group">
-            <x-form.textarea for="excerpt" placeholder="Rövid leírás" rows="3"></x-form.textarea>
-        </div>
-        <div class="form-group">
-            <x-form.textarea for="description" placeholder="Hosszú leírás" rows="8"></x-form.textarea>
-        </div>
-        <div class="form-group">
-            <x-form.input for="price" placeholder="Ár" type="number"/>
-        </div>
-        <div class="form-group">
-            <x-form.input for="sale_price" placeholder="Akciós Ár" type="number"/>
-        </div>
-        <div class="form-group">
-            <x-form.input for="stock" placeholder="Készlet" type="number" min="0"/>
-        </div>
+
 
     </form>
 </div>
