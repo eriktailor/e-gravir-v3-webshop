@@ -1,10 +1,10 @@
 @extends('layouts.admin')
 
-@section('title', 'Új kategória')
+@section('title', isset($category) ? 'Kategória szerkesztése' : 'Új kategória')
 
 @section('content')
 
-<x-header.page :title="'Új kategória'"/>
+<x-header.page :title="isset($category) ? 'Kategória szerkesztése' : 'Új kategória'"/>
 
 <div class="container">
     <div class="p-8 bg-white shadow-md rounded-lg mx-auto max-w-xl">

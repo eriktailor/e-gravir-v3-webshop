@@ -38,3 +38,12 @@ $('select').each(function() {
 $('.navbar-toggle').on('click', function() {
     $(this).closest('.navbar').find('.navbar-menu').slideToggle(300);
 });
+
+/**
+ * If submit button is outside of form, trigger form submit
+ */
+$('.button-submit').on('click', function(e) {
+    e.preventDefault();
+    var form = $(this).data('target');
+    $(form).trigger('submit');
+});

@@ -54,6 +54,7 @@ function initFilePond(selector, existingImages = null, options = {}) {
         storeAsFile: true,
         credits: false,
         imagePreviewHeight: 160,
+        labelIdle: 'Húzd ide a képeidet vagy <span class="filepond--label-action"> kiválasztás </span>',
         server: existingImages
             ? {
                   load: (source, load) => {
@@ -104,10 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
      * Init on admin product gallery images
      */
     const productImages = document.getElementById('productImageUpload');
-    const existingProductImages = Array.from(document.querySelectorAll('.existingGalleryImage')).map(img => img.value);
 
     if (productImages) {
-        initFilePond('#productImageUpload', existingProductImages.length > 0 ? existingProductImages : null, {
+        initFilePond('#productImageUpload', window.existingProductImages ?? null, {
             allowMultiple: true,
             maxFiles: 10,
             name: 'images[]',

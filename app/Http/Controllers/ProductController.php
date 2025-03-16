@@ -37,7 +37,18 @@ class ProductController extends Controller
      * Admin: edit product
      */
     public function edit(Product $product) {
-        return view('admin.products.form', compact('product'));
+        $categories = ProductCategory::all();
+        
+        // Get full URLs of existing images
+        $existingImages = $product->images->map(function($img) {
+            return asset('storage/' . $img->image_path);
+        });
+
+        return view('admin.products.form', [
+            'product' => $product,
+            'categories' => $categories,
+            'existingImages' => $existingImages
+        ]);
     }
 
     /**
