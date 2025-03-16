@@ -18,31 +18,40 @@ FilePond.registerPlugin(FilePondPluginImagePreview);
 /**
  * Initialize filepond on file inputs
  */
-const inputElement = document.querySelector('input[type="file"]');
-const existingImage = document.getElementById('existingImage')?.value || null;
+document.addEventListener('DOMContentLoaded', () => {
 
-const pond = FilePond.create(inputElement, {
-    allowMultiple: false,
-    server: null,
-    storeAsFile: true,
-    credits: false,
-    imagePreviewHeight: 160,
-    files: existingImage
-        ? [
-            {
-                source: existingImage, // Full image URL like: /storage/categories/9/filename.webp
-                options: {
-                    type: 'local',
-                    file: {
-                        name: existingImage.split('/').pop(), // filename
-                        size: null,
-                        type: 'image/webp' // optional
-                    },
-                    metadata: {
-                        poster: existingImage // shows preview!
-                    }
+    const inputElement = document.querySelector('input[type="file"]');
+    const existingImage = document.getElementById('existingImage')?.value || null;
+
+    if (inputElement) {
+        FilePond.create(inputElement, {
+            allowMultiple: false,
+            storeAsFile: true,
+            credits: false,
+            imagePreviewHeight: 160,
+            server: {
+                load: (source, load) => {
+                    fetch(source)
+                        .then(res => res.blob())
+                        .then(blob => {
+                            load(blob);
+                        });
                 }
-            }
-        ]
-        : []
+            },
+            files: existingImage
+                ? [
+                      {
+                          source: existingImage, // full URL
+                          options: {
+                              type: 'local',
+                              metadata: {
+                                  poster: existingImage // show preview
+                              }
+                          }
+                      }
+                  ]
+                : []
+        });
+    }
+
 });
