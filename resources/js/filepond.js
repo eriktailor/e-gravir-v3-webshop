@@ -43,6 +43,7 @@ function initFilePond(selector, existingImages = null, options = {}) {
         allowRevert: true,
         instantUpload: false,
         imagePreviewHeight: 160,
+
         labelIdle: 'Húzd ide a képeidet vagy <span class="filepond--label-action"> kiválasztás </span>',
 
         server: {

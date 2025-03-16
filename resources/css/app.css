@@ -68,6 +68,14 @@ FILEPOND
     @apply w-full font-sans;
 }
 
+.filepond--file-info {
+    @apply invisible;
+}
+
+.filepond--image-preview-overlay {
+    opacity: 0 !important;
+}
+
 .filepond-cover {
     & .filepond--image-preview-wrapper {
         overflow: hidden;
