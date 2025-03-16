@@ -16,7 +16,7 @@
     @endif
 
 
-    <form action="{{ isset($product) ? route('products.update', $product) : route('products.store') }}" method="POST">
+    <form action="{{ isset($product) ? route('products.update', $product) : route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if(isset($product))
             @method('PUT')

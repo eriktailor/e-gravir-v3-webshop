@@ -32,7 +32,7 @@ class ProductCategoryRequest extends FormRequest
                 Rule::unique('product_categories', 'slug')->ignore($categoryId),
             ],
             'parent_id' => 'nullable|exists:product_categories,id',
-            'image' => 'nullable|string',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:9999',
             'description' => 'nullable|string',
         ];
     }

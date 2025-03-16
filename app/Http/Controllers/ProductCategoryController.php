@@ -23,7 +23,7 @@ class ProductCategoryController extends Controller
     public function create()
     {
         $categories = ProductCategory::all();
-        
+
         return view('admin.categories.form', [
             'category' => null,
             'categories' => $categories
@@ -35,7 +35,13 @@ class ProductCategoryController extends Controller
      */
     public function store(ProductCategoryRequest $request)
     {
-        ProductCategory::create($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('categories', 'public');
+        }
+
+        ProductCategory::create($data);
 
         return redirect()->route('categories.index')->with('success', 'Category created!');
     }
@@ -55,7 +61,13 @@ class ProductCategoryController extends Controller
      */
     public function update(ProductCategoryRequest $request, ProductCategory $category)
     {
-        $category->update($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('categories', 'public');
+        }
+
+        $category->update($data);
 
         return redirect()->route('categories.index')->with('success', 'Category updated!');
     }
