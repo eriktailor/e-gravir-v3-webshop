@@ -31,7 +31,8 @@ INPUTS
 input:not([type='checkbox']):not([type='radio']), 
 textarea, 
 select,
-div.ts-control {
+div.ts-control,
+div.easyeditor-wrapper {
     @apply w-full px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg placeholder:text-gray-400 transition-all duration-200 focus:outline-none text-stone-950 font-bold focus:ring focus:ring-stone-950 shadow-none;
 }
 
@@ -143,4 +144,31 @@ div.ts-wrapper.multi.has-items div.ts-control {
 
 .focus div.ts-control {
     @apply shadow-none;
+}
+
+/* --------------------------------------------------------------
+EASYEDITOR
+-------------------------------------------------------------- */
+div.easyeditor {
+    @apply border-0 m-0 p-0;
+}
+
+div.easyeditor-temp {
+    border: 0 !important;
+}
+
+div.easyeditor-wrapper {
+    @apply bg-white rounded-lg;
+}
+
+div.easyeditor-toolbar {
+   @apply p-0 pb-3 bg-transparent border-0; 
+}
+
+div.easyeditor-toolbar ul {
+    @apply list-none flex gap-x-2;
+}
+
+div.easyeditor-toolbar li button {
+    @apply m-0 bg-white text-gray-400 border border-gray-200 rounded-md text-sm font-medium;
 }
