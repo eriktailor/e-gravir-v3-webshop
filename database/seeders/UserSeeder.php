@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         User::firstOrCreate([
             'name' => 'Erik Tailor',
             'email' => 'erno22szabo@gmail.com',
-            'image' => '/img/admin/erik.jpg'
+            'image' => '/img/users/erik.jpg'
         ], [
             'password' => Hash::make('szabo6404ERNO')
         ]);
@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
         User::firstOrCreate([
             'name' => 'Bohó Barbara',
             'email' => 'barbaraboho6@gmail.com',
-            'image' => '/img/admin/barbi.jpeg'
+            'image' => '/img/users/barbi.jpeg'
         ], [
             'password' => Hash::make('boho1234BARBARA')
         ]);

@@ -19,7 +19,12 @@
                         <img src="{{ asset('/img/logos/logo_emblem.svg') }}" alt="E-Gravír Admin" width="25" height="25">
                         <span class="text-white font-bold text-xl">Admin</span>
                     </a>
-                   
+                    <div class="list-none flex gap-3">
+                        <a href="#" class="text-gray-400 hover:text-white">Termékek</a>
+                        <a href="#" class="text-gray-400 hover:text-white">Kategóriák</a>
+                        <a href="#" class="text-gray-400 hover:text-white">Rendelések</a>
+                    </div>
+                    <img class="rounded-full w-9 h-9" src="{{ Auth::user()->image }}" alt="{{ Auth::user()->name }}">
                 </div>
             </div>
         </nav>

@@ -7,27 +7,30 @@
 <x-header.page :title="'Új kategória'"/>
 
 <div class="container">
-   
 
-    <div class="p-8 bg-white shadow-md rounded-lg mx-auto max-w-xl">
-        <div class="flex flex-col gap-4">
-            <div class="form-group">
-                <x-form.input for="name" label="Név" type="text"/>
+    <form action="{{ isset($category) ? route('categories.update', $product) : route('categories.store') }}" method="POST">
+        @csrf
+        <div class="p-8 bg-white shadow-md rounded-lg mx-auto max-w-xl">
+            <div class="flex flex-col gap-4">
+                <div class="form-group">
+                    <x-form.input for="name" label="Név" type="text"/>
+                </div>
+                <div class="form-group">
+                    <x-form.input for="slug" label="Egyedi slug" type="text"/>
+                </div>
+                <div class="form-group">
+                    <x-form.textarea for="excerpt" label="Leírás" rows="4"></x-form.textarea>
+                </div>
+                <div class="form-group">
+                    <input type="file" id="filepond" name="file">
+                </div>
+                <x-button type="submit" class="">
+                    {{ isset($category) ? 'Frissítés' : 'Létrehozás' }}
+                </x-button>
             </div>
-            <div class="form-group">
-                <x-form.input for="slug" label="Egyedi slug" type="text"/>
-            </div>
-            <div class="form-group">
-                <x-form.textarea for="excerpt" label="Leírás" rows="4"></x-form.textarea>
-            </div>
-            <div class="form-group">
-                <input type="file" id="filepond" name="file">
-            </div>
-            <x-button type="submit" class="">
-                {{ isset($product) ? 'Update' : 'Create' }}
-            </x-button>
         </div>
-    </div>
+
+    </form>
 
 </div>
 
