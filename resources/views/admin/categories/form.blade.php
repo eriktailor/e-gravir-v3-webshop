@@ -15,7 +15,7 @@
             @endforeach
         </div>
     @endif
-    
+
     <form action="{{ isset($category) ? route('categories.update', $product) : route('categories.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if(isset($category))
@@ -31,7 +31,7 @@
                     <x-form.input for="slug" label="Egyedi slug" type="text"/>
                 </div>
                 <div class="form-group">
-                    <x-form.textarea for="excerpt" label="Leírás" rows="4"></x-form.textarea>
+                    <x-form.textarea for="description" label="Leírás" rows="4"></x-form.textarea>
                 </div>
                 <div class="form-group">
                     <input type="file" id="image" name="image">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductCategoryRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductCategoryController extends Controller
 {
@@ -22,14 +23,11 @@ class ProductCategoryController extends Controller
      */
     public function create()
     {
-        $categories = ProductCategory::all();
-
         return view('admin.categories.form', [
-            'category' => null,
-            'categories' => $categories
+            'category' => null
         ]);
     }
-    
+
     /**
      * Store a new category
      */
@@ -37,11 +35,18 @@ class ProductCategoryController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('categories', 'public');
-        }
+        // 1️⃣ Create category without image
+        $category = ProductCategory::create([
+            'name' => $data['name'],
+            'slug' => $data['slug'],
+            'description' => $data['description'] ?? null,
+        ]);
 
-        ProductCategory::create($data);
+        // 2️⃣ Save image after
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store("categories/{$category->id}", 'public');
+            $category->update(['image' => $imagePath]);
+        }
 
         return redirect()->route('categories.index')->with('success', 'Category created!');
     }
@@ -51,11 +56,9 @@ class ProductCategoryController extends Controller
      */
     public function edit(ProductCategory $category)
     {
-        $categories = ProductCategory::where('id', '!=', $category->id)->get();
-
-        return view('admin.categories.form', compact('category', 'categories'));
+        return view('admin.categories.form', compact('category'));
     }
-    
+
     /**
      * Update a category
      */
@@ -63,11 +66,24 @@ class ProductCategoryController extends Controller
     {
         $data = $request->validated();
 
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('categories', 'public');
-        }
+        // Update fields
+        $category->update([
+            'name' => $data['name'],
+            'slug' => $data['slug'],
+            'description' => $data['description'] ?? null,
+        ]);
 
-        $category->update($data);
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // 1️⃣ Delete old image
+            if ($category->image && Storage::disk('public')->exists($category->image)) {
+                Storage::disk('public')->delete($category->image);
+            }
+
+            // 2️⃣ Save new image
+            $imagePath = $request->file('image')->store("categories/{$category->id}", 'public');
+            $category->update(['image' => $imagePath]);
+        }
 
         return redirect()->route('categories.index')->with('success', 'Category updated!');
     }
@@ -77,6 +93,14 @@ class ProductCategoryController extends Controller
      */
     public function destroy(ProductCategory $category)
     {
+        // Delete image if exists
+        if ($category->image && Storage::disk('public')->exists($category->image)) {
+            Storage::disk('public')->delete($category->image);
+        }
+
+        // Delete folder if empty
+        Storage::disk('public')->deleteDirectory("categories/{$category->id}");
+
         $category->delete();
 
         return redirect()->route('categories.index')->with('success', 'Category deleted!');
