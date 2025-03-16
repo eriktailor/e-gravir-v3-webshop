@@ -27,3 +27,10 @@ $('select').each(function() {
 }).on('change', function() {
     $(this).removeClass('text-gray-400');
 });
+
+/**
+ * Navbar toggle nav menu
+ */
+$('.navbar-toggle').on('click', function() {
+    $(this).closest('.navbar').find('.navbar-menu').slideToggle(300);
+});
