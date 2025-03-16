@@ -30,18 +30,12 @@
                         class="w-18 h-18 rounded-full object-cover object-center">
                     <div>
                         <h3 class="mb-1">{{ $category->name }}</h3>
-                        <p class="text-gray-400 max-w-[650px]">{{ $category->description }}</p>
+                        <p class="text-gray-400 text-sm max-w-[500px]">{{ $category->description }}</p>
                     </div>
                 </div>
                 <div class="flex justify-end items-center gap-x-4">
                     <span class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap">{{ $category->slug }}</span>     
-                    <x-dropdown>
-                        <x-slot name="trigger">
-                            <x-icon name="dots-vertical" class="text-gray-400" />
-                        </x-slot>
-                        <a href="{{ route('categories.edit', $category->id) }}">Szerkesztés</a>
-                        <a href="#">Törlés</a>
-                    </x-dropdown>
+                    <x-button.chip icon="chevron-right" href="{{ route('categories.edit', $category->id) }}"/>
                 </div>
             </div>
         @empty

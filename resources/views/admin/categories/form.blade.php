@@ -7,22 +7,15 @@
 <x-header.page :title="'Új kategória'"/>
 
 <div class="container">
+    <div class="p-8 bg-white shadow-md rounded-lg mx-auto max-w-xl">
     
-    @if ($errors->any())
-        <div>
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
-        </div>
-    @endif
+        <form action="{{ isset($category) ? route('categories.update', $category) : route('categories.store') }}" id="categoryForm" method="POST" enctype="multipart/form-data">
+            @csrf
+            @if(isset($category))
+                @method('PUT')
+            @endif
 
-    <form action="{{ isset($category) ? route('categories.update', $category) : route('categories.store') }}" id="categoryForm" method="POST" enctype="multipart/form-data">
-        @csrf
-        @if(isset($category))
-            @method('PUT')
-        @endif
-
-        <div class="p-8 bg-white shadow-md rounded-lg mx-auto max-w-xl">
+        
             <div class="flex flex-col gap-4">
                 <div class="form-group">
                     <x-form.input for="name" label="Név" type="text" :value="$category->name ?? ''"/>
@@ -39,14 +32,23 @@
                         <input type="hidden" id="existingImage" value="{{ asset('storage/' . $category->image) }}">
                     @endif
                 </div>
-                <x-button type="submit" class="">
+                <x-button type="submit">
                     {{ isset($category) ? 'Frissítés' : 'Létrehozás' }}
                 </x-button>
             </div>
-        </div>
+        </form>
 
-    </form>
+        @if(isset($category))
+            <form action="{{ route('categories.destroy', $category->id) }}" method="POST" onsubmit="return confirm('Biztosan törölni szeretnéd?')">
+                @csrf
+                @method('DELETE')
+                <button type="submit" href="{{ route('categories.destroy', $category->id) }}" class="mx-auto block underline underline-offset-2 hover:no-underline transition cursor-pointer mt-4">
+                    Kategória törlése
+                </button>
+            </form>
+        @endif
 
+    </div>
 </div>
 
 @endsection

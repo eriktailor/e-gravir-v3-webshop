@@ -11,7 +11,7 @@
             
             // Merge provided attributes, like class and stroke-width, with any additional attributes
             $mergedAttributes = $attributes->merge([
-                'stroke-width' => $strokeWidth ?? '1.5',  // Default stroke width if not passed
+                'stroke-width' => $strokeWidth ?? '1.75',  // Default stroke width if not passed
             ])->getAttributes();
 
             // Convert attributes array to a string for insertion
