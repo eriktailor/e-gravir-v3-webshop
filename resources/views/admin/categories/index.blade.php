@@ -8,6 +8,12 @@
 
 @section('content')
 
+<x-header.page :title="'Kategóriák'">
+    <x-slot name="button">
+        <x-button href="{{ route('categories.create') }}">Új Kategória</x-button>
+    </x-slot>
+</x-header.page>
+
 <div class="container">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
