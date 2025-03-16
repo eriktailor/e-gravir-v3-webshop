@@ -22,8 +22,8 @@ class ProductRequest extends FormRequest
             'description' => 'nullable|string',
             'in_stock' => 'required|integer|min:0',
             'menu_order' => 'nullable|integer',
-            'status' => 'required|boolean',
-            'featured' => 'required|boolean',
+            'is_visible' => 'nullable|boolean', // nullable to avoid "required" error when unchecked
+            'featured' => 'nullable|boolean',
             'category_id' => 'required|exists:categories,id',
         ];
     }

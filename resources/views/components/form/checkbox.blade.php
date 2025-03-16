@@ -6,8 +6,9 @@
             id="{{ $for }}" 
             name="{{ $for }}" 
             type="checkbox" 
-            value="{{ old($for, $value ?? '') }}" 
+            value="1"
             aria-describedby="{{ $for }}-error"
+            {{ old($for, $value ?? '') == 1 ? 'checked' : '' }}
             {{ $attributes->merge(['class' => $errors->has($for) ? 'border-red-500' : '']) }}
         >
 

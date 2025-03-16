@@ -15,7 +15,7 @@ class Product extends Model
         'description',
         'in_stock',
         'menu_order',
-        'status',
+        'is_visible',
         'featured',
         'category_id',
     ];

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->integer('in_stock')->default(0);
             $table->integer('menu_order')->default(0);
-            $table->boolean('status')->default(true); // Active/Inactive
+            $table->boolean('is_visible')->default(true); // Active/Inactive
             $table->boolean('featured')->default(false); // Is featured?
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->timestamps();

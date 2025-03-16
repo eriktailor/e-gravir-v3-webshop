@@ -5,6 +5,17 @@
 @section('content')
 
 <div class="container">
+
+
+    @if ($errors->any())
+        <div>
+            @foreach ($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        </div>
+    @endif
+
+
     <form action="{{ isset($product) ? route('products.update', $product) : route('products.store') }}" method="POST">
         @csrf
         @if(isset($product))
@@ -27,7 +38,7 @@
                     </div>
                     <div class="grid grid-cols-2 gap-6">
                         <div class="form-group">
-                            <x-form.input for="stock" label="Készlet (db)" type="number" min="0"/>
+                            <x-form.input for="in_stock" label="Készlet (db)" type="number" min="0"/>
                         </div>
                         <div class="form-group">
                             <x-form.input for="menu_order" label="Sorrend" type="number"/>
@@ -44,7 +55,7 @@
                         <x-form.checkbox for="is_featured" label="Kiemelt termék"/>                   
                     </div>
                     <div class="form-group">
-                        <x-form.checkbox for="status" label="Látható termék"/>                   
+                        <x-form.checkbox for="status" label="Rejtett termék"/>                   
                     </div>
                 </div>
             </div>
