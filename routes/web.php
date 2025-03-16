@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FileUploadController;
 
 /**
@@ -16,8 +17,14 @@ Route::prefix('admin')->controller(AuthController::class)->group(function() {
 /**
  * Admin routes
  */
-Route::prefix('admin')->controller(AdminController::class)->middleware('auth')->group(function () {
-    Route::get('/products/create', 'index')->name('admin.index'); 
+Route::prefix('admin')->middleware('auth')->group(function () {
+
+    Route::get('products', [ProductController::class, 'index'])->name('products.index');
+    Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
+    Route::post('products', [ProductController::class, 'store'])->name('products.store');
+    Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
+
 });
 
 Route::post('/upload', [FileUploadController::class, 'upload'])->name('file.upload');
@@ -31,9 +38,7 @@ Route::post('/upload', [FileUploadController::class, 'upload'])->name('file.uplo
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::get('/admin/products/create', function () {
-    return view('admin.products.create');
-});
+
 
 
 

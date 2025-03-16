@@ -29,10 +29,7 @@
         
         <header class="py-16">
             <div class="container">
-                <div class="flex justify-between items-center">
-                    <h1 class="text-5xl">@yield('title')</h1>
-                    <x-button>Mentés</x-button>
-                </div>
+                <h1 class="text-5xl text-center">@yield('title')</h1>
             </div>
         </header>
         

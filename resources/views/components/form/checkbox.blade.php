@@ -17,8 +17,6 @@
 
     </label>  
 
-    @error($for)
-        <p id="{{ $for }}-error" class="mt-1 text-sm text-red-500">{{ $message }}</p>
-    @enderror
+    <x-form.error :for="$for" />
 
 </div>

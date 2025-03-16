@@ -39,8 +39,6 @@
         />
     </div>
 
-    @error($for)
-        <span id="{{ $for }}-error" class="error-message">{{ $message }}</span>
-    @enderror
+    <x-form.error :for="$for" />
     
 </div>
