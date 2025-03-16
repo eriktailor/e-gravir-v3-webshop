@@ -61,4 +61,12 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class);
     }
+
+    /**
+     * Relation with ProductCategory model
+     */
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class);
+    }
 }
