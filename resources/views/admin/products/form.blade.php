@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <x-form.select for="category_id" label="Kategória" type="text" required>
+                        <x-form.select for="category_id" label="Kategória" placeholder=" " type="text" required>
                             @foreach($categories as $category)
                                 <option 
                                     value="{{ $category->id }}" 
