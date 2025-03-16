@@ -14,7 +14,8 @@ class ProductCategoryController extends Controller
      */
     public function index()
     {
-        $categories = ProductCategory::all();
+        $categories = ProductCategory::orderBy('order')->get();
+
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -34,12 +35,14 @@ class ProductCategoryController extends Controller
     public function store(ProductCategoryRequest $request)
     {
         $data = $request->validated();
+        $order = ProductCategory::max('order') + 1;
 
         // 1️⃣ Create category without image
         $category = ProductCategory::create([
             'name' => $data['name'],
             'slug' => $data['slug'],
             'description' => $data['description'] ?? null,
+            'order' => $order,
         ]);
 
         // 2️⃣ Save image after
@@ -109,5 +112,17 @@ class ProductCategoryController extends Controller
         $category->delete();
 
         return redirect()->route('categories.index')->with('success', 'Category deleted!');
+    }
+
+    /**
+     * Reorder categories
+     */
+    public function reorder(Request $request)
+    {
+        foreach ($request->order as $index => $id) {
+            ProductCategory::where('id', $id)->update(['order' => $index]);
+        }
+
+        return response()->json(['status' => 'success']);
     }
 }

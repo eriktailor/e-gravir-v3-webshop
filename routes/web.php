@@ -27,6 +27,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
 
     Route::resource('categories', ProductCategoryController::class);
+    Route::post('categories/reorder', [ProductCategoryController::class, 'reorder'])->name('categories.reorder');
+
 
 });
 
