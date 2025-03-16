@@ -31,7 +31,23 @@ class ProductRequest extends FormRequest
             'is_visible' => 'nullable|boolean', // nullable to avoid "required" error when unchecked
             'featured' => 'nullable|boolean',
             'category_id' => 'required|exists:product_categories,id',
+            'tags' => ['nullable', 'string', 'regex:/^([a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ\s\-]+,?\s*)*$/'],
         ];
+    }
+
+    /**
+     * Tags (comma separated values) validation
+     */
+    protected function prepareForValidation()
+    {
+        if ($this->tags) {
+            $tags = explode(',', $this->tags);
+            $tags = array_map(fn($tag) => trim($tag), $tags);
+            $tags = array_filter($tags);
+            $this->merge([
+                'tags' => implode(',', $tags),
+            ]);
+        }
     }
 
 }

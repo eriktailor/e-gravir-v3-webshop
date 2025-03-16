@@ -63,7 +63,7 @@
                         </x-form.select>
                     </div>
                     <div class="form-group">
-                        <x-form.input for="tags" label="Címkék" id="tagsInput" autocomplete="off"/>                
+                        <x-form.input for="tags" label="Címkék" id="tagsInput" :value="isset($product) ? implode(',', $product->tags) : ''" autocomplete="off"/>                
                     </div>
                     <div class="flex gap-x-8 mt-3">
                         <div class="form-group">
