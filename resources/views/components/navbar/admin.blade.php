@@ -1,4 +1,4 @@
-<nav class="navbar bg-stone-950 sticky top-0 z-40 py-3 md:py-4 relative">
+<nav class="navbar bg-stone-950 sticky top-0 z-40 py-3 md:py-4">
     <div class="container">
         <div class="flex justify-between items-center">
             <div class="flex-none w-28">
