@@ -85,6 +85,31 @@ function initFilePond(selector, existingImages = null, options = {}) {
         }
     });
 
+    /**
+     * Reorder Event → Save order via AJAX
+     */
+    pond.on('reorderfiles', (files) => {
+        const order = files.map((file, index) => ({
+            id: file.source,
+            order: index
+        }));
+
+        fetch('/admin/product-images/reorder', {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ order })
+        }).then(res => {
+            if (!res.ok) {
+                console.error('Reorder save failed');
+            }
+        }).catch(err => {
+            console.error('Reorder error:', err);
+        });
+    });
+
     return pond;
 }
 
@@ -129,7 +154,9 @@ document.addEventListener('DOMContentLoaded', () => {
             maxFiles: 10,
             name: 'images[]',
             storeAsFile: true,
-            className: 'filepond-product-images'
+            className: 'filepond-product-images',
+            itemInsertLocation: 'after', 
+            allowReorder: true,
         });
     }
 });

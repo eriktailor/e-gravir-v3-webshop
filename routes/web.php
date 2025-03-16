@@ -24,6 +24,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // Products
     Route::resource('products', ProductController::class);
     Route::delete('product-images/{image}', [ProductImageController::class, 'destroy'])->name('product-images.destroy');
+    Route::post('product-images/reorder', [ProductImageController::class, 'reorder']);
 
     // Categories
     Route::resource('categories', ProductCategoryController::class);

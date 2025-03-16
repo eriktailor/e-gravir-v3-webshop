@@ -23,4 +23,17 @@ class ProductImageController extends Controller
 
         return response()->json(['message' => 'Image deleted']);
     }
+
+    /**
+     * Reorder product images
+     */
+    public function reorder(Request $request)
+    {
+        foreach ($request->order as $index => $item) {
+            ProductImage::where('id', $item['id'])->update(['order' => $index + 1]);
+        }
+
+        return response()->json(['status' => 'success']);
+    }
+
 }
