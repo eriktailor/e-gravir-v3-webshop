@@ -6,11 +6,17 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ProductRequest extends FormRequest
 {
+    /**
+     * Determine if the user is authorized to make this request
+     */
     public function authorize(): bool
     {
         return true;
     }
 
+    /**
+     * Validation rules
+     */
     public function rules(): array
     {
         return [
@@ -24,7 +30,8 @@ class ProductRequest extends FormRequest
             'menu_order' => 'nullable|integer',
             'is_visible' => 'nullable|boolean', // nullable to avoid "required" error when unchecked
             'featured' => 'nullable|boolean',
-            'category_id' => 'required|exists:categories,id',
+            'category_id' => 'required|exists:product_categories,id',
         ];
     }
+
 }

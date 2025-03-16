@@ -45,7 +45,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->validated();
-
+        dd($request->all());
         // Handle checkboxes (unchecked not sent)
         $data['is_visible'] = $request->has('is_visible') ? 1 : 0;
         $data['featured'] = $request->has('featured') ? 1 : 0;

@@ -4,7 +4,11 @@
 
 @section('content')
 
-<x-header.page :title="'Új termék'"/>
+<x-header.page :title="'Új termék'">
+    <x-slot name="button">
+        <x-button href="{{ route('products.create') }}">Termék Mentése</x-button>
+    </x-slot>
+</x-header.page>
 
 @if ($errors->any())
     <div>
@@ -47,20 +51,27 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <x-form.select for="category" label="Kategória" placeholder=" " type="text">
+                        <x-form.select for="category_id" label="Kategória" type="text" required>
                             @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                <option 
+                                    value="{{ $category->id }}" 
+                                    {{ old('category_id', $selectedValue ?? '') == $category->id ? 'selected' : '' }}
+                                >
+                                    {{ $category->name }}
+                                </option>
                             @endforeach
                         </x-form.select>
                     </div>
                     <div class="form-group">
                         <x-form.input for="tags" label="Címkék" id="tagsInput" autocomplete="off"/>                
                     </div>
-                    <div class="form-group mt-3">
-                        <x-form.checkbox for="is_featured" label="Kiemelt termék"/>                   
-                    </div>
-                    <div class="form-group">
-                        <x-form.checkbox for="status" label="Rejtett termék"/>                   
+                    <div class="flex gap-x-8 mt-3">
+                        <div class="form-group">
+                            <x-form.checkbox for="is_featured" label="Kiemelt termék"/>                   
+                        </div>
+                        <div class="form-group">
+                            <x-form.checkbox for="status" label="Rejtett termék"/>                   
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,7 +80,7 @@
                 <h3 class="text-lg mb-8">Leírások</h3>
                 <div class="flex flex-col gap-4">
                     <div class="form-group">
-                        <x-form.textarea for="excerpt" label="Rövid leírás" rows="3"></x-form.textarea>
+                        <x-form.textarea for="excerpt" label="Rövid leírás" rows="4"></x-form.textarea>
                     </div>
                     <div class="form-group">
                         <x-form.textarea for="description" label="Hosszú leírás" rows="11"></x-form.textarea>
