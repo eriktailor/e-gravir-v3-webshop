@@ -7,7 +7,7 @@
                     <span class="text-white font-bold text-xl">Admin</span>
                 </a>
             </div>
-            <div class="navbar-menu hidden md:flex md:flex-row gap-3 absolute top-[60px] left-0 bg-stone-950 w-full px-2.5 pb-3">
+            <div class="navbar-menu hidden md:flex md:flex-row gap-3 absolute md:relative top-[60px] md:top-0 left-0 bg-stone-950 w-full md:w-auto px-2.5 pb-3 md:pb-0">
                 <a href="{{ route('products.index') }}">Termékek</a>
                 <a href="{{ route('categories.index') }}">Kategóriák</a>
                 <a href="#">Rendelések</a>
