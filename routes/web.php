@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\FileUploadController;
 
 /**
@@ -24,6 +25,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('products', [ProductController::class, 'store'])->name('products.store');
     Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('products/{product}', [ProductController::class, 'update'])->name('products.update');
+
+    Route::resource('categories', ProductCategoryController::class);
 
 });
 

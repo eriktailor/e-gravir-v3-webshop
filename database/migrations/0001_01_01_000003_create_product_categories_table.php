@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('parent_id')->nullable()->constrained('categories')->onDelete('cascade');
             $table->string('image')->nullable();
             $table->text('description')->nullable();
+            $table->integer('order')->default(0);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

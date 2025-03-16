@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('is_visible')->default(true); // Active/Inactive
             $table->boolean('featured')->default(false); // Is featured?
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
