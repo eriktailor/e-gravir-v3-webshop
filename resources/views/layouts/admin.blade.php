@@ -28,8 +28,11 @@
         {{-- <x-success-fullwidth/> --}}
         
         <header class="py-16">
-            <div class="container">
-                <h1 class="text-5xl text-center">@yield('title')</h1>
+            <div class="container max-w-2xl">
+                <div class="flex justify-between items-center">
+                    <h1 class="text-5xl text-center">@yield('title')</h1>
+                    @yield('button')
+                </div>
             </div>
         </header>
         
