@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <form action="{{ isset($category) ? route('categories.update', $category) : route('categories.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ isset($category) ? route('categories.update', $category) : route('categories.store') }}" id="categoryForm" method="POST" enctype="multipart/form-data">
         @csrf
         @if(isset($category))
             @method('PUT')
@@ -34,7 +34,7 @@
                     <x-form.textarea for="description" label="Leírás" rows="4">{{ old('description', $category->description ?? '') }}</x-form.textarea>
                 </div>
                 <div class="form-group">
-                    <input type="file" id="image" name="image">
+                    <input type="file" id="categoryImageUpload" name="image">
                     @if(isset($category) && $category->image)
                         <input type="hidden" id="existingImage" value="{{ asset('storage/' . $category->image) }}">
                     @endif
