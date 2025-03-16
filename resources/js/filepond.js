@@ -19,15 +19,30 @@ FilePond.registerPlugin(FilePondPluginImagePreview);
  * Initialize filepond on file inputs
  */
 const inputElement = document.querySelector('input[type="file"]');
+const existingImage = document.getElementById('existingImage')?.value || null;
 
 const pond = FilePond.create(inputElement, {
-    allowMultiple: false, // optional: if only 1 image needed
-    className: 'imageupload',
-    allowPaste: false,
+    allowMultiple: false,
+    server: null,
+    storeAsFile: true,
     credits: false,
-    dropValidation: true,
-    labelIdle: 'Húzd ide a képet, vagy <span class="filepond--label-action"> tallózd </span>',
     imagePreviewHeight: 160,
-    server: null, // Disable server processing
-    storeAsFile: true // ✅ prevent FilePond clearing input, sends file via form
+    files: existingImage
+        ? [
+            {
+                source: existingImage, // Full image URL like: /storage/categories/9/filename.webp
+                options: {
+                    type: 'local',
+                    file: {
+                        name: existingImage.split('/').pop(), // filename
+                        size: null,
+                        type: 'image/webp' // optional
+                    },
+                    metadata: {
+                        poster: existingImage // shows preview!
+                    }
+                }
+            }
+        ]
+        : []
 });
