@@ -3,7 +3,7 @@
  * -----------------------------------------------------------------------------------
  */
 
-jQuery(document).ready(function($) {
+export default function initDropdown() {
 
     /**
      * Dropdown trigger click toggles dropdown menu
@@ -57,5 +57,4 @@ jQuery(document).ready(function($) {
         $('.dropdown').removeClass('dropdown-open');
     });
     
-    
-});
+}

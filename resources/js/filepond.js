@@ -73,7 +73,7 @@ function initFilePond(selector, existingImages = null, options = {}) {
 document.addEventListener('DOMContentLoaded', () => {
 
     /**
-     * Global init on all file inputs
+     * Init global on all file inputs
      */
     const fileInputs = document.querySelectorAll('input[type="file"]:not(.filepond-override)');
 
@@ -96,24 +96,22 @@ document.addEventListener('DOMContentLoaded', () => {
         initFilePond('#categoryImageUpload', existingCategoryImage, {
             allowMultiple: false,
             name: 'image',
+            className: 'filepond-category-image'
         });
     }
 
-
     /**
-     * THIS IS AN EXAMPLE WHERE MULTIPLE IMAGES WILL BE LOADED INTO FILEPOND,
-     * ADJUST THIS FOR NEW PRODUCT FORM
+     * Init on admin product gallery images
      */
-    // Gallery images (multiple)
-    const galleryImages = document.getElementById('gallery_images');
+    const productImages = document.getElementById('productImageUpload');
+    const existingProductImages = Array.from(document.querySelectorAll('.existingGalleryImage')).map(img => img.value);
 
-    // Hidden inputs holding existing gallery image URLs
-    const existingGalleryImages = Array.from(document.querySelectorAll('.existingGalleryImage')).map(img => img.value);
-
-    if (galleryImages) {
-        initFilePond('#gallery_images', existingGalleryImages.length > 0 ? existingGalleryImages : null, {
+    if (productImages) {
+        initFilePond('#gallery_images', existingProductImages.length > 0 ? existingProductImages : null, {
             allowMultiple: true,
             maxFiles: 10,
+            name: 'image',
+            className: 'filepond-product-images'
         });
     }
 

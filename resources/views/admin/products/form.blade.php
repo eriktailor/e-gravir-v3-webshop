@@ -22,7 +22,8 @@
             @method('PUT')
         @endif
         
-        <div class="flex flex-col gap-y-6 mx-auto max-w-xl">
+        <div class="grid grid-cols-2 gap-6">
+
             <div class="p-8 bg-white shadow-md rounded-lg">
                 <h3 class="text-lg mb-8">Adatok</h3>
                 <div class="flex flex-col gap-4">
@@ -73,10 +74,13 @@
                 </div>
             </div>
 
-            <div class="p-8 bg-white shadow-md rounded-lg">
+            <div class="p-8 bg-white shadow-md rounded-lg col-span-2">
                 <h3 class="text-lg mb-8">Képek</h3>
                 <div class="form-group">
-                    <input type="file" id="filepond" name="file">
+                    <input type="file" id="productImageUpload" name="image">
+                    @if(isset($product) && $product->image)
+                        <input type="hidden" id="existingImage" value="{{ asset('storage/' . $product->image) }}">
+                    @endif
                 </div>
             </div>
         </div>

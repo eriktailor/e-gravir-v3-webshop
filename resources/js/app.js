@@ -5,10 +5,14 @@ import $ from 'jquery';
 window.$ = $;
 
 /**
- * File imports
+ * Import local components
  */
-import './_dropdown';
+import initDropdown from './_dropdown';
 
+/**
+ * Initialize local components
+ */
+initDropdown();
 
 /**
  * Page loader fades out when page is loaded
