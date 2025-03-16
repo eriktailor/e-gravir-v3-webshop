@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('menu_order')->default(0);
             $table->boolean('is_visible')->default(true); // Active/Inactive
             $table->boolean('featured')->default(false); // Is featured?
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->constrained('product_categories')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

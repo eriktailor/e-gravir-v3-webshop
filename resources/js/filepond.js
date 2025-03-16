@@ -110,7 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
         initFilePond('#productImageUpload', existingProductImages.length > 0 ? existingProductImages : null, {
             allowMultiple: true,
             maxFiles: 10,
-            name: 'image',
+            name: 'images[]',
+            storeAsFile: true,
             className: 'filepond-product-images'
         });
     }

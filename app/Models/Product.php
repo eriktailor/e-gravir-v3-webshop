@@ -35,4 +35,12 @@ class Product extends Model
             set: fn ($value) => is_array($value) ? implode(',', $value) : $value,
         );
     }
+
+    /**
+     * Relation with ProductImage model
+     */
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
 }
