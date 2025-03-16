@@ -9,6 +9,16 @@ use App\Http\Requests\ProductRequest;
 class ProductController extends Controller
 {
     /**
+     * Display products listing
+     */
+    public function index()
+    {
+        $products = Product::all();
+
+        return view('admin.products.index', compact('products'));
+    }
+
+    /**
      * Admin: create product
      */
     public function create() {

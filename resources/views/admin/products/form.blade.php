@@ -4,24 +4,25 @@
 
 @section('content')
 
+<x-header.page :title="'Új termék'"/>
+
+@if ($errors->any())
+    <div>
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    </div>
+@endif
+
 <div class="container">
-
-
-    @if ($errors->any())
-        <div>
-            @foreach ($errors->all() as $error)
-                <p>{{ $error }}</p>
-            @endforeach
-        </div>
-    @endif
-
 
     <form action="{{ isset($product) ? route('products.update', $product) : route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         @if(isset($product))
             @method('PUT')
         @endif
-        <div class="grid grid-cols-3 gap-6">
+        
+        <div class="flex flex-col gap-y-6 mx-auto max-w-xl">
             <div class="p-8 bg-white shadow-md rounded-lg">
                 <h3 class="text-lg mb-8">Adatok</h3>
                 <div class="flex flex-col gap-4">
