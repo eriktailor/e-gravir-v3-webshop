@@ -13,6 +13,7 @@ BASICS
 .container {
     @apply mx-auto px-4 max-w-7xl;
 }
+
 /* --------------------------------------------------------------
 TYPOGRAPHY
 -------------------------------------------------------------- */
@@ -48,12 +49,16 @@ label {
 /* --------------------------------------------------------------
 FILEPOND
 -------------------------------------------------------------- */
-.imageupload {
+.filepond--root {
     @apply w-full font-sans;
 }
 
-.imageupload .filepond--drop-label {
-    @apply bg-gray-100 rounded-lg text-gray-500 text-sm;
+.filepond-product-images .filepond--list {
+    @apply flex flex-row flex-wrap gap-4;
+}
+
+.filepond-product-images .filepond--item {
+    @apply w-[calc(20%-0.5em)];
 }
 
 /* --------------------------------------------------------------
