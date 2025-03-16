@@ -47,11 +47,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <x-form.select for="category" label="Kategória" placeholder="Válassz" type="text">
-                            <option value="1">Első</option>
-                            <option value="2">Második</option>
-                            <option value="3">Harmadik</option>
+                        <x-form.select for="category" label="Kategória" placeholder=" " type="text">
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
                         </x-form.select>
+                    </div>
+                    <div class="form-group">
+                        <x-form.input for="tags" label="Címkék" id="tagsInput" autocomplete="off"/>                
                     </div>
                     <div class="form-group mt-3">
                         <x-form.checkbox for="is_featured" label="Kiemelt termék"/>                   
@@ -94,5 +97,5 @@
 @endsection
 
 @push('scripts')
-    @vite('resources/js/filepond.js')
+    @vite(['resources/js/filepond.js', 'resources/js/tomselect.js'])
 @endpush

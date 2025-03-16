@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
 
@@ -21,9 +22,13 @@ class ProductController extends Controller
     /**
      * Admin: create product
      */
-    public function create() {
+    public function create() 
+    {
+        $categories = ProductCategory::all();
+
         return view('admin.products.form', [
-            'product' => null
+            'product' => null,
+            'categories' => $categories
         ]);
     }
 

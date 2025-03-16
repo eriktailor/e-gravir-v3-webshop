@@ -30,8 +30,9 @@ INPUTS
 -------------------------------------------------------------- */
 input:not([type='checkbox']):not([type='radio']), 
 textarea, 
-select {
-    @apply w-full px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg placeholder:text-gray-400 transition-all duration-200 focus:outline-none text-stone-950 font-bold focus:ring focus:ring-stone-950;
+select,
+div.ts-control {
+    @apply w-full px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg placeholder:text-gray-400 transition-all duration-200 focus:outline-none text-stone-950 font-bold focus:ring focus:ring-stone-950 shadow-none;
 }
 
 select {
@@ -44,6 +45,20 @@ input[type='checkbox'] {
 
 label {
     @apply block mb-1 text-sm text-gray-500;
+}
+
+/* --------------------------------------------------------------
+DROPDOWN
+-------------------------------------------------------------- */
+.dropdown-menu a {
+    @apply px-2 py-1 rounded-md hover:bg-gray-100 text-gray-500;
+}
+
+/* --------------------------------------------------------------
+NAVBAR
+-------------------------------------------------------------- */
+.navbar-menu a {
+    @apply block w-full rounded-md py-1 px-2 text-gray-400 hover:text-white hover:bg-white/15;
 }
 
 /* --------------------------------------------------------------
@@ -62,15 +77,29 @@ FILEPOND
 }
 
 /* --------------------------------------------------------------
-DROPDOWN
+TOMSELECT
 -------------------------------------------------------------- */
-.dropdown-menu a {
-    @apply px-2 py-1 rounded-md hover:bg-gray-100 text-gray-500;
+div.ts-control input[type='text'] {
+    @apply w-auto shadow-none;
 }
 
-/* --------------------------------------------------------------
-NAVBAR
--------------------------------------------------------------- */
-.navbar-menu a {
-    @apply block w-full rounded-md py-1 px-2 text-gray-400 hover:text-white hover:bg-white/15;
+div.ts-wrapper.multi div.ts-control > div {
+    @apply m-0 bg-gray-200 rounded-md text-gray-500 text-xs border-0 tracking-wide leading-6 px-2 py-0 font-bold uppercase;
+    text-shadow: none !important;
+}
+
+div.ts-wrapper.multi div.ts-control [data-value] {
+    @apply bg-none shadow-none;
+}
+
+div.ts-wrapper.multi div.ts-control [data-value].active {
+    @apply border-0 bg-red-600 text-white bg-none;
+}
+
+div.ts-wrapper.multi.has-items div.ts-control {
+    @apply p-3 gap-x-2 shadow-none;
+}
+
+.focus div.ts-control {
+    @apply shadow-none;
 }

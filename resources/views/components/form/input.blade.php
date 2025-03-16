@@ -1,16 +1,29 @@
+@props([
+    'for', 
+    'label', 
+    'type' => 'text', 
+    'placeholder' => '', 
+    'value' => '',
+    'id' => null,
+])
+
+@php
+    $inputId = $id ?? $for;
+@endphp
+
 <div class="form-control">
     
-    @if(isset($label) && $label)
-        <label for="{{ $for }}" class="form-label">{{ $label }}</label>
+    @if($label)
+        <label for="{{ $inputId }}" class="form-label">{{ $label }}</label>
     @endif
 
     <input 
-        id="{{ $for }}" 
+        id="{{ $inputId }}" 
         name="{{ $for }}" 
-        type="{{ $type ?? 'text' }}" 
-        placeholder="{{ $placeholder ?? '' }}" 
-        value="{{ old($for, $value ?? '') }}" 
-        aria-describedby="{{ $for }}-error"
+        type="{{ $type }}" 
+        placeholder="{{ $placeholder }}" 
+        value="{{ old($for, $value) }}" 
+        aria-describedby="{{ $inputId }}-error"
         {{ $attributes->merge(['class' => 'input ' . ($errors->has($for) ? 'is-invalid' : '')]) }}
     >
 
