@@ -36,7 +36,7 @@
                     <x-slot name="trigger">
                         <x-icon name="dots-vertical" class="text-gray-400" />
                     </x-slot>
-                    <a href="#">Szerkesztés</a>
+                    <a href="{{ route('categories.edit', $category->id) }}">Szerkesztés</a>
                     <a href="#">Törlés</a>
                 </x-dropdown>
             </div>

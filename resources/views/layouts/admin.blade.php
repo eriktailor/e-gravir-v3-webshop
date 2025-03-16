@@ -22,8 +22,8 @@
                         </a>
                     </div>
                     <div class="nav-menu hidden list-none md:flex flex-col md:flex-row gap-3 absolute top-[60px] left-0 bg-stone-950 w-full px-2.5 pb-3">
-                        <a href="#">Termékek</a>
-                        <a href="#">Kategóriák</a>
+                        <a href="{{ route('products.index') }}">Termékek</a>
+                        <a href="{{ route('categories.index') }}">Kategóriák</a>
                         <a href="#">Rendelések</a>
                     </div>
                     <hr class="text-gray-700">
