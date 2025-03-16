@@ -38,10 +38,13 @@ class ProductController extends Controller
      */
     public function edit(Product $product) {
         $categories = ProductCategory::all();
-        
+
         // Get full URLs of existing images
         $existingImages = $product->images->map(function($img) {
-            return asset('storage/' . $img->image_path);
+            return [
+                'id' => $img->id,
+                'url' => asset('storage/' . $img->image_path),
+            ];
         });
 
         return view('admin.products.form', [
@@ -98,12 +101,6 @@ class ProductController extends Controller
         // ===== Handle Images ===== //
 
         if ($request->hasFile('images')) {
-
-            // 1. Delete old images (both file + DB)
-            foreach ($product->images as $img) {
-                \Storage::disk('public')->delete($img->image_path);
-                $img->delete();
-            }
 
             // 2. Save new images
             foreach ($request->file('images') as $image) {

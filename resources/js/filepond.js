@@ -5,7 +5,7 @@ import * as FilePond from 'filepond';
 import 'filepond/dist/filepond.min.css';
 
 /**
- *  Import image preview plugin js and css
+ * Import image preview plugin js and css
  */
 import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
@@ -16,31 +16,19 @@ import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
 FilePond.registerPlugin(FilePondPluginImagePreview);
 
 /**
- * Helper to format multiple existing images
+ * Format existing images
  */
 function formatExistingFiles(images) {
     if (!images) return [];
-
-    if (Array.isArray(images)) {
-        return images.map((image) => ({
-            source: image,
-            options: {
-                type: 'local',
-                metadata: { poster: image }
-            }
-        }));
-    } else {
-        return [
-            {
-                source: images,
-                options: {
-                    type: 'local',
-                    metadata: { poster: images }
-                }
-            }
-        ];
-    }
+    return images.map((image) => ({
+        source: image.id,
+        options: {
+            type: 'local',
+            metadata: { poster: image.url }
+        }
+    }));
 }
+
 
 /**
  * Init function
@@ -49,26 +37,55 @@ function initFilePond(selector, existingImages = null, options = {}) {
     const inputElement = document.querySelector(selector);
     if (!inputElement) return;
 
-    FilePond.create(inputElement, {
-        allowMultiple: false,
-        storeAsFile: true,
+    const pond = FilePond.create(inputElement, {
+        allowMultiple: true,
         credits: false,
+        allowRevert: true,
+        instantUpload: false,
         imagePreviewHeight: 160,
         labelIdle: 'Húzd ide a képeidet vagy <span class="filepond--label-action"> kiválasztás </span>',
-        server: existingImages
-            ? {
-                  load: (source, load) => {
-                      fetch(source)
-                          .then(res => res.blob())
-                          .then(blob => {
-                              load(blob);
-                          });
-                  }
-              }
-            : null,
-        files: formatExistingFiles(existingImages),
+
+        server: {
+            load: (source, load) => {
+                const img = existingImages?.find(img => img.id == source);
+                if (img) {
+                    fetch(img.url)
+                        .then(res => res.blob())
+                        .then(blob => load(blob));
+                }
+            },
+            revert: (uniqueFileId, load, error) => {
+                // For newly uploaded files (if needed)
+                console.log('Revert called, ID:', uniqueFileId);
+                load();
+            }
+        },
+
+        files: existingImages ? formatExistingFiles(existingImages) : [],
         ...options
     });
+
+    /**
+     * Always fire on ANY file removal
+     */
+    pond.on('removefile', (error, file) => {
+        if (file && file.source) {
+            console.log('Removing file ID:', file.source);
+
+            fetch(`/admin/product-images/${file.source}`, {
+                method: 'DELETE',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                }
+            }).then(res => {
+                console.log('Delete response:', res.status);
+            }).catch((err) => {
+                console.error('Delete error:', err);
+            });
+        }
+    });
+
+    return pond;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -115,7 +132,4 @@ document.addEventListener('DOMContentLoaded', () => {
             className: 'filepond-product-images'
         });
     }
-
-
-
 });
