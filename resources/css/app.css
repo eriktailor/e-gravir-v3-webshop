@@ -68,6 +68,39 @@ FILEPOND
     @apply w-full font-sans;
 }
 
+.filepond-cover {
+    & .filepond--image-preview-wrapper {
+        overflow: hidden;
+    }
+    & .filepond--image-preview {
+        width: 100% !important;
+        height: 100% !important;
+    }
+    & .filepond--image-clip {
+        width: 100% !important;
+        height: 100% !important;
+    }
+    & .filepond--image-canvas-wrapper {
+        width: 100% !important;
+        height: 100% !important;
+        transform: none !important;
+        transform-origin: center center !important; /* 💥 CENTERED! */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    & .filepond--image-bitmap {
+        position: relative !important;
+    }
+    & .filepond--image-bitmap canvas {
+        object-fit: cover;
+        width: 100% !important;
+        height: 100% !important;
+        display: block;
+        margin: auto;
+    }
+}
+
 .filepond-product-images .filepond--list {
     @apply flex flex-row flex-wrap gap-4;
 }
@@ -75,7 +108,7 @@ FILEPOND
 .filepond-product-images .filepond--item {
     @apply w-[calc(20%-0.5em)];
 }
-
+  
 /* --------------------------------------------------------------
 TOMSELECT
 -------------------------------------------------------------- */

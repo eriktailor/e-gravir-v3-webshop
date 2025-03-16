@@ -91,7 +91,7 @@
             <div class="p-8 bg-white shadow-md rounded-lg col-span-2">
                 <h3 class="text-lg mb-8">Képek</h3>
                 <div class="form-group">
-                    <input type="file" id="productImageUpload" class="filepond-product-images" name="images[]" multiple>
+                    <input type="file" id="productImageUpload" class="filepond-product-images filepond-cover" name="images[]" multiple>
                 </div>
             </div>
         </div>
