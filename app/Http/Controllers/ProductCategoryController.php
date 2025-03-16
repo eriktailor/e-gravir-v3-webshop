@@ -7,12 +7,18 @@ use Illuminate\Http\Request;
 
 class ProductCategoryController extends Controller
 {
+    /**
+     * Display categories listing
+     */
     public function index()
     {
         $categories = ProductCategory::all();
         return view('admin.categories.index', compact('categories'));
     }
 
+    /**
+     * Display category create form
+     */
     public function create()
     {
         $categories = ProductCategory::all();
@@ -21,7 +27,10 @@ class ProductCategoryController extends Controller
             'categories' => $categories
         ]);
     }
-
+    
+    /**
+     * Store a new category
+     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -37,12 +46,18 @@ class ProductCategoryController extends Controller
         return redirect()->route('categories.index')->with('success', 'Category created!');
     }
 
+    /**
+     * Display category edit form
+     */
     public function edit(ProductCategory $category)
     {
         $categories = ProductCategory::where('id', '!=', $category->id)->get();
         return view('admin.categories.form', compact('category', 'categories'));
     }
-
+    
+    /**
+     * Update a category
+     */
     public function update(Request $request, ProductCategory $category)
     {
         $validated = $request->validate([
@@ -58,6 +73,9 @@ class ProductCategoryController extends Controller
         return redirect()->route('categories.index')->with('success', 'Category updated!');
     }
 
+    /**
+     * Delete a category
+     */
     public function destroy(ProductCategory $category)
     {
         $category->delete();
