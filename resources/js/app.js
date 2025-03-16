@@ -4,6 +4,10 @@
 import $ from 'jquery';
 window.$ = $;
 
+/**
+ * File imports
+ */
+import './_dropdown';
 
 
 /**

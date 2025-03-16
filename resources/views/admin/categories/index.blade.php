@@ -22,7 +22,17 @@
                 </div>
             </div>
             <p class="text-gray-400 mb-1">{{ $category->description }}</p>
-            <x-icon name="dots-vertical" class="text-gray-400"/>
+            
+            <x-dropdown>
+                <x-slot name="trigger">
+                    <x-icon name="dots-vertical" class="text-gray-400" />
+                </x-slot>
+            
+                <a href="#">Megtekintés</a>
+                <a href="#">Szerkesztés</a>
+                <a href="#">Törlés</a>
+            </x-dropdown>
+            
         </div>
     @empty
         <p>Nincs kategória</p>
