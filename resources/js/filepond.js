@@ -95,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (categoryImage) {
         initFilePond('#categoryImageUpload', existingCategoryImage, {
             allowMultiple: false,
+            name: 'image',
         });
     }
 

@@ -24,7 +24,7 @@
                         <x-icon name="grip-horizontal" class="text-gray-400"/>
                     </button>
                     <img 
-                        src="/storage/{{ $category->image ? $category->image : asset('/img/noimage.webp')}}" 
+                        src="{{ get_image_or_placeholder($category->image) }}" 
                         alt="{{ $category->name }}"
                         class="w-18 h-18 rounded-full object-cover object-center">
                     <div>

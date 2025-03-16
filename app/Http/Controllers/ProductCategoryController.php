@@ -75,14 +75,19 @@ class ProductCategoryController extends Controller
 
         // Handle image upload
         if ($request->hasFile('image')) {
-            // 1️⃣ Delete old image
+            // Delete old image
             if ($category->image && Storage::disk('public')->exists($category->image)) {
                 Storage::disk('public')->delete($category->image);
             }
-
-            // 2️⃣ Save new image
+            // Save new image
             $imagePath = $request->file('image')->store("categories/{$category->id}", 'public');
             $category->update(['image' => $imagePath]);
+        } else {
+            // If image removed, delete old image + set null
+            if ($category->image && Storage::disk('public')->exists($category->image)) {
+                Storage::disk('public')->delete($category->image);
+            }
+            $category->update(['image' => null]);
         }
 
         return redirect()->route('categories.index')->with('success', 'Category updated!');
