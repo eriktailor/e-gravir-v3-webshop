@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const existingProductImages = Array.from(document.querySelectorAll('.existingGalleryImage')).map(img => img.value);
 
     if (productImages) {
-        initFilePond('#gallery_images', existingProductImages.length > 0 ? existingProductImages : null, {
+        initFilePond('#productImageUpload', existingProductImages.length > 0 ? existingProductImages : null, {
             allowMultiple: true,
             maxFiles: 10,
             name: 'image',

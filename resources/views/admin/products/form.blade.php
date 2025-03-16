@@ -93,44 +93,6 @@
 
 @endsection
 
-@push('styles')
-    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.css" rel="stylesheet">
-
-    <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
-@endpush
-
 @push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
-
-    <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
-    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
-    <script>
-        // Register FilePond plugins (optional)
-        FilePond.registerPlugin(FilePondPluginImagePreview);
-    
-        // Select the input element
-        const inputElement = document.querySelector("#filepond");
-    
-        // Create a FilePond instance
-        const pond = FilePond.create(inputElement, {
-            allowMultiple: true,
-            className: 'imageupload',
-            allowPaste: false,
-            maxFiles: 9,
-            itemInsertLocation: 'after',
-            allowReorder: true,
-            credits: false,
-            dropValidation: true,
-            labelIdle: 'Húzd ide a képeket, vagy <span class="filepond--label-action"> tallózd </span>',
-            imagePreviewHeight: 160,
-            //imageCropAspectRatio: '1:1',
-            server: {
-                process: '{{ route("file.upload") }}', // Laravel route
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}' // CSRF Token for security
-                }
-            }
-        });
-    </script>
+    @vite('resources/js/filepond.js')
 @endpush
