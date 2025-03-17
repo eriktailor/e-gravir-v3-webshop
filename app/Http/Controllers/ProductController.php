@@ -142,14 +142,25 @@ class ProductController extends Controller
     }
 
     /**
-     * Get a product variation item
+     * Adds a product variation item
      */
     public function variationItem(Request $request)
     {
         $index = $request->get('index');
         $options = ['Méret', 'Szín', 'Anyag'];
         
-        return view('admin.products.variation', compact('index', 'options'));
+        return view('admin.variations.item', compact('index', 'options'));
+    }
+
+    /**
+     * Adds a row in product variation item
+     */
+    public function variationRow(Request $request)
+    {
+        $variationIndex = $request->get('variationIndex');
+        $valueIndex = $request->get('valueIndex');
+
+        return view('admin.variations.row', compact('variationIndex', 'valueIndex'));
     }
 
 }

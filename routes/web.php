@@ -23,7 +23,9 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     // Products
     Route::resource('products', ProductController::class)->except(['show']);;
-    Route::get('products/variation-item', [ProductController::class, 'variationItem'])->name('products.variation-item');
+    Route::get('products/variation-item', [ProductController::class, 'variationItem']);
+    Route::get('products/variation-row', [ProductController::class, 'variationRow']);
+
 
     // Product Images
     Route::delete('product-images/{image}', [ProductImageController::class, 'destroy'])->name('product-images.destroy');
