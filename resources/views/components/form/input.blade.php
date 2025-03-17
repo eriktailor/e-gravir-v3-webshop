@@ -5,6 +5,7 @@
     'placeholder' => '', 
     'value' => '',
     'id' => null,
+    'helptext' => null
 ])
 
 @php
@@ -14,7 +15,14 @@
 <div class="form-control">
     
     @if($label)
-        <label for="{{ $inputId }}" class="form-label">{{ $label }}</label>
+        <label for="{{ $inputId }}" class="form-label">
+            {{ $label }}
+            @if($helptext)
+                <x-tooltip text="{{ $helptext}}" class="top-[3px] -left-0.5">
+                    <x-icon name="info-circle" class="w-4 h-4 text-gray-400/80"/>
+                </x-tooltip>
+            @endif
+        </label>
     @endif
 
     <input 

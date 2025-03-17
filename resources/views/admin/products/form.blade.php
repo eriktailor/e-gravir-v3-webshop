@@ -40,7 +40,7 @@
                                 <x-form.input for="in_stock" label="Készlet (db)" type="number" min="0" :value="old('in_stock', $product->in_stock ?? '')"/>
                             </div>
                             <div class="form-group">
-                                <x-form.input for="menu_order" label="Sorrend" type="number" :value="old('menu_order', $product->menu_order ?? '')"/>
+                                <x-form.input for="menu_order" label="Sorrend" type="number" :value="old('menu_order', $product->menu_order ?? '')" helptext="Pozíció a listában"/>
                             </div>
                         </div>
                         <div class="form-group">
