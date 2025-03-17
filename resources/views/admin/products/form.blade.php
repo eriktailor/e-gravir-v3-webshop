@@ -53,7 +53,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <x-form.select for="category_id" label="Kategória" placeholder=" " type="text" required>
+                            <x-form.select for="category_id" label="Kategória" placeholder=" " required>
                                 @foreach($categories as $category)
                                     <option 
                                         value="{{ $category->id }}" 
@@ -86,7 +86,8 @@
                             @foreach($product->variations as $index => $variation)
                                 @include('admin.products.variation', [
                                     'index' => $index,
-                                    'variation' => $variation
+                                    'variation' => $variation,
+                                    'options' => $options
                                 ])
                             @endforeach
                         @endif

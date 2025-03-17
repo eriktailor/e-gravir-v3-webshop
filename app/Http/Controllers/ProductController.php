@@ -41,6 +41,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product) {
         $categories = ProductCategory::all();
+        $options = ['Méret', 'Szín', 'Anyag'];
 
         // Get full URLs of existing images
         $existingImages = $product->images->map(function($img) {
@@ -52,6 +53,7 @@ class ProductController extends Controller
 
         return view('admin.products.form', [
             'product' => $product,
+            'options' => $options,
             'categories' => $categories,
             'existingImages' => $existingImages
         ]);
@@ -145,8 +147,9 @@ class ProductController extends Controller
     public function variationItem(Request $request)
     {
         $index = $request->get('index');
+        $options = ['Méret', 'Szín', 'Anyag'];
         
-        return view('admin.products.variation', compact('index'));
+        return view('admin.products.variation', compact('index', 'options'));
     }
 
 }
