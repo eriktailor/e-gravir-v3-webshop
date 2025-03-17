@@ -11,7 +11,7 @@ $(document).ready(function() {
      */
     new EasyEditor('#description', {
         css: ({
-            minHeight: '300px',
+            minHeight: '230px',
             maxHeight: '800px'
         }),
         onLoaded: function(){

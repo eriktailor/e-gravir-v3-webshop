@@ -16,7 +16,8 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->string('name'); // Example: "Size", "Color"
             $table->string('value'); // Example: "M", "Red"
-            $table->decimal('price_modifier', 10, 2)->default(0); // Price adjustment
+            $table->integer('price')->nullable(); // Price adjustment
+            $table->integer('in_stock')->default(0);
             $table->timestamps();
         });
     }

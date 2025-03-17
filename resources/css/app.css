@@ -22,7 +22,15 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    @apply font-bold tracking-tight leading-tight text-stone-950;
+    @apply font-bold leading-tight text-stone-950;
+}
+
+h1, h2 {
+    @apply tracking-tighter;
+}
+
+h3, h4, h5, h6 {
+    @apply tracking-tight;
 }
 
 /* --------------------------------------------------------------
@@ -33,7 +41,7 @@ textarea,
 select,
 div.ts-control,
 div.easyeditor-wrapper {
-    @apply w-full px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg placeholder:text-gray-400 transition-all duration-200 focus:outline-none text-stone-950 font-bold focus:ring focus:ring-stone-950 shadow-none;
+    @apply w-full px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg placeholder:text-gray-400 transition-all text-sm duration-200 focus:outline-none text-stone-950 font-semibold focus:ring focus:ring-stone-950 shadow-none;
 }
 
 select {

@@ -14,10 +14,10 @@ This is the 2025 version of [e-gravir-v2](https://github.com/eriktailor/e-gravir
 - jQuery 3.7
 
 ### Libraries
-- EasyEditor
-- FilePond
-- Sortable
-- Tomselect
+- [EasyEditor](https://github.com/im4aLL/easyeditor)
+- [FilePond](https://pqina.nl/filepond/docs/getting-started/installation/jquery/)
+- [Sortable](https://github.com/SortableJS/Sortable)
+- [Tomselect](https://tom-select.js.org/examples/)
 
 ---
 
