@@ -22,9 +22,13 @@ Route::prefix('admin')->controller(AuthController::class)->group(function() {
 Route::prefix('admin')->middleware('auth')->group(function () {
 
     // Products
-    Route::resource('products', ProductController::class);
+    Route::resource('products', ProductController::class)->except(['show']);;
+    Route::get('products/variation-item', [ProductController::class, 'variationItem'])->name('products.variation-item');
+
+    // Product Images
     Route::delete('product-images/{image}', [ProductImageController::class, 'destroy'])->name('product-images.destroy');
     Route::post('product-images/reorder', [ProductImageController::class, 'reorder']);
+    
 
     // Categories
     Route::resource('categories', ProductCategoryController::class);

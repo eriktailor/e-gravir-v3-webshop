@@ -8,11 +8,13 @@ window.$ = $;
  * Import local components
  */
 import initDropdown from './_dropdown';
+import initVariation from './_variation';
 
 /**
  * Initialize local components
  */
 initDropdown();
+initVariation();
 
 /**
  * Page loader fades out when page is loaded

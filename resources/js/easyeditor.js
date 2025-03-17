@@ -14,9 +14,6 @@ $(document).ready(function() {
             minHeight: '200px',
             maxHeight: '450px'
         }),
-        onLoaded: function(){
-            console.log('Easy Editor Loaded!');
-        },
         buttons : ['bold', 'italic', 'link', 'code', 'h3', 'x', 'source']
     });
 

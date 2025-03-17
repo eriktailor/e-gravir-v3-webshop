@@ -83,7 +83,6 @@ class ProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
 
-
     /**
      * Update an existing product
      */
@@ -98,11 +97,8 @@ class ProductController extends Controller
         // Update product
         $product->update($data);
 
-        // ===== Handle Images ===== //
-
+        // Handle images
         if ($request->hasFile('images')) {
-
-            // 2. Save new images
             foreach ($request->file('images') as $image) {
                 $path = $image->store("products/{$product->id}", 'public');
 
@@ -113,6 +109,16 @@ class ProductController extends Controller
         }
 
         return redirect()->route('products.index')->with('success', 'Product updated successfully!');
+    }
+
+    /**
+     * Get a product variation item
+     */
+    public function variationItem(Request $request)
+    {
+        $index = $request->get('index');
+        
+        return view('admin.products.variation', compact('index'));
     }
 
 }

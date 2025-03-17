@@ -84,7 +84,7 @@
                     <div id="variationsWrapper" class="flex flex-col gap-3">
                         @if(isset($product) && $product->variations->count())
                             @foreach($product->variations as $index => $variation)
-                                <div class="variation-item flex flex-col gap-4 border border-gray-300 p-6 rounded-lg">
+                                {{-- <div class="variation-item flex flex-col gap-4 border border-gray-300 p-6 rounded-lg">
                                     <div class="show-variation">
                                         <h5 class="font-semibold text-stone-950 mb-3">Méret</h5>
                                         <div class="flex gap-2">
@@ -117,7 +117,7 @@
                                                 type="text"/>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 {{-- <div class="flex gap-4 mb-4 variation-item">
                                     <input type="text" name="variations[{{ $index }}][name]" value="{{ $variation->name }}" placeholder="Típus (pl. Méret)" class="input">
                                     <input type="text" name="variations[{{ $index }}][value]" value="{{ $variation->value }}" placeholder="Érték (pl. M)" class="input">
@@ -171,6 +171,7 @@
             window.existingProductImages = @json($existingImages);
         </script>
     @endif
+    
     @vite([
         'resources/js/filepond.js', 
         'resources/js/tomselect.js',
