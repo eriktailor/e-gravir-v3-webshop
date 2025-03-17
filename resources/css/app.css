@@ -77,6 +77,10 @@ FILEPOND
     @apply w-full font-sans;
 }
 
+div.filepond--panel-root {
+    @apply bg-gray-100;
+}
+
 .filepond--file-info {
     @apply invisible;
 }

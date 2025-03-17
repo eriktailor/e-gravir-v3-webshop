@@ -27,7 +27,6 @@
         @endif
         
         <div class="grid grid-cols-2 gap-6">
-            <div class="flex flex-col gap-6">
 
                 <!-- Adatok -->
                 <div class="p-8 bg-white shadow-md rounded-lg">
@@ -77,6 +76,19 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Leírások -->
+                <div class="p-8 bg-white shadow-md rounded-lg">
+                    <h3 class="text-xl mb-8">Leírások</h3>
+                    <div class="flex flex-col gap-4">
+                        <div class="form-group">
+                            <x-form.textarea for="short_description" label="Rövid leírás" rows="4">{{ old('short_description', $product->short_description ?? '') }}</x-form.textarea>
+                        </div>
+                        <div class="form-group">
+                            <x-form.textarea for="description" label="Hosszú leírás" :value="$product->description ?? ''" />
+                        </div>
+                    </div>
+                </div>
                 
                 <!-- Variációk -->
                 <div class="p-8 bg-white shadow-md rounded-lg">
@@ -96,22 +108,9 @@
                         Új variáció hozzáadása
                     </x-button>
                 </div>
+       
 
-                <!-- Leírások -->
-                <div class="p-8 bg-white shadow-md rounded-lg">
-                    <h3 class="text-xl mb-8">Leírások</h3>
-                    <div class="flex flex-col gap-4">
-                        <div class="form-group">
-                            <x-form.textarea for="short_description" label="Rövid leírás" rows="4">{{ old('short_description', $product->short_description ?? '') }}</x-form.textarea>
-                        </div>
-                        <div class="form-group">
-                            <x-form.textarea for="description" label="Hosszú leírás" :value="$product->description ?? ''" />
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div>
+                
 
                 <!-- Képek -->
                 <div class="p-8 bg-white shadow-md rounded-lg col-span-2">
@@ -121,7 +120,6 @@
                     </div>
                 </div>
 
-            </div>
         </div>
 
     </form>
