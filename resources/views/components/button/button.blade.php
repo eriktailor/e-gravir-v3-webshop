@@ -7,15 +7,15 @@
 
 @php
     $btnClasses = 'button font-semibold text-base no-underline 
-                   whitespace-nowrap text-center inline-block enabled:hover:scale-[1.025] 
+                   whitespace-nowrap text-center inline-block 
                    transition duration-100 cursor-pointer';
                    
     $btnClasses .= $size === 'small' 
-        ? ' rounded py-1 px-2.5 text-sm' 
-        : ' rounded-lg py-2.5 px-5';
+        ? ' rounded-md py-1.5 px-2.5 text-sm hover:transform-none' 
+        : ' rounded-lg py-2.5 px-5 enabled:hover:scale-[1.025]';
     
     $buttonColors = $color === 'white' 
-        ? 'bg-white text-slate-900 hover:bg-gray-100 border shadow' 
+        ? 'bg-white text-gray-600 hover:bg-gray-50 hover:text-stone-950 border border-gray-300 shadow-sm shadow-gray-200/50' 
         : 'bg-red-600 hover:bg-red-500 text-white enabled:hover:bg-red-600';
 
     if ($disabled) {

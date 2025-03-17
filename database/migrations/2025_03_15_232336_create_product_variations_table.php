@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('value'); // Example: "M", "Red"
             $table->integer('price')->nullable(); // Price adjustment
             $table->integer('in_stock')->default(0);
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }
