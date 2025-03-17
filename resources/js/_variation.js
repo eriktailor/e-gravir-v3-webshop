@@ -42,7 +42,7 @@ export default function initVariation() {
         // Check if row has already been triggered
         if (row.data('triggered')) return;
     
-        let container = $(this).closest('.variation-values');
+        let container = $(this).closest('.variation-item').find('.variation-values');
         let index = container.data('index');
         let valueIndex = container.find('.variation-value-row').length;
     

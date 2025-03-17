@@ -65,38 +65,44 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $data = $request->validated();
-
-        // Handle checkboxes (default to 0 if not checked)
+    
+        // Handle checkboxes
         $data['is_visible'] = $request->has('is_visible') ? 1 : 0;
         $data['featured'] = $request->has('featured') ? 1 : 0;
 
-        // 1. Create product
+        // Create product
         $product = Product::create($data);
-
-        // 2. Handle image uploads
+    
+        // Images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $path = $image->store("products/{$product->id}", 'public');
-
-                // 3. Save image record
+    
                 $product->images()->create([
                     'image_path' => $path,
                 ]);
             }
         }
-
-        // Handle product variations
-        if ($request->has('variations')) {        
-            foreach ($request->variations as $variation) {
-                $product->variations()->create([
-                    'name' => $variation['name'],
-                    'value' => $variation['value'],
-                    'price' => $variation['price'] ?? null,
-                    'in_stock' => $variation['in_stock'] ?? 0,
-                ]);
+    
+        // Variations
+        if ($request->has('variations')) {
+            foreach ($request->input('variations') as $variation) {
+                if (empty($variation['name'])) continue;
+                if (isset($variation['values']) && is_array($variation['values'])) {
+                    foreach ($variation['values'] as $valueRow) {
+                        if (empty($valueRow['value'])) continue;
+        
+                        $product->variations()->create([
+                            'name' => $variation['name'],
+                            'value' => $valueRow['value'],
+                            'price' => 0,
+                            'in_stock' => $valueRow['in_stock'] ?? 0,
+                        ]);
+                    }
+                }
             }
         }
-
+    
         return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
 
@@ -106,35 +112,41 @@ class ProductController extends Controller
     public function update(ProductRequest $request, Product $product)
     {
         $data = $request->validated();
-
-        // Handle checkboxes
+    
+        // Checkboxes
         $data['is_visible'] = $request->has('is_visible') ? 1 : 0;
         $data['featured'] = $request->has('featured') ? 1 : 0;
-
-        // Update product
+    
         $product->update($data);
-
-        // Handle images
+    
+        // Images
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $image) {
                 $path = $image->store("products/{$product->id}", 'public');
-
+    
                 $product->images()->create([
                     'image_path' => $path,
                 ]);
             }
         }
-
-        if ($request->has('variations')) {
-            $product->variations()->delete(); // Delete existing variations for update case (optional)
         
-            foreach ($request->variations as $variation) {
-                $product->variations()->create([
-                    'name' => $variation['name'],
-                    'value' => $variation['value'],
-                    'price' => $variation['price'] ?? null,
-                    'in_stock' => $variation['in_stock'] ?? 0,
-                ]);
+        // Variations
+        $product->variations()->delete();
+        if ($request->has('variations')) {
+            foreach ($request->input('variations') as $variation) {
+                if (empty($variation['name'])) continue;
+                if (isset($variation['values']) && is_array($variation['values'])) {
+                    foreach ($variation['values'] as $valueRow) {
+                        if (empty($valueRow['value'])) continue;
+        
+                        $product->variations()->create([
+                            'name' => $variation['name'],
+                            'value' => $valueRow['value'],
+                            'price' => 0,
+                            'in_stock' => $valueRow['in_stock'] ?? 0,
+                        ]);
+                    }
+                }
             }
         }
 

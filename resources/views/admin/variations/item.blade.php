@@ -10,18 +10,18 @@
             </x-form.select>
         </div>
 
-        {{-- Add a hidden row placeholder --}}
-        <div data-index="{{ $index }}">
+        {{-- Correct wrapper here --}}
+        <div class="variation-values flex flex-col gap-4" data-index="{{ $index }}">
             <div class="flex gap-6">
                 <label class="form-group grow">Érték</label>
                 <label class="form-group w-1/3 flex items-end gap-3">Készlet</label>
             </div>
-            <div class="variation-values flex flex-col gap-4">
-                @include('admin.variations.row', [
-                    'variationIndex' => $index,
-                    'valueIndex' => 0
-                ])
-            </div>
+
+            {{-- Initial row --}}
+            @include('admin.variations.row', [
+                'variationIndex' => $index,
+                'valueIndex' => 0
+            ])
         </div>
 
     </div>

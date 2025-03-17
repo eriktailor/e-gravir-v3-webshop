@@ -32,6 +32,11 @@ class ProductRequest extends FormRequest
             'featured' => 'nullable|boolean',
             'category_id' => 'required|exists:product_categories,id',
             'tags' => ['nullable', 'string', 'regex:/^([a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ\s\-]+,?\s*)*$/'],
+            'variations' => 'nullable|array',
+            'variations.*.name' => 'nullable|string',
+            'variations.*.values' => 'nullable|array',
+            'variations.*.values.*.value' => 'nullable|string',
+            'variations.*.values.*.in_stock' => 'nullable|integer',
         ];
     }
 
