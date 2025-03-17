@@ -29,7 +29,7 @@
         <div class="columns-2 gap-6">
 
                 <!-- Adatok -->
-                <div class="p-8 bg-white shadow-md rounded-lg break-inside-avoid mb-6">
+                <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
                     <h3 class="text-xl mb-8">Adatok</h3>
                     <div class="flex flex-col gap-4">
                         <div class="form-group">
@@ -70,7 +70,7 @@
                 </div>
 
                 <!-- Árazás -->
-                <div class="p-8 bg-white shadow-md rounded-lg break-inside-avoid mb-6">
+                <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
                     <h3 class="text-xl mb-8">Árazás</h3>
                     <div class="flex flex-col gap-4">
                         <div class="grid grid-cols-2 gap-6">
@@ -92,21 +92,8 @@
                     </div>
                 </div>
 
-                <!-- Leírások -->
-                <div class="p-8 bg-white shadow-md rounded-lg break-inside-avoid max-[]:b-6">
-                    <h3 class="text-xl mb-8">Leírások</h3>
-                    <div class="flex flex-col gap-4">
-                        <div class="form-group">
-                            <x-form.textarea for="short_description" label="Rövid leírás" rows="4">{{ old('short_description', $product->short_description ?? '') }}</x-form.textarea>
-                        </div>
-                        <div class="form-group">
-                            <x-form.textarea for="description" label="Hosszú leírás" :value="$product->description ?? ''" />
-                        </div>
-                    </div>
-                </div>
-                
                 <!-- Variációk -->
-                <div class="p-8 bg-white shadow-md rounded-lg break-inside-avoid mb-6">
+                <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
                     <h3 class="text-xl mb-8">Variációk</h3>
                     <div id="variationsWrapper" class="flex flex-col gap-3">
                         @if(isset($product) && $product->variations->count())
@@ -124,22 +111,31 @@
                     </x-button>
                 </div>
 
-                <!-- Testreszabás -->
-                <div class="p-8 bg-white shadow-md rounded-lg break-inside-avoid mb-6">
-                    <h3 class="text-xl mb-8">Testreszabás</h3>
+                <!-- Leírások -->
+                <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
+                    <h3 class="text-xl mb-8">Leírások</h3>
                     <div class="flex flex-col gap-4">
-                        <div class="border border-gray-300 p-6 rounded-lg">
-                            <x-form.checkbox for="front_image" label="1. oldal kép" :checked="old('front_image', $productCustomization->front_image ?? false)"/>
-                            <x-form.checkbox for="front_text" label="1. oldal szöveg" :checked="old('front_text', $productCustomization->front_text ?? false)"/>
+                        <div class="form-group">
+                            <x-form.textarea for="short_description" label="Rövid leírás" rows="4">{{ old('short_description', $product->short_description ?? '') }}</x-form.textarea>
                         </div>
-                        <div class="border border-gray-300 p-6 rounded-lg">
-                            <x-form.checkbox for="back_image" label="2. oldal kép" :checked="old('back_image', $productCustomization->back_image ?? false)"/>
-                            <x-form.checkbox for="back_text" label="2. oldal szöveg" :checked="old('back_text', $productCustomization->back_text ?? false)"/>
+                        <div class="form-group">
+                            <x-form.textarea for="description" label="Hosszú leírás" :value="$product->description ?? ''" />
                         </div>
-                        <div class="border border-gray-300 p-6 rounded-lg">
-                            <x-form.checkbox for="inner_image" label="3. oldal kép" :checked="old('inner_image', $productCustomization->inner_image ?? false)"/>
-                            <x-form.checkbox for="inner_text" label="3. oldal szöveg" :checked="old('inner_text', $productCustomization->inner_text ?? false)"/>
-                        </div>
+                    </div>
+                </div>
+                
+                
+
+                <!-- Testreszabás -->
+                <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
+                    <h3 class="text-xl mb-8">Testreszabás</h3>
+                    <div class="flex flex-col gap-2">
+                        <x-form.checkbox for="front_image" label="1. oldal kép" :checked="old('front_image', $productCustomization->front_image ?? false)"/>
+                        <x-form.checkbox for="front_text" label="1. oldal szöveg" :checked="old('front_text', $productCustomization->front_text ?? false)"/>
+                        <x-form.checkbox for="back_image" label="2. oldal kép" :checked="old('back_image', $productCustomization->back_image ?? false)"/>
+                        <x-form.checkbox for="back_text" label="2. oldal szöveg" :checked="old('back_text', $productCustomization->back_text ?? false)"/>
+                        <x-form.checkbox for="inner_image" label="3. oldal kép" :checked="old('inner_image', $productCustomization->inner_image ?? false)"/>
+                        <x-form.checkbox for="inner_text" label="3. oldal szöveg" :checked="old('inner_text', $productCustomization->inner_text ?? false)"/>
                         <x-form.checkbox for="other_notes" label="Megjegyzés" :checked="old('other_notes', $productCustomization->other_notes ?? false)"/>
                     </div>
                 </div>
@@ -148,7 +144,7 @@
                 
 
                 <!-- Képek -->
-                <div class="p-8 bg-white shadow-md rounded-lg break-inside-avoid mb-6">
+                <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
                     <h3 class="text-xl mb-8">Képek</h3>
                     <div class="form-group">
                         <input type="file" id="productImageUpload" class="filepond-product-images filepond-cover" name="images[]" multiple>

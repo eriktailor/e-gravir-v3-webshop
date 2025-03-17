@@ -1,6 +1,6 @@
 <div class="form-control">
 
-    <label for="{{ $for }}" class="flex items-center space-x-2 cursor-pointer">
+    <label for="{{ $for }}" class="flex items-center space-x-2 cursor-pointer mb-0">
 
         <input
             id="{{ $for }}" 
