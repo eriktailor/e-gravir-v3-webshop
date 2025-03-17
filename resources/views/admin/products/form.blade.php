@@ -108,6 +108,28 @@
                         Új variáció hozzáadása
                     </x-button>
                 </div>
+
+                <!-- Testreszabás -->
+                <div class="p-8 bg-white shadow-md rounded-lg">
+                    <h3 class="text-xl mb-8">Testreszabás</h3>
+                    <div class="flex flex-col gap-4">
+                        <div class="border border-gray-300 p-6 rounded-lg">
+                            <x-form.checkbox for="front_image" label="1. oldal kép" :checked="old('front_image', $productCustomization->front_image ?? false)"/>
+                            <x-form.checkbox for="front_text" label="1. oldal szöveg" :checked="old('front_text', $productCustomization->front_text ?? false)"/>
+                        </div>
+                        <div class="border border-gray-300 p-6 rounded-lg">
+                            <x-form.checkbox for="back_image" label="2. oldal kép" :checked="old('back_image', $productCustomization->back_image ?? false)"/>
+                            <x-form.checkbox for="back_text" label="2. oldal szöveg" :checked="old('back_text', $productCustomization->back_text ?? false)"/>
+                            <x-form.input for="back_extra_price" label="2. oldal felár (Ft)" type="number" :value="old('back_extra_price', $productCustomization->back_extra_price ?? 0)"/>
+                        </div>
+                        <div class="border border-gray-300 p-6 rounded-lg">
+                            <x-form.checkbox for="inner_image" label="3. oldal kép" :checked="old('inner_image', $productCustomization->inner_image ?? false)"/>
+                            <x-form.checkbox for="inner_text" label="3. oldal szöveg" :checked="old('inner_text', $productCustomization->inner_text ?? false)"/>
+                            <x-form.input for="inner_extra_price" label="3. oldal felár (Ft)" type="number" :value="old('inner_extra_price', $productCustomization->inner_extra_price ?? 0)"/>
+                        </div>
+                        <x-form.checkbox for="other_notes" label="Megjegyzés" :checked="old('other_notes', $productCustomization->other_notes ?? false)"/>
+                    </div>
+                </div>
        
 
                 

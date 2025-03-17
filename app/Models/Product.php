@@ -77,4 +77,12 @@ class Product extends Model
     {
         return $this->hasMany(ProductVariation::class);
     }
+
+    /**
+     * Relation with ProductCustomization model
+     */
+    public function customization()
+    {
+        return $this->hasOne(ProductCustomization::class);
+    }
 }

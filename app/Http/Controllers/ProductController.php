@@ -8,6 +8,7 @@ use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use App\Models\ProductVariation;
+use App\Models\ProductCustomization;
 
 use Illuminate\Support\Facades\Storage;
 
@@ -30,16 +31,31 @@ class ProductController extends Controller
     {
         $categories = ProductCategory::all();
 
+        // Customization default values
+        $customizations = [
+            'front_image' => 0,
+            'front_text' => 0,
+            'back_image' => 0,
+            'back_text' => 0,
+            'inner_image' => 0,
+            'inner_text' => 0,
+            'other_notes' => 0,
+            'back_extra_price' => 0,
+            'inner_extra_price' => 0,
+        ];
+
         return view('admin.products.form', [
             'product' => null,
-            'categories' => $categories
+            'categories' => $categories,
+            'customizations' => $customizations,
         ]);
     }
 
     /**
      * Admin: edit product
      */
-    public function edit(Product $product) {
+    public function edit(Product $product) 
+    {
         $categories = ProductCategory::all();
         $options = ['Méret', 'Szín', 'Anyag'];
 
@@ -51,11 +67,25 @@ class ProductController extends Controller
             ];
         });
 
+        // Load customization
+        $customization = $product->customization ?? [
+            'front_image' => 0,
+            'front_text' => 0,
+            'back_image' => 0,
+            'back_text' => 0,
+            'inner_image' => 0,
+            'inner_text' => 0,
+            'other_notes' => 0,
+            'back_extra_price' => 0,
+            'inner_extra_price' => 0,
+        ];
+
         return view('admin.products.form', [
             'product' => $product,
             'options' => $options,
             'categories' => $categories,
-            'existingImages' => $existingImages
+            'existingImages' => $existingImages,
+            'customizations' => $customization,
         ]);
     }
 
@@ -102,6 +132,19 @@ class ProductController extends Controller
                 }
             }
         }
+
+        // Customizations
+        $product->customization()->create([
+            'front_image' => $request->has('front_image') ? 1 : 0,
+            'front_text' => $request->has('front_text') ? 1 : 0,
+            'back_image' => $request->has('back_image') ? 1 : 0,
+            'back_text' => $request->has('back_text') ? 1 : 0,
+            'inner_image' => $request->has('inner_image') ? 1 : 0,
+            'inner_text' => $request->has('inner_text') ? 1 : 0,
+            'other_notes' => $request->has('other_notes') ? 1 : 0,
+            'back_extra_price' => $request->input('back_extra_price', 0),
+            'inner_extra_price' => $request->input('inner_extra_price', 0),
+        ]);
     
         return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
@@ -149,6 +192,34 @@ class ProductController extends Controller
                 }
             }
         }
+
+        // Customizations
+        if ($product->customization) {
+            $product->customization()->update([
+                'front_image' => $request->has('front_image') ? 1 : 0,
+                'front_text' => $request->has('front_text') ? 1 : 0,
+                'back_image' => $request->has('back_image') ? 1 : 0,
+                'back_text' => $request->has('back_text') ? 1 : 0,
+                'inner_image' => $request->has('inner_image') ? 1 : 0,
+                'inner_text' => $request->has('inner_text') ? 1 : 0,
+                'other_notes' => $request->has('other_notes') ? 1 : 0,
+                'back_extra_price' => $request->input('back_extra_price', 0),
+                'inner_extra_price' => $request->input('inner_extra_price', 0),
+            ]);
+        } else {
+            $product->customization()->create([
+                'front_image' => $request->has('front_image') ? 1 : 0,
+                'front_text' => $request->has('front_text') ? 1 : 0,
+                'back_image' => $request->has('back_image') ? 1 : 0,
+                'back_text' => $request->has('back_text') ? 1 : 0,
+                'inner_image' => $request->has('inner_image') ? 1 : 0,
+                'inner_text' => $request->has('inner_text') ? 1 : 0,
+                'other_notes' => $request->has('other_notes') ? 1 : 0,
+                'back_extra_price' => $request->input('back_extra_price', 0),
+                'inner_extra_price' => $request->input('inner_extra_price', 0),
+            ]);
+        }
+
 
         return redirect()->route('products.index')->with('success', 'Product updated successfully!');
     }
