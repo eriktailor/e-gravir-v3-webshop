@@ -5,25 +5,23 @@
 
 export default function initVariation() {
 
-    let variationIndex = $('#variationsWrapper .variation-item').length;
-
     /**
-     * Insert product variation items
+     * Insert product variation item
      */
     $('#addVariation').on('click', function(e) {
         e.preventDefault();
-
-        $.ajax({
-            url: '/admin/products/variation-item',
-            data: { index: variationIndex },
-            success: function (response) {
-                $('#variationsWrapper').append(response);
-                variationIndex++;
-            },
-            error: function () {
-                console.log('Nem sikerült variációt betölteni.');
-            }
+        let index = $('.variation-item').length;
+        
+        $.get('/admin/products/variation-item', { index: index }, function(data) {
+            $('#variationsWrapper').append(data);
         });
+    });
+
+    /**
+     * Remove product variation item
+     */
+    $(document).on('click', '.remove-variation', function() {
+        $(this).closest('.variation-item').remove();
     });
 
 }

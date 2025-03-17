@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
+
+use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\ProductVariation;
+
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
@@ -80,6 +83,18 @@ class ProductController extends Controller
             }
         }
 
+        // Handle product variations
+        if ($request->has('variations')) {        
+            foreach ($request->variations as $variation) {
+                $product->variations()->create([
+                    'name' => $variation['name'],
+                    'value' => $variation['value'],
+                    'price' => $variation['price'] ?? null,
+                    'in_stock' => $variation['in_stock'] ?? 0,
+                ]);
+            }
+        }
+
         return redirect()->route('products.index')->with('success', 'Product created successfully!');
     }
 
@@ -104,6 +119,19 @@ class ProductController extends Controller
 
                 $product->images()->create([
                     'image_path' => $path,
+                ]);
+            }
+        }
+
+        if ($request->has('variations')) {
+            $product->variations()->delete(); // Delete existing variations for update case (optional)
+        
+            foreach ($request->variations as $variation) {
+                $product->variations()->create([
+                    'name' => $variation['name'],
+                    'value' => $variation['value'],
+                    'price' => $variation['price'] ?? null,
+                    'in_stock' => $variation['in_stock'] ?? 0,
                 ]);
             }
         }
