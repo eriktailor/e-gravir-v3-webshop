@@ -11,12 +11,12 @@
         </div>
 
         {{-- Add a hidden row placeholder --}}
-        <div class="variation-values" data-index="{{ $index }}">
+        <div data-index="{{ $index }}">
             <div class="flex gap-6">
                 <label class="form-group grow">Érték</label>
                 <label class="form-group w-1/3 flex items-end gap-3">Készlet</label>
             </div>
-            <div class="flex flex-col gap-3">
+            <div class="variation-values flex flex-col gap-4">
                 @include('admin.variations.row', [
                     'variationIndex' => $index,
                     'valueIndex' => 0

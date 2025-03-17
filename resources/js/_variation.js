@@ -38,17 +38,21 @@ export default function initVariation() {
      */
     $(document).on('input', '.variation-value-input', function () {
         let row = $(this).closest('.variation-value-row');
+    
+        // Check if row has already been triggered
+        if (row.data('triggered')) return;
+    
         let container = $(this).closest('.variation-values');
         let index = container.data('index');
-        let lastRow = container.find('.variation-value-row:last-child');
-
-        if ($(this).val().length > 0 && row.is(lastRow)) {
-            let valueIndex = container.find('.variation-value-row').length;
-            
-            $.get('/admin/products/variation-row', { variationIndex: index, valueIndex: valueIndex }, function (data) {
-                container.append(data);
-            });
-        }
+        let valueIndex = container.find('.variation-value-row').length;
+    
+        // Mark row as triggered → so typing more won't duplicate
+        row.attr('data-triggered', true);
+    
+        $.get('/admin/products/variation-row', { variationIndex: index, valueIndex: valueIndex }, function (data) {
+            container.append(data);
+        });
     });
+    
 
 }

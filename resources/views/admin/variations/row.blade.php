@@ -1,4 +1,4 @@
-<div class="flex gap-6 variation-value-row">
+<div class="flex gap-4 variation-value-row">
     <div class="form-group grow">
         <x-form.input 
             type="text" 
@@ -12,6 +12,6 @@
             for="variations[{{ $variationIndex }}][values][{{ $valueIndex }}][in_stock]" 
             class="input" 
             placeholder="0 db"/>
-        <x-button.chip icon="trash" class="remove-value-row mb-3"/>
+        <x-button.chip icon="trash" class="remove-value-row mb-3" tabindex="-1"/>
     </div>
 </div>
