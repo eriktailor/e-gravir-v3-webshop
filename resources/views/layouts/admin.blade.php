@@ -9,6 +9,8 @@
         
         @yield('content')
 
+        <x-footer.admin/>
+
         @stack('scripts')
 
         @vite('resources/js/app.js')
