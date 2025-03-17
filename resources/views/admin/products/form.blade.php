@@ -81,57 +81,54 @@
                 <!-- Variációk -->
                 <div class="p-8 bg-white shadow-md rounded-lg">
                     <h3 class="text-xl mb-8">Variációk</h3>
-                    <div class="flex flex-col gap-3">
-                        <div class="variation-item flex flex-col gap-4 border border-gray-300 p-6 rounded-lg">
-                            <div class="show-variation">
-                                <h5 class="font-semibold text-stone-950 mb-3">Méret</h5>
-                                <div class="flex gap-2">
-                                    <div class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap">
-                                        Small
+                    <div id="variationsWrapper" class="flex flex-col gap-3">
+                        @if(isset($product) && $product->variations->count())
+                            @foreach($product->variations as $index => $variation)
+                                <div class="variation-item flex flex-col gap-4 border border-gray-300 p-6 rounded-lg">
+                                    <div class="show-variation">
+                                        <h5 class="font-semibold text-stone-950 mb-3">Méret</h5>
+                                        <div class="flex gap-2">
+                                            <div class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap">
+                                                Small
+                                            </div>
+                                            <div class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap">
+                                                Medium
+                                            </div>
+                                            <div class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap">
+                                                Large
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap">
-                                        Medium
-                                    </div>
-                                    <div class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap">
-                                        Large
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="edit-variation hidden">
-                                <div class="form-group">
-                                    <x-form.input for="variation_name" label="Megnevezés" placeholder="Méret, szín, stb." type="text"/>
-                                </div>
-                                <div class="form-group">
-                                    <x-form.input for="variation_value" label="Értékek" type="text"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="variation-item flex flex-col gap-4 border border-gray-300 p-6 rounded-lg">
-                            <div class="show-variation">
-                                <h5 class="font-semibold text-stone-950 mb-3">Méret</h5>
-                                <div class="flex gap-2">
-                                    <div class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap">
-                                        Small
-                                    </div>
-                                    <div class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap">
-                                        Medium
-                                    </div>
-                                    <div class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap">
-                                        Large
+                                    <div class="edit-variation hidden">
+                                        <div class="form-group">
+                                            <x-form.input 
+                                                for="variations[{{ $index }}][name]" 
+                                                value="{{ $variation->name }}" 
+                                                label="Megnevezés" 
+                                                placeholder="Típus (pl. Méret)" 
+                                                type="text"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <x-form.input 
+                                                for="variations[{{ $index }}][value]" 
+                                                value="{{ $variation->value }}"
+                                                label="Megnevezés" 
+                                                placeholder="Érték (pl. M)" 
+                                                type="text"/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="edit-variation hidden">
-                                <div class="form-group">
-                                    <x-form.input for="variation_name" label="Megnevezés" placeholder="Méret, szín, stb." type="text"/>
-                                </div>
-                                <div class="form-group">
-                                    <x-form.input for="variation_value" label="Értékek" type="text"/>
-                                </div>
-                            </div>
-                        </div>
+                                {{-- <div class="flex gap-4 mb-4 variation-item">
+                                    <input type="text" name="variations[{{ $index }}][name]" value="{{ $variation->name }}" placeholder="Típus (pl. Méret)" class="input">
+                                    <input type="text" name="variations[{{ $index }}][value]" value="{{ $variation->value }}" placeholder="Érték (pl. M)" class="input">
+                                    <input type="number" name="variations[{{ $index }}][price]" value="{{ $variation->price }}" placeholder="Ár (+)" class="input w-24">
+                                    <input type="number" name="variations[{{ $index }}][in_stock]" value="{{ $variation->in_stock }}" placeholder="Készlet" class="input w-24">
+                                    <button type="button" class="remove-variation text-red-500">Törlés</button>
+                                </div> --}}
+                            @endforeach
+                        @endif
                     </div>
-                    <x-button color="white" size="small" class="mt-6">
+                    <x-button id="addVariation" color="white" size="small">
                         Új variáció hozzáadása
                     </x-button>
                 </div>
