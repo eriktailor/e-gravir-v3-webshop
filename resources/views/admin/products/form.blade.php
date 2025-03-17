@@ -26,22 +26,14 @@
             @method('PUT')
         @endif
         
-        <div class="grid grid-cols-2 gap-6">
+        <div class="columns-2 gap-6">
 
                 <!-- Adatok -->
-                <div class="p-8 bg-white shadow-md rounded-lg">
+                <div class="p-8 bg-white shadow-md rounded-lg break-inside-avoid mb-6">
                     <h3 class="text-xl mb-8">Adatok</h3>
                     <div class="flex flex-col gap-4">
                         <div class="form-group">
                             <x-form.input for="name" label="Név" type="text" :value="old('name', $product->name ?? '')"/>
-                        </div>
-                        <div class="grid grid-cols-2 gap-6">
-                            <div class="form-group">
-                                <x-form.input for="price" label="Normál ár" type="number" :value="old('price', $product->price ?? '')"/>
-                            </div>
-                            <div class="form-group">
-                                <x-form.input for="sale_price" label="Akciós ár" type="number" :value="old('sale_price', $product->sale_price ?? '')"/>
-                            </div>
                         </div>
                         <div class="grid grid-cols-2 gap-6">
                             <div class="form-group">
@@ -77,8 +69,31 @@
                     </div>
                 </div>
 
+                <!-- Árazás -->
+                <div class="p-8 bg-white shadow-md rounded-lg break-inside-avoid mb-6">
+                    <h3 class="text-xl mb-8">Árazás</h3>
+                    <div class="flex flex-col gap-4">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <x-form.input for="price" label="Normál ár" type="number" :value="old('price', $product->price ?? '')"/>
+                            </div>
+                            <div class="form-group">
+                                <x-form.input for="sale_price" label="Akciós ár" type="number" :value="old('sale_price', $product->sale_price ?? '')"/>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="form-group">
+                                <x-form.input for="back_extra_price" label="Második oldal felár" type="number" :value="old('back_extra_price', $productCustomization->back_extra_price ?? 0)"/>
+                            </div>
+                            <div class="form-group">
+                                <x-form.input for="inner_extra_price" label="Belső oldal felár" type="number" :value="old('inner_extra_price', $productCustomization->inner_extra_price ?? 0)"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Leírások -->
-                <div class="p-8 bg-white shadow-md rounded-lg">
+                <div class="p-8 bg-white shadow-md rounded-lg break-inside-avoid max-[]:b-6">
                     <h3 class="text-xl mb-8">Leírások</h3>
                     <div class="flex flex-col gap-4">
                         <div class="form-group">
@@ -91,7 +106,7 @@
                 </div>
                 
                 <!-- Variációk -->
-                <div class="p-8 bg-white shadow-md rounded-lg">
+                <div class="p-8 bg-white shadow-md rounded-lg break-inside-avoid mb-6">
                     <h3 class="text-xl mb-8">Variációk</h3>
                     <div id="variationsWrapper" class="flex flex-col gap-3">
                         @if(isset($product) && $product->variations->count())
@@ -110,7 +125,7 @@
                 </div>
 
                 <!-- Testreszabás -->
-                <div class="p-8 bg-white shadow-md rounded-lg">
+                <div class="p-8 bg-white shadow-md rounded-lg break-inside-avoid mb-6">
                     <h3 class="text-xl mb-8">Testreszabás</h3>
                     <div class="flex flex-col gap-4">
                         <div class="border border-gray-300 p-6 rounded-lg">
@@ -120,12 +135,10 @@
                         <div class="border border-gray-300 p-6 rounded-lg">
                             <x-form.checkbox for="back_image" label="2. oldal kép" :checked="old('back_image', $productCustomization->back_image ?? false)"/>
                             <x-form.checkbox for="back_text" label="2. oldal szöveg" :checked="old('back_text', $productCustomization->back_text ?? false)"/>
-                            <x-form.input for="back_extra_price" label="2. oldal felár (Ft)" type="number" :value="old('back_extra_price', $productCustomization->back_extra_price ?? 0)"/>
                         </div>
                         <div class="border border-gray-300 p-6 rounded-lg">
                             <x-form.checkbox for="inner_image" label="3. oldal kép" :checked="old('inner_image', $productCustomization->inner_image ?? false)"/>
                             <x-form.checkbox for="inner_text" label="3. oldal szöveg" :checked="old('inner_text', $productCustomization->inner_text ?? false)"/>
-                            <x-form.input for="inner_extra_price" label="3. oldal felár (Ft)" type="number" :value="old('inner_extra_price', $productCustomization->inner_extra_price ?? 0)"/>
                         </div>
                         <x-form.checkbox for="other_notes" label="Megjegyzés" :checked="old('other_notes', $productCustomization->other_notes ?? false)"/>
                     </div>
@@ -135,7 +148,7 @@
                 
 
                 <!-- Képek -->
-                <div class="p-8 bg-white shadow-md rounded-lg col-span-2">
+                <div class="p-8 bg-white shadow-md rounded-lg break-inside-avoid mb-6">
                     <h3 class="text-xl mb-8">Képek</h3>
                     <div class="form-group">
                         <input type="file" id="productImageUpload" class="filepond-product-images filepond-cover" name="images[]" multiple>

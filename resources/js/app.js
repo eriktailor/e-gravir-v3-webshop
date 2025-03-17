@@ -9,12 +9,14 @@ window.$ = $;
  */
 import initDropdown from './_dropdown';
 import initVariation from './_variation';
+import initTooltip from './_tooltip';
 
 /**
  * Initialize local components
  */
 initDropdown();
 initVariation();
+initTooltip();
 
 /**
  * Page loader fades out when page is loaded
