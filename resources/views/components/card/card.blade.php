@@ -2,7 +2,7 @@
     'title' => null
 ])
 
-<div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
+<div class="card p-12 bg-white rounded-2xl shadow-sm shadow-amber-700/20 break-inside-avoid mb-6">
 
     @if($title)
         <x-heading level="h3" class="mb-8">{{ $title }}</x-heading>

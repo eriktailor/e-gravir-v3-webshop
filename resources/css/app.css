@@ -62,12 +62,20 @@ NAVBAR
 /* --------------------------------------------------------------
 FILEPOND
 -------------------------------------------------------------- */
-.filepond--root {
-    @apply w-full font-sans;
+div.filepond--root {
+    @apply w-full font-sans text-sm mb-0;
 }
 
 div.filepond--panel-root {
-    @apply bg-gray-100;
+    @apply bg-transparent;
+}
+
+div.filepond--panel.filepond--panel-root {
+    @apply outline outline-gray-300 outline-dashed;
+}
+
+div.filepond--image-bitmap {
+    @apply h-full;
 }
 
 .filepond--file-info {
@@ -116,7 +124,7 @@ div.filepond--panel-root {
 }
 
 .filepond-product-images .filepond--item {
-    @apply w-[calc(33%-0.5em)];
+    @apply w-[calc(33.33%-0.5em)];
 }
   
 /* --------------------------------------------------------------

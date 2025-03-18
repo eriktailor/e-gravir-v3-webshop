@@ -42,7 +42,7 @@ function initFilePond(selector, existingImages = null, options = {}) {
         credits: false,
         allowRevert: true,
         instantUpload: false,
-        imagePreviewHeight: 160,
+        imagePreviewHeight: 140,
 
         labelIdle: 'Húzd ide a képeidet vagy <span class="filepond--label-action"> kiválasztás </span>',
 
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             allowMultiple: false,
             storeAsFile: true,
             credits: false,
-            imagePreviewHeight: 160,
+            imagePreviewHeight: 140,
         });
     });
 
