@@ -29,8 +29,7 @@
         <div class="columns-2 gap-6">
 
                 <!-- Adatok -->
-                <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
-                    <x-heading level="h3" class="mb-8">Adatok</x-heading>
+                <x-card title="Adatok">
                     <div class="flex flex-col gap-4">
                         <div class="form-group">
                             <x-form.input for="name" label="Név" type="text" :value="old('name', $product->name ?? '')"/>
@@ -67,11 +66,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </x-card>
 
                 <!-- Árazás -->
-                <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
-                    <x-heading level="h3" class="mb-8">Árazás</x-heading>
+                <x-card title="Árazás">
                     <div class="flex flex-col gap-4">
                         <div class="grid grid-cols-2 gap-6">
                             <div class="form-group">
@@ -90,11 +88,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </x-card>
 
                 <!-- Variációk -->
-                <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
-                    <x-heading level="h3" class="mb-8">Variációk</x-heading>
+                <x-card title="Variációk">
                     <div id="variationsWrapper" class="flex flex-col gap-3">
                         @if(isset($product) && $product->variations->count())
                             @foreach($product->variations as $index => $variation)
@@ -109,11 +106,10 @@
                     <x-button id="addVariation" color="white" size="small">
                         Új variáció hozzáadása
                     </x-button>
-                </div>
+                </x-card>
 
                 <!-- Leírások -->
-                <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
-                    <x-heading level="h3" class="mb-8">Leírások</x-heading>
+                <x-card title="Leírások">
                     <div class="flex flex-col gap-4">
                         <div class="form-group">
                             <x-form.textarea for="short_description" label="Rövid leírás" rows="4">{{ old('short_description', $product->short_description ?? '') }}</x-form.textarea>
@@ -122,13 +118,12 @@
                             <x-form.textarea for="description" label="Hosszú leírás" :value="$product->description ?? ''" />
                         </div>
                     </div>
-                </div>
+                </x-card>
                 
                 
 
                 <!-- Testreszabás -->
-                <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
-                    <x-heading level="h3" class="mb-8">Testreszabás</x-heading>
+                <x-card title="Testreszabás">
                     <div class="flex flex-col gap-2">
                         <x-form.checkbox for="front_image" label="1. oldal kép" :checked="old('front_image', $productCustomization->front_image ?? false)"/>
                         <x-form.checkbox for="front_text" label="1. oldal szöveg" :checked="old('front_text', $productCustomization->front_text ?? false)"/>
@@ -138,18 +133,17 @@
                         <x-form.checkbox for="inner_text" label="3. oldal szöveg" :checked="old('inner_text', $productCustomization->inner_text ?? false)"/>
                         <x-form.checkbox for="other_notes" label="Megjegyzés" :checked="old('other_notes', $productCustomization->other_notes ?? false)"/>
                     </div>
-                </div>
+                </x-card>
        
 
                 
 
                 <!-- Képek -->
-                <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
-                    <x-heading level="h3" class="mb-8">Képek</x-heading>
+                <x-card title="Képek">
                     <div class="form-group">
                         <input type="file" id="productImageUpload" class="filepond-product-images filepond-cover" name="images[]" multiple>
                     </div>
-                </div>
+                </x-card>
 
         </div>
 
