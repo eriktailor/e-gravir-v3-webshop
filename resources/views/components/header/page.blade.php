@@ -2,16 +2,16 @@
     <div class="container mx-auto">
         <div class="flex justify-between items-center">
             @isset($button)
-                <h1 class="text-5xl">
+                <x-heading level="h1">
                     {{ $title }}
-                </h1>
+                </x-heading>
                 <div class="ml-4">
                     {{ $button }}
                 </div>
             @else
-                <h1 class="text-5xl text-center w-full">
+                <x-heading level="h1" class="text-center w-full">
                     {{ $title }}
-                </h1>
+                </x-heading>
             @endisset
         </div>
     </div>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<x-header.page :title="isset($product) ? 'Termék szerkesztése' : 'Új termék'">
+<x-header.page :title="isset($product) ? 'Termék szerkesztése' : 'Új termék létrehozása'">
     <x-slot name="button">
         <x-button class="button-submit" data-target="#productForm">Mentés</x-button>
     </x-slot>
@@ -30,7 +30,7 @@
 
                 <!-- Adatok -->
                 <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
-                    <h3 class="text-xl mb-8">Adatok</h3>
+                    <x-heading level="h3" class="mb-8">Adatok</x-heading>
                     <div class="flex flex-col gap-4">
                         <div class="form-group">
                             <x-form.input for="name" label="Név" type="text" :value="old('name', $product->name ?? '')"/>
@@ -71,7 +71,7 @@
 
                 <!-- Árazás -->
                 <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
-                    <h3 class="text-xl mb-8">Árazás</h3>
+                    <x-heading level="h3" class="mb-8">Árazás</x-heading>
                     <div class="flex flex-col gap-4">
                         <div class="grid grid-cols-2 gap-6">
                             <div class="form-group">
@@ -94,7 +94,7 @@
 
                 <!-- Variációk -->
                 <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
-                    <h3 class="text-xl mb-8">Variációk</h3>
+                    <x-heading level="h3" class="mb-8">Variációk</x-heading>
                     <div id="variationsWrapper" class="flex flex-col gap-3">
                         @if(isset($product) && $product->variations->count())
                             @foreach($product->variations as $index => $variation)
@@ -113,7 +113,7 @@
 
                 <!-- Leírások -->
                 <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
-                    <h3 class="text-xl mb-8">Leírások</h3>
+                    <x-heading level="h3" class="mb-8">Leírások</x-heading>
                     <div class="flex flex-col gap-4">
                         <div class="form-group">
                             <x-form.textarea for="short_description" label="Rövid leírás" rows="4">{{ old('short_description', $product->short_description ?? '') }}</x-form.textarea>
@@ -128,7 +128,7 @@
 
                 <!-- Testreszabás -->
                 <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
-                    <h3 class="text-xl mb-8">Testreszabás</h3>
+                    <x-heading level="h3" class="mb-8">Testreszabás</x-heading>
                     <div class="flex flex-col gap-2">
                         <x-form.checkbox for="front_image" label="1. oldal kép" :checked="old('front_image', $productCustomization->front_image ?? false)"/>
                         <x-form.checkbox for="front_text" label="1. oldal szöveg" :checked="old('front_text', $productCustomization->front_text ?? false)"/>
@@ -145,7 +145,7 @@
 
                 <!-- Képek -->
                 <div class="p-8 bg-white rounded-lg break-inside-avoid mb-6">
-                    <h3 class="text-xl mb-8">Képek</h3>
+                    <x-heading level="h3" class="mb-8">Képek</x-heading>
                     <div class="form-group">
                         <input type="file" id="productImageUpload" class="filepond-product-images filepond-cover" name="images[]" multiple>
                     </div>
