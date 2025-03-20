@@ -12,7 +12,7 @@ export default defineConfig({
                 'resources/js/filepond.js',
                 'resources/js/sortable.js',
                 'resources/js/tomselect.js',
-                'resources/js/easyeditor.js'
+                'resources/js/pell.js'
             ],
             refresh: true,
         }),

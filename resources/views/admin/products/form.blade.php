@@ -109,7 +109,7 @@
                             <x-form.textarea for="short_description" label="Rövid leírás" rows="4">{{ old('short_description', $product->short_description ?? '') }}</x-form.textarea>
                         </div>
                         <div class="form-group">
-                            <x-form.textarea for="description" label="Hosszú leírás" rows="4">{{ old('description', $product->description ?? '') }}</x-form.textarea>
+                            <x-form.editor for="description" label="Hosszú leírás"/>
                         </div>
                     </div>
                 </x-card>
