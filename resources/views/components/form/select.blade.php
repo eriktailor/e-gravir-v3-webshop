@@ -3,13 +3,12 @@
     'label' => null,
     'placeholder' => null,
     'isPreSelected' => false,
+    'helptext' => null
 ])
 
 <div class="form-control">
     
-    @if(isset($label) && $label)
-        <label for="{{ $for }}" class="form-label">{{ $label }}</label>
-    @endif
+    <x-form.label :for="$for"/>
 
     <div class="relative">
         <select 
@@ -17,7 +16,7 @@
             id="{{ $for }}" 
             aria-describedby="{{ $for }}-error"
             {{ $attributes->merge([
-                'class' => 'text-stone-950 has-[option.placeholder:checked]:text-gray-400 has-[option.placeholder:checked]:font-normal font-semibold input' . ($errors->has($for) ? ' is-invalid' : '') . 
+                'class' => 'input select ' . ($errors->has($for) ? ' is-invalid' : '') . 
                 (($isPreSelected && old($for)) ? '' : ' text-gray-400')
             ]) }}
         >

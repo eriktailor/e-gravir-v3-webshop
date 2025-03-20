@@ -47,16 +47,12 @@ INPUTS
 }
 
 
-select {
-    @apply appearance-none bg-none w-full px-4 py-3 leading-6 border border-gray-300 rounded-lg transition-all text-sm duration-200 focus:outline-none focus:ring focus:ring-stone-950 shadow-none;
+.form-control .select {
+    @apply appearance-none bg-none text-stone-950 has-[option.placeholder:checked]:text-gray-400 has-[option.placeholder:checked]:font-normal font-semibold;
 }
 
 input[type='checkbox'] {
     @apply h-5 w-5 rounded border-gray-300 text-red-600 focus:ring-0 focus:border-red-600 checked:border-red-600;
-}
-
-label {
-    @apply block mb-1 text-sm text-gray-500;
 }
 
 /* --------------------------------------------------------------

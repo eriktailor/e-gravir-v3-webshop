@@ -2,13 +2,12 @@
     'for',
     'label' => null,
     'placeholder' => null,
+    'helptext' => null
 ])
 
 <div class="form-group">
     
-    @if(isset($label) && $label)
-        <label for="{{ $for }}" class="form-label">{{ $label }}</label>
-    @endif
+    <x-form.label :for="$for"/>
 
     <textarea 
         id="{{ $for }}" 
