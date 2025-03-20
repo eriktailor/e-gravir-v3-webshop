@@ -134,6 +134,10 @@ div.ts-control input[type='text'] {
     @apply w-auto shadow-none;
 }
 
+div.ts-wrapper {
+    @apply rounded-lg;
+}
+
 div.ts-wrapper.multi div.ts-control > div {
     @apply m-0 bg-gray-200 rounded-md text-gray-500 text-xs border-0 tracking-wide leading-6 px-2 py-0 font-bold uppercase;
     text-shadow: none !important;

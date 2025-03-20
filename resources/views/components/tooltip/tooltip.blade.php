@@ -1,4 +1,4 @@
-<div {{ $attributes->merge(['class' => 'tooltip relative inline-flex']) }}>
+<div {{ $attributes->merge(['class' => 'tooltip relative inline-flex top-[3px]']) }}>
     <div class="relative">
 
         <!-- Tooltip -->

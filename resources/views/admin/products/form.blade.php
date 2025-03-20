@@ -51,7 +51,7 @@
                         </div>
                         <div class="grid grid-cols-3">
                             <div class="form-group">
-                                <x-form.checkbox for="is_featured" label="Kiemelt termék" :checked="old('is_featured', $product->is_featured ?? false)"/>                   
+                                <x-form.checkbox for="featured" label="Kiemelt termék" :checked="old('is_featured', $product->featured ?? false)"/>                   
                             </div>
                             <div class="form-group">
                                 <x-form.checkbox for="status" label="Rejtett termék" :checked="old('status', $product->status ?? false)"/>                   

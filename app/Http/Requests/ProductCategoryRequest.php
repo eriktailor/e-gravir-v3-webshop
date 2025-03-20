@@ -17,8 +17,6 @@ class ProductCategoryRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
     public function rules(): array
     {
@@ -36,4 +34,17 @@ class ProductCategoryRequest extends FormRequest
             'description' => 'nullable|string',
         ];
     }
+
+    /**
+     * On failed validation, display the error topbar with this message 
+     */
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            redirect()->back()
+                ->withInput()
+                ->with('error', 'Hibás űrlap! Javítsd a hibákat és küldd be újra.')
+        );
+    }
+
 }

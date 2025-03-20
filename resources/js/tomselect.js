@@ -12,5 +12,14 @@ new TomSelect("#tagsInput",{
 	createOnBlur: true,
 	create: true,
     highlight: false,
+	searchField: [],
+	onFocus: function() {
+        let control = this.control;
+        $(control).addClass('ring ring-stone-950');
+    },
+	onBlur: function() {
+        let control = this.control;
+        $(control).removeClass('ring ring-stone-950');
+    }
 });
 

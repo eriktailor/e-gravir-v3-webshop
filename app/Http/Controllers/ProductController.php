@@ -146,7 +146,7 @@ class ProductController extends Controller
             'inner_extra_price' => $request->input('inner_extra_price', 0),
         ]);
     
-        return redirect()->route('products.index')->with('success', 'Product created successfully!');
+        return redirect()->route('products.index')->with('success', 'Termék sikeresen létrehozva.');
     }
 
     /**
@@ -221,7 +221,7 @@ class ProductController extends Controller
         }
 
 
-        return redirect()->route('products.index')->with('success', 'Product updated successfully!');
+        return redirect()->route('products.index')->with('success', 'Termék sikeresen szerkesztve.');
     }
 
     /**

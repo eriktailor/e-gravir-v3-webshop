@@ -63,7 +63,9 @@
                     <div class="flex justify-end items-center gap-6">
                         <div class="w-16">
                             @if($product->featured == 1) 
-                                <x-icon name="star-filled" class="text-amber-400"/>
+                                <x-tooltip text="Kiemelt">
+                                    <x-icon name="star-filled" class="text-amber-400"/>
+                                </x-tooltip>
                             @else
                                 <x-icon name="star" class="text-amber-400"/>
                             @endif
