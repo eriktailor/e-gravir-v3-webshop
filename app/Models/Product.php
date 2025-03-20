@@ -21,7 +21,7 @@ class Product extends Model
         'description',
         'in_stock',
         'menu_order',
-        'is_visible',
+        'hidden',
         'featured',
         'category_id',
     ];

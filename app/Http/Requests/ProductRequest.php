@@ -31,7 +31,7 @@ class ProductRequest extends FormRequest
             'description' => 'nullable|string',
             'in_stock' => 'required|integer|min:0',
             'menu_order' => 'nullable|integer',
-            'is_visible' => 'nullable|boolean', // nullable to avoid "required" error when unchecked
+            'hidden' => 'nullable|boolean', // nullable to avoid "required" error when unchecked
             'featured' => 'nullable|boolean',
             'category_id' => 'required|exists:product_categories,id',
             'tags' => ['nullable', 'string', 'regex:/^([a-zA-Z0-9áéíóöőúüűÁÉÍÓÖŐÚÜŰ\s\-]+,?\s*)*$/'],

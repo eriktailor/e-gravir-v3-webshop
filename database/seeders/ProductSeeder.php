@@ -1,0 +1,53 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Product;
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+class ProductSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $products = [
+            [
+                'id' => 1,                
+                'name' => 'Keskeny slim gravírozott pénztárca',
+                'price' => 11990,
+                'sale_price' => null,
+                'extra_price' => 2900,
+                'tags' => 'lapos kivitelezés,élesebb gravírozás,közkedvelt',
+                'short_description' => 'Vékony, zsebben hordható, karcsúsított pénztárca PU bőr anyagból.',
+                'description' => null,
+                'in_stock' => 12,
+                'menu_order' => 10,
+                'hidden' => 0,
+                'featured' => 0,
+                'category_id' => 1,
+            ],
+            [
+                'id' => 2,
+                'name' => 'Függőleges csatos gravírozott pénztárca',
+                'price' => 14990,
+                'sale_price' => null,
+                'extra_price' => 2900,
+                'tags' => 'valódi bőr,férfias pénztárca,Wild pénztárca',
+                'short_description' => 'Függőleges elrendezésű, valódi bőr pénztárca, egyedi gravírozással.',
+                'description' => null,
+                'in_stock' => 5,
+                'menu_order' => 20,
+                'hidden' => 0,
+                'featured' => 0,
+                'category_id' => 1,
+            ],
+        ];
+
+        foreach ($products as $product) {
+            Product::create($product);
+        }
+    }
+}

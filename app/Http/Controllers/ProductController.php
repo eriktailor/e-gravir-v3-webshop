@@ -97,7 +97,7 @@ class ProductController extends Controller
         $data = $request->validated();
     
         // Handle checkboxes
-        $data['is_visible'] = $request->has('is_visible') ? 1 : 0;
+        $data['hidden'] = $request->has('hidden') ? 1 : 0;
         $data['featured'] = $request->has('featured') ? 1 : 0;
 
         // Create product
@@ -157,7 +157,7 @@ class ProductController extends Controller
         $data = $request->validated();
     
         // Checkboxes
-        $data['is_visible'] = $request->has('is_visible') ? 1 : 0;
+        $data['hidden'] = $request->has('hidden') ? 1 : 0;
         $data['featured'] = $request->has('featured') ? 1 : 0;
     
         $product->update($data);

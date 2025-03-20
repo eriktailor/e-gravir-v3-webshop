@@ -26,7 +26,10 @@ class WebshopController extends Controller
     public function archive($slug)
     {
         $category = ProductCategory::where('slug', $slug)->firstOrFail();
-        $products = $category->products()->paginate(12);
+        $products = $category->products()
+                            ->where('hidden', 0)
+                            ->orderBy('menu_order')
+                            ->paginate(12);
 
         return view('webshop.archive', compact('products', 'category'));
     }

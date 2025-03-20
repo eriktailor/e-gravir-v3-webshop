@@ -54,7 +54,7 @@
                                 <x-form.checkbox for="featured" label="Kiemelt termék" :checked="old('is_featured', $product->featured ?? false)"/>                   
                             </div>
                             <div class="form-group">
-                                <x-form.checkbox for="status" label="Rejtett termék" :checked="old('status', $product->status ?? false)"/>                   
+                                <x-form.checkbox for="hidden" label="Rejtett termék" :checked="old('hidden', $product->hidden ?? false)"/>                   
                             </div>
                         </div>
                     </div>
