@@ -17,12 +17,12 @@
             id="{{ $for }}" 
             aria-describedby="{{ $for }}-error"
             {{ $attributes->merge([
-                'class' => 'input' . ($errors->has($for) ? ' is-invalid' : '') . 
+                'class' => 'text-stone-950 has-[option.placeholder:checked]:text-gray-400 has-[option.placeholder:checked]:font-normal font-semibold input' . ($errors->has($for) ? ' is-invalid' : '') . 
                 (($isPreSelected && old($for)) ? '' : ' text-gray-400')
             ]) }}
         >
             @if ($placeholder)
-                <option disabled {{ old($for) || $isPreSelected ? '' : 'selected' }} value="">
+                <option disabled {{ old($for) || $isPreSelected ? '' : 'selected' }} value="" class="placeholder">
                     {{ $placeholder }}
                 </option>
             @endif

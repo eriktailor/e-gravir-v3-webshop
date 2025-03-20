@@ -27,16 +27,7 @@ $(window).on('load', function () {
     $('#loader').fadeOut(300);
 });
 
-/**
- * Select inputs placeholder color fix
- */
-$('select').each(function() {
-    if ($(this).val()) {
-        $(this).removeClass('text-gray-400');
-    }
-}).on('change', function() {
-    $(this).removeClass('text-gray-400');
-});
+
 
 /**
  * Navbar toggle nav menu

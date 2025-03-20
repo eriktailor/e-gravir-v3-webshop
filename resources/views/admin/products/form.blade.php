@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <x-form.select for="category_id" label="Kategória" placeholder=" " required>
+                            <x-form.select for="category_id" label="Kategória" placeholder="Válassz" required>
                                 @foreach($categories as $category)
                                     <option 
                                         value="{{ $category->id }}" 
@@ -71,7 +71,7 @@
                                 <x-form.input for="sale_price" label="Akciós ár" type="number" :value="old('sale_price', $product->sale_price ?? '')"/>
                             </div>
                             <div class="form-group">
-                                <x-form.input for="extra_price" label="Extra oldal ár" type="number" :value="old('extra_price', $product->extra_price ?? 0)"/>
+                                <x-form.input for="extra_price" label="Extra oldal ár" type="number" :value="old('extra_price', $product->extra_price ?? '')"/>
                             </div>
                         </div>
                     </div>
