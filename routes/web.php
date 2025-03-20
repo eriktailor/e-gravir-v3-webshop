@@ -23,6 +23,7 @@ Route::prefix('admin')->controller(AuthController::class)->group(function() {
  */
 Route::prefix('webshop')->controller(WebshopController::class)->group(function() {
     Route::get('/', 'index')->name('webshop.home');
+    Route::get('/{slug}', 'archive')->name('webshop.archive');
 });
 
 /**

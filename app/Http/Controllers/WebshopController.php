@@ -20,4 +20,15 @@ class WebshopController extends Controller
         return view('webshop.index', $data);
     }
 
+    /**
+     * Display category archive page
+     */
+    public function archive($slug)
+    {
+        $category = ProductCategory::where('slug', $slug)->firstOrFail();
+        $products = $category->products()->paginate(12);
+
+        return view('webshop.archive', compact('products', 'category'));
+    }
+
 }
