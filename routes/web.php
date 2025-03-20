@@ -22,7 +22,7 @@ Route::prefix('admin')->controller(AuthController::class)->group(function() {
  * Webshop routes
  */
 Route::prefix('webshop')->controller(WebshopController::class)->group(function() {
-    Route::get('/', 'index')->name('shop.home');
+    Route::get('/', 'index')->name('webshop.home');
 });
 
 /**
