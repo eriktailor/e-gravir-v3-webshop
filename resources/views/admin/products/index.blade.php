@@ -23,6 +23,9 @@
                     
                     <!-- Product Image & Name -->
                     <div class="flex justify-start items-center gap-x-4 col-span-2">
+                        <span class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap mr-1">
+                            {{ $product->id }}
+                        </span>
                         <img 
                             src="{{ $product->first_image_url }}" 
                             alt="{{ $product->name }} termékkép"
@@ -31,7 +34,7 @@
                             {{ $product->name }}
                         </x-heading>
                     </div>
-            
+
                     <!-- Category -->
                     <div class="flex justify-start">
                         <span class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap">

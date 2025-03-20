@@ -71,20 +71,15 @@
                 <!-- Árazás -->
                 <x-card title="Árazás">
                     <div class="flex flex-col gap-4">
-                        <div class="grid grid-cols-2 gap-6">
+                        <div class="grid grid-cols-3 gap-6">
                             <div class="form-group">
                                 <x-form.input for="price" label="Normál ár" type="number" :value="old('price', $product->price ?? '')"/>
                             </div>
                             <div class="form-group">
                                 <x-form.input for="sale_price" label="Akciós ár" type="number" :value="old('sale_price', $product->sale_price ?? '')"/>
                             </div>
-                        </div>
-                        <div class="grid grid-cols-2 gap-6">
                             <div class="form-group">
-                                <x-form.input for="back_extra_price" label="Második oldal felár" type="number" :value="old('back_extra_price', $productCustomization->back_extra_price ?? 0)"/>
-                            </div>
-                            <div class="form-group">
-                                <x-form.input for="inner_extra_price" label="Belső oldal felár" type="number" :value="old('inner_extra_price', $productCustomization->inner_extra_price ?? 0)"/>
+                                <x-form.input for="extra_price" label="Extra oldal ár" type="number" :value="old('extra_price', $productCustomization->extra_price ?? 0)"/>
                             </div>
                         </div>
                     </div>
@@ -106,6 +101,13 @@
                     <x-button id="addVariation" color="white" size="small">
                         Új variáció hozzáadása
                     </x-button>
+                </x-card>
+                
+                <!-- Képek -->
+                <x-card title="Képek">
+                    <div class="form-group">
+                        <input type="file" id="productImageUpload" class="filepond-product-images filepond-cover" name="images[]" multiple>
+                    </div>
                 </x-card>
 
                 <!-- Leírások -->
@@ -138,12 +140,7 @@
 
                 
 
-                <!-- Képek -->
-                <x-card title="Képek">
-                    <div class="form-group">
-                        <input type="file" id="productImageUpload" class="filepond-product-images filepond-cover" name="images[]" multiple>
-                    </div>
-                </x-card>
+                
 
         </div>
 
