@@ -65,6 +65,7 @@ class ProductRequest extends FormRequest
         throw new HttpResponseException(
             redirect()->back()
                 ->withInput()
+                ->withErrors($validator)
                 ->with('error', 'Hibás űrlap! Javítsd a hibákat és küldd be újra.')
         );
     }
