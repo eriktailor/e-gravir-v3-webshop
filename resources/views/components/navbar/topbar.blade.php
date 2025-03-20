@@ -19,3 +19,24 @@
         </div>
     @endif
 </div>
+
+@once('navbar')
+    @push('scripts')
+        <script>
+            /**
+             * Display topbar and hide it later, if have success or error message in session
+             */
+            $(document).ready(function() {
+                if ($('#topBar').children().length) {
+                    setTimeout(function(){
+                        $('#topBar').slideDown(300);
+                    }, 100);
+
+                    setTimeout(function(){
+                        $('#topBar').slideUp(500);
+                    }, 10000);
+                }
+            });
+        </script>
+    @endpush
+@endonce

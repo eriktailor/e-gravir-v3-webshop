@@ -30,3 +30,18 @@
         </div>
     </div>
 </nav>
+
+@once('navbar')
+    @push('scripts')
+        <script>
+            /**
+             * Navbar toggle nav menu on mobile
+             */
+            $(document).ready(function() {
+                $('.navbar-toggle').on('click', function() {
+                    $(this).closest('.navbar').find('.navbar-menu').slideToggle(300);
+                });
+            });
+        </script>
+    @endpush
+@endonce
