@@ -59,6 +59,21 @@ class ProductSeeder extends Seeder
                 'featured' => 0,
                 'category_id' => 1,
             ],
+            [
+                'id' => 4,
+                'name' => 'Nagy csatos gravírozott pénztárca',
+                'price' => 14990,
+                'sale_price' => null,
+                'extra_price' => 2900,
+                'tags' => 'valódi bőr,férfias kivitelezés,Wild pénztárca',
+                'short_description' => 'Hagyományos elrendezésű, nagy méretű, valódi bőr pénztárca, egyedi gravírozással.',
+                'description' => null,
+                'in_stock' => 2,
+                'menu_order' => 40,
+                'hidden' => 0,
+                'featured' => 1,
+                'category_id' => 1,
+            ],
         ];
 
         foreach ($products as $product) {
