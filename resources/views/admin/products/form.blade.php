@@ -109,7 +109,9 @@
                             <x-form.textarea for="short_description" label="Rövid leírás" rows="4">{{ old('short_description', $product->short_description ?? '') }}</x-form.textarea>
                         </div>
                         <div class="form-group">
-                            <x-form.textarea for="description" label="Hosszú leírás" :value="$product->description ?? ''" />
+                            <x-form.editor for="description" label="Hosszú leírás">
+                                {!! $product->description ?? '' !!}
+                            </x-form.editor>
                         </div>
                     </div>
                 </x-card>
@@ -151,6 +153,5 @@
     @vite([
         'resources/js/filepond.js', 
         'resources/js/tomselect.js',
-        'resources/js/easyeditor.js',
     ])
 @endpush

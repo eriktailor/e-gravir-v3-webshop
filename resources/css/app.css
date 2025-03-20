@@ -162,7 +162,11 @@ div.ts-wrapper.multi.has-items div.ts-control {
 EASYEDITOR
 -------------------------------------------------------------- */
 div.easyeditor {
-    @apply border-0 m-0 p-0;
+    @apply border-0 m-0 p-0 font-normal;
+}
+
+div.easyeditor a {
+    @apply text-red-600 underline;
 }
 
 div.easyeditor-temp {
