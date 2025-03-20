@@ -9,15 +9,18 @@
     <main>
         <div class="container">
             @if($products->count())
-                <ul class="archive-products grid grid-cols-4 gap-4">
+                <ul class="archive-products grid grid-cols-3 gap-4">
                     @foreach($products as $product)
-                        <li class="product-item bg-white flex flex-col gap-y-3 rounded-xl shadow-sm shadow-amber-700/20 p-6">
+                        <li class="product-item bg-white flex flex-col gap-y-3 rounded-xl shadow-sm shadow-amber-700/20 p-8">
 
                             <!-- Featured Image -->
-                            <a class="relative w-full h-72 overflow-hidden rounded-lg group" href="#">
+                            <a class="relative w-full h-64 overflow-hidden rounded-lg group" href="#">
                                 @if($product->images->count())
                                     @foreach($product->images->take(2) as $key => $image)
-                                        <img class="..." src="{{ get_image_or_placeholder($image->image_path) }}" alt="{{ $product->name }} Termékkép">
+                                        <img class="absolute top-0 left-0 w-full h-full object-cover object-center transition-all ease-in-out duration-700 
+                                                    {{ $key === 0 ? 'opacity-100 group-hover:opacity-0' : 'scale-110 opacity-0 group-hover:opacity-100 group-hover:scale-100' }}"  
+                                            src="{{ get_image_or_placeholder($image->image_path) }}" 
+                                            alt="{{ $product->name }} Termékkép">
                                     @endforeach
                                 @else
                                     <img class="absolute top-0 left-0 w-full h-full object-cover object-center opacity-100" 
@@ -27,7 +30,7 @@
                             </a>
 
                             <x-heading level="h3">
-                                <a href="#">{{ $product->name }}</a>
+                                <a href="#" class="break-words leading-tight w-full max-w-[16ch] line-clamp-2">{{ $product->name }}</a>
                             </x-heading>
                             <div class="flex items-center justify-between">
                                 <div class="product-price">
