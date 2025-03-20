@@ -25,8 +25,16 @@
                                 @else
                                     <img class="absolute top-0 left-0 w-full h-full object-cover object-center opacity-100" 
                                         src="{{ get_image_or_placeholder(null) }}" 
-                                        alt="Placeholder">
+                                        alt="Termékkép">
                                 @endif
+                                <div class="absolute left-0 top-0 z-10 p-3 flex gap-x-3">
+                                    @if($product->sale_price)
+                                        <x-badge color="success">Akciós</x-badge>
+                                    @endif
+                                    @if($product->created_at->gt(now()->subMonth()) )
+                                        <x-badge color="success">Újdonság</x-badge>
+                                    @endif
+                                </div>
                             </a>
                             
                             <!-- Contents -->
