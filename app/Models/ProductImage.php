@@ -10,4 +10,12 @@ class ProductImage extends Model
         'product_id', 
         'image_path'
     ];
+
+    /**
+     * Make relation with Product model
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
