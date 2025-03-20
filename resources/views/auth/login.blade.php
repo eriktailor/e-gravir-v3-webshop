@@ -8,7 +8,7 @@
         @csrf
         <div class="w-full">
             <img class="mb-6" src="{{ asset('img/logos/logo_emblem.svg') }}" alt="E-Gravír logó" width="40">
-            <h1 class="text-5xl mb-3">Belépés</h1>
+            <x-heading level="h1" class="mb-4">Belépés</x-heading>
             <div class="mb-4">
                 <x-form.input for="email" placeholder="Email" type="text" value="{{ old('email') }}"/>
             </div>

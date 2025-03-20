@@ -13,7 +13,7 @@
         >
 
         @if(isset($label) && $label)
-            <span class="text-gray-500 text-sm">{{ $label }}</span>
+            <span class="text-gray-500 text-sm relative top-[1px]">{{ $label }}</span>
         @endif
 
     </label>  

@@ -27,7 +27,9 @@
                             src="{{ $product->first_image_url }}" 
                             alt="{{ $product->name }} termékkép"
                             class="w-12 h-12 rounded-full object-cover object-center">
-                        <h3 class="font-semibold">{{ $product->name }}</h3>
+                        <x-heading level="h4">
+                            {{ $product->name }}
+                        </x-heading>
                     </div>
             
                     <!-- Category -->
@@ -54,8 +56,15 @@
                         </span>
                     </div>
 
-                    <!-- Action -->
-                    <div class="flex justify-end">
+                    <!-- Featured & Action-->
+                    <div class="flex justify-end items-center gap-6">
+                        <div class="w-16">
+                            @if($product->featured == 1) 
+                                <x-icon name="star-filled" class="text-amber-400"/>
+                            @else
+                                <x-icon name="star" class="text-amber-400"/>
+                            @endif
+                        </div>
                         <x-button.chip icon="chevron-right" href="{{ route('products.edit', $product->id) }}"/>
                     </div>
             

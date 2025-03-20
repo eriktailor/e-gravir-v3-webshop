@@ -30,7 +30,7 @@ textarea,
 select,
 div.ts-control,
 div.easyeditor-wrapper {
-    @apply w-full px-4 py-3 text-base leading-6 border border-gray-300 rounded-lg placeholder:text-gray-400 placeholder:font-normal transition-all text-sm duration-200 focus:outline-none text-stone-950 font-semibold focus:ring focus:ring-stone-950 shadow-none;
+    @apply w-full px-4 py-3 leading-6 border border-gray-300 rounded-lg placeholder:text-gray-400 placeholder:font-normal transition-all text-sm duration-200 focus:outline-none text-stone-950 font-semibold focus:ring focus:ring-stone-950 shadow-none;
 }
 
 select {
@@ -38,7 +38,7 @@ select {
 }
 
 input[type='checkbox'] {
-    @apply h-5 w-5 rounded border-gray-300 text-red-600 focus:ring-0;
+    @apply h-5 w-5 rounded border-gray-300 text-red-600 focus:ring-0 focus:border-red-600 checked:border-red-600;
 }
 
 label {
