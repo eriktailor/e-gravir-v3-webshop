@@ -27,7 +27,13 @@
                                 <a href="#">{{ $product->name }}</a>
                             </x-heading>
                             <div class="flex items-center justify-between">
-                                <div class="text-red-600">{{ $product->price }} Ft</div>
+                                <div class="product-price">
+                                    @if($product->sale_price)
+                                        <span class="line-through text-gray-400">{{ $product->sale_price}}</span>
+                                    @endif
+                                    <span>{{ $product->price }} Ft</span>
+                                </div>
+                                <x-badge color="success">Raktáron</x-badge>
                             </div>
                             <x-button class="w-full">Kosárba</x-button>
                             
