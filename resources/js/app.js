@@ -27,8 +27,6 @@ $(window).on('load', function () {
     $('#loader').fadeOut(300);
 });
 
-
-
 /**
  * Navbar toggle nav menu
  */
