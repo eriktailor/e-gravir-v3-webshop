@@ -203,8 +203,6 @@ class ProductController extends Controller
                 'inner_image' => $request->has('inner_image') ? 1 : 0,
                 'inner_text' => $request->has('inner_text') ? 1 : 0,
                 'other_notes' => $request->has('other_notes') ? 1 : 0,
-                'back_extra_price' => $request->input('back_extra_price', 0),
-                'inner_extra_price' => $request->input('inner_extra_price', 0),
             ]);
         } else {
             $product->customization()->create([
@@ -215,8 +213,6 @@ class ProductController extends Controller
                 'inner_image' => $request->has('inner_image') ? 1 : 0,
                 'inner_text' => $request->has('inner_text') ? 1 : 0,
                 'other_notes' => $request->has('other_notes') ? 1 : 0,
-                'back_extra_price' => $request->input('back_extra_price', 0),
-                'inner_extra_price' => $request->input('inner_extra_price', 0),
             ]);
         }
 
