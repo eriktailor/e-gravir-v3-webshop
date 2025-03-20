@@ -10,14 +10,6 @@
     </x-slot>
 </x-header.page>
 
-@if ($errors->any())
-    <div>
-        @foreach ($errors->all() as $error)
-            <p>{{ $error }}</p>
-        @endforeach
-    </div>
-@endif
-
 <div class="container">
 
     <form action="{{ isset($product) ? route('products.update', $product) : route('products.store') }}" id="productForm" method="POST" enctype="multipart/form-data" novalidate>
@@ -57,7 +49,7 @@
                         <div class="form-group">
                             <x-form.input for="tags" label="Címkék" id="tagsInput" :value="old('tags', isset($product) ? implode(',', $product->tags) : '')" autocomplete="off"/>                
                         </div>
-                        <div class="flex gap-x-8 mt-3">
+                        <div class="grid grid-cols-3">
                             <div class="form-group">
                                 <x-form.checkbox for="is_featured" label="Kiemelt termék" :checked="old('is_featured', $product->is_featured ?? false)"/>                   
                             </div>
@@ -79,7 +71,7 @@
                                 <x-form.input for="sale_price" label="Akciós ár" type="number" :value="old('sale_price', $product->sale_price ?? '')"/>
                             </div>
                             <div class="form-group">
-                                <x-form.input for="extra_price" label="Extra oldal ár" type="number" :value="old('extra_price', $productCustomization->extra_price ?? 0)"/>
+                                <x-form.input for="extra_price" label="Extra oldal ár" type="number" :value="old('extra_price', $product->extra_price ?? 0)"/>
                             </div>
                         </div>
                     </div>
@@ -126,7 +118,7 @@
 
                 <!-- Testreszabás -->
                 <x-card title="Testreszabás">
-                    <div class="flex flex-col gap-2">
+                    <div class="grid grid-cols-3 gap-2">
                         <x-form.checkbox for="front_image" label="1. oldal kép" :checked="old('front_image', $productCustomization->front_image ?? false)"/>
                         <x-form.checkbox for="front_text" label="1. oldal szöveg" :checked="old('front_text', $productCustomization->front_text ?? false)"/>
                         <x-form.checkbox for="back_image" label="2. oldal kép" :checked="old('back_image', $productCustomization->back_image ?? false)"/>

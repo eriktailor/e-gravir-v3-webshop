@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class ProductRequest extends FormRequest
 {
@@ -53,6 +55,18 @@ class ProductRequest extends FormRequest
                 'tags' => implode(',', $tags),
             ]);
         }
+    }
+
+    /**
+     * On failed validation, display the error topbar with this message 
+     */
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            redirect()->back()
+                ->withInput()
+                ->with('error', 'Hibás űrlap! Javítsd a hibákat és küldd be újra.')
+        );
     }
 
 }

@@ -59,11 +59,11 @@ $('.button-submit').on('click', function(e) {
  */
 if ($('#topBar').children().length) {
     setTimeout(function(){
-        $('#topBar').slideDown();
-    }, 300);
+        $('#topBar').slideDown(300);
+    }, 100);
 
     setTimeout(function(){
-        $('#topBar').slideUp();
+        $('#topBar').slideUp(500);
     }, 10000);
 }
 
