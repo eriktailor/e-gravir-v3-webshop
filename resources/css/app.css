@@ -171,16 +171,16 @@ div.pell-actionbar {
 
 div.pell-content {
     @apply text-stone-950 font-normal;
-}
 
-div.pell-content a {
-    @apply text-red-600 underline;
-}
+    a {
+        @apply text-red-600 underline;
+    }
 
-div.pell-content ul {
-    @apply list-disc list-inside;
-}
+    ul {
+        @apply list-disc list-inside;
+    }
 
-div.pell-content ol {
-    @apply list-decimal list-inside;
+    ol {
+        @apply list-decimal list-inside;
+    }
 }
