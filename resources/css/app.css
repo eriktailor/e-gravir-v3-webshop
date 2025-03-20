@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 @import 'tailwindcss';
 @source "../views";
-@plugin "@tailwindcss/forms";
 
 @theme {
     --font-sans: 'Inter', sans-serif;
@@ -25,12 +24,28 @@ body {
 /* --------------------------------------------------------------
 INPUTS
 -------------------------------------------------------------- */
-input:not([type='checkbox']):not([type='radio']), 
-textarea, 
-div.ts-control,
-div.easyeditor-wrapper {
+.form-control .input {
     @apply w-full px-4 py-3 leading-6 border border-gray-300 rounded-lg placeholder:text-gray-400 placeholder:font-normal transition-all text-sm duration-200 focus:outline-none text-stone-950 font-semibold focus:ring focus:ring-stone-950 shadow-none;
 }
+
+.form-control {
+    .tag-input {
+        @apply p-2 min-h-[50px] flex flex-wrap items-center gap-2 transition-all;
+
+        &:focus-within {
+            @apply ring ring-stone-950;
+        }
+    }
+
+    .tag-item {
+        @apply bg-gray-100 px-2 py-1 rounded flex items-center gap-1;
+    }
+
+    .tag-remove {
+        @apply cursor-pointer text-gray-400 hover:text-stone-950;
+    }
+}
+
 
 select {
     @apply appearance-none bg-none w-full px-4 py-3 leading-6 border border-gray-300 rounded-lg transition-all text-sm duration-200 focus:outline-none focus:ring focus:ring-stone-950 shadow-none;
@@ -124,38 +139,6 @@ div.filepond--image-bitmap {
 
 .filepond-product-images .filepond--item {
     @apply w-[calc(33.33%-0.5em)];
-}
-  
-/* --------------------------------------------------------------
-TOMSELECT
--------------------------------------------------------------- */
-div.ts-control input[type='text'] {
-    @apply w-auto shadow-none;
-}
-
-div.ts-wrapper {
-    @apply rounded-lg;
-}
-
-div.ts-wrapper.multi div.ts-control > div {
-    @apply m-0 bg-gray-200 rounded-md text-gray-500 text-xs border-0 tracking-wide leading-6 px-2 py-0 font-bold uppercase;
-    text-shadow: none !important;
-}
-
-div.ts-wrapper.multi div.ts-control [data-value] {
-    @apply bg-none shadow-none;
-}
-
-div.ts-wrapper.multi div.ts-control [data-value].active {
-    @apply border-0 bg-red-600 text-white bg-none;
-}
-
-div.ts-wrapper.multi.has-items div.ts-control {
-    @apply p-3 gap-x-2 shadow-none;
-}
-
-.focus div.ts-control {
-    @apply shadow-none;
 }
 
 /* --------------------------------------------------------------

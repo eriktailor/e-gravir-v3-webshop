@@ -47,7 +47,7 @@
                             </x-form.select>
                         </div>
                         <div class="form-group">
-                            <x-form.input for="tags" label="Címkék" id="tagsInput" :value="old('tags', isset($product) ? implode(',', $product->tags) : '')" autocomplete="off"/>                
+                            <x-form.tags for="tags" label="Címkék" :value="isset($product) ? implode(',', $product->tags) : ''" />     
                         </div>
                         <div class="grid grid-cols-3">
                             <div class="form-group">
@@ -150,6 +150,5 @@
     
     @vite([
         'resources/js/filepond.js', 
-        'resources/js/tomselect.js',
     ])
 @endpush
