@@ -15,12 +15,15 @@
 
                             <!-- Featured Image -->
                             <a class="relative w-full h-72 overflow-hidden rounded-lg group" href="#">
-                                @foreach($product->images->take(2) as $key => $image)
-                                    <img class="absolute top-0 left-0 w-full h-full object-cover object-center transition-all ease-in-out duration-700 
-                                                {{ $key === 0 ? 'opacity-100 group-hover:opacity-0' : 'scale-110 opacity-0 group-hover:opacity-100 group-hover:scale-100' }}" 
-                                         src="{{ '/storage/' . $image->image_path }}" 
-                                         alt="{{ $product->name }} Termékkép">
-                                @endforeach
+                                @if($product->images->count())
+                                    @foreach($product->images->take(2) as $key => $image)
+                                        <img class="..." src="{{ get_image_or_placeholder($image->image_path) }}" alt="{{ $product->name }} Termékkép">
+                                    @endforeach
+                                @else
+                                    <img class="absolute top-0 left-0 w-full h-full object-cover object-center opacity-100" 
+                                        src="{{ get_image_or_placeholder(null) }}" 
+                                        alt="Placeholder">
+                                @endif
                             </a>
 
                             <x-heading level="h3">
@@ -33,7 +36,9 @@
                                     @endif
                                     <span>{{ $product->price }} Ft</span>
                                 </div>
-                                <x-badge color="success">Raktáron</x-badge>
+                                @if($product->in_stock > 0)
+                                    <x-badge color="success">Raktáron</x-badge>
+                                @endif
                             </div>
                             <x-button class="w-full">Kosárba</x-button>
                             

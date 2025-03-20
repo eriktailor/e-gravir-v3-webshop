@@ -54,9 +54,13 @@
 
                     <!-- Stock -->
                     <div class="flex justify-start">
-                        <span class="px-2 py-1 bg-green-100 text-green-600 text-sm rounded-md whitespace-nowrap">
-                            {{ $product->in_stock }} db
-                        </span>
+                        @if($product->in_stock > 3)
+                            <x-badge color="success">{{ $product->in_stock }} db</x-badge>
+                        @elseif($product->in_stock > 0 && $product->in_stock <= 3)
+                            <x-badge color="warning">{{ $product->in_stock }} db</x-badge>
+                        @else
+                            <x-badge color="danger">Elfogyott</x-badge>
+                        @endif
                     </div>
 
                     <!-- Featured & Action-->
