@@ -10,7 +10,9 @@
 
 <div class="form-control">
     
-    <x-form.label :for="$for">{{ $label }}</x-form.label>
+    @if($label)
+        <x-form.label :for="$for" :helptext="$helptext">{{ $label }}</x-form.label>
+    @endif
 
     <input 
         id="{{ $for }}" 

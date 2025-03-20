@@ -1,12 +1,13 @@
 @props([
     'for',
     'label' => null,
+    'helptext' => null
 ])
 
 <div class="form-group">
     
-    @if(isset($label) && $label)
-        <label for="{{ $for }}" class="form-label">{{ $label }}</label>
+    @if($label)
+        <x-form.label :for="$for" :helptext="$helptext">{{ $label }}</x-form.label>
     @endif
 
     <div id="editor" class="pell"></div>

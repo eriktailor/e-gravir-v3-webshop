@@ -13,12 +13,12 @@
         'type' => 'button', 
         'href' => $href ?? '#',
         'class' => $classes]) }}>
-        <x-icon name="{{ $icon }}" class="w-6 h-6" />
+        <x-icon name="{{ $icon }}" class="w-7 h-7 p-1" />
     </a>
 @else
     <button {{ $attributes->merge([
         'type' => 'button', 
         'class' => $classes]) }}>
-        <x-icon name="{{ $icon }}" class="w-6 h-6" />
+        <x-icon name="{{ $icon }}" class="w-7 h-7 p-1" />
     </button>
 @endif

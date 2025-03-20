@@ -3,12 +3,13 @@
     'label' => null,
     'placeholder' => '',
     'value' => '',
+    'helptext' => null
 ])
 
 <div class="form-control">
     
     @if($label)
-        <label for="{{ $for }}" class="form-label">{{ $label }}</label>
+        <x-form.label :for="$for" :helptext="$helptext">{{ $label }}</x-form.label>
     @endif
 
     <div 

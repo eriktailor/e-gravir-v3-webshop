@@ -24,17 +24,15 @@ body {
 /* --------------------------------------------------------------
 INPUTS
 -------------------------------------------------------------- */
-.form-control .input {
+.input {
     @apply w-full px-4 py-3 leading-6 border border-gray-300 rounded-lg placeholder:text-gray-400 placeholder:font-normal transition-all text-sm duration-200 focus:outline-none text-stone-950 font-semibold focus:ring focus:ring-stone-950 shadow-none;
 }
 
-.form-control {
-    .tag-input {
-        @apply p-2 min-h-[50px] flex flex-wrap items-center gap-2 transition-all;
+.tag-input {
+    @apply p-2 min-h-[50px] flex flex-wrap items-center gap-2 transition-all;
 
-        &:focus-within {
-            @apply ring ring-stone-950;
-        }
+    &:focus-within {
+        @apply ring ring-stone-950;
     }
 
     .tag-item {
@@ -47,12 +45,8 @@ INPUTS
 }
 
 
-.form-control .select {
+.select {
     @apply appearance-none bg-none text-stone-950 has-[option.placeholder:checked]:text-gray-400 has-[option.placeholder:checked]:font-normal font-semibold;
-}
-
-input[type='checkbox'] {
-    @apply h-5 w-5 rounded border-gray-300 text-red-600 focus:ring-0 focus:border-red-600 checked:border-red-600;
 }
 
 /* --------------------------------------------------------------
@@ -145,7 +139,7 @@ div.pell {
 }
 
 div.pell-actionbar {
-    @apply bg-transparent;
+    @apply bg-transparent p-2;
 }
 
 div.pell-content {
