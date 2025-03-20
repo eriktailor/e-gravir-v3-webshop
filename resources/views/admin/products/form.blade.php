@@ -23,15 +23,6 @@
                 <!-- Adatok -->
                 <x-card title="Adatok">
                     <div class="flex flex-col gap-4">
-                        
-                        <div class="form-control">
-                            <input class="hidden" type="checkbox" id="check-round02">
-                            <label class="flex items-center" for="check-round02">
-                                <span class="w-5 h-5 inline-block bg-red-500"></span>
-                                <span class="leading-6">Do something.</span>
-                            </label>
-                        </div>
-
                         <div class="form-group">
                             <x-form.input for="name" label="Név" type="text" :value="old('name', $product->name ?? '')"/>
                         </div>

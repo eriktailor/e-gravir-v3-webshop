@@ -10,7 +10,7 @@
 
 <div class="form-control">
     
-    <x-form.label :for="$for"/>
+    <x-form.label :for="$for">{{ $label }}</x-form.label>
 
     <input 
         id="{{ $for }}" 
