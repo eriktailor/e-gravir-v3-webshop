@@ -24,11 +24,12 @@
 @endphp
 
 @if($href)
-    <a href="{{ $href }}" {{ $attributes->merge(['class' => "$btnClasses $buttonColors"]) }} @if($disabled) aria-disabled="true" tabindex="-1" @endif>
+    <a href="{{ $href }}" {{ $attributes->merge(['class' => "$btnClasses $buttonColors"]) }} @disabled($disabled) aria-disabled="true" tabindex="-1">
         {{ $slot }}
     </a>
 @else
-    <button {{ $attributes->merge(['class' => "$btnClasses $buttonColors"]) }} @if($disabled) disabled @endif>
+    <button {{ $attributes->merge(['class' => "$btnClasses $buttonColors"]) }} @disabled($disabled)>
         {{ $slot }}
     </button>
 @endif
+

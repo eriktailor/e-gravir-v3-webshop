@@ -9,7 +9,7 @@
     <main>
         <div class="container">
             @if($products->count())
-                <ul class="archive-products grid grid-cols-3 gap-4">
+                <ul class="archive-products grid grid-cols-3 gap-6">
                     @foreach($products as $product)
                         <li class="product-item bg-white flex flex-col gap-y-3 rounded-xl shadow-sm shadow-amber-700/20 p-8">
 
@@ -28,11 +28,12 @@
                                         alt="Placeholder">
                                 @endif
                             </a>
-
+                            
+                            <!-- Contents -->
                             <x-heading level="h3">
                                 <a href="#" class="break-words leading-tight w-full max-w-[16ch] line-clamp-2">{{ $product->name }}</a>
                             </x-heading>
-                            <div class="flex items-center justify-between">
+                            <div class="flex items-end justify-between">
                                 <div class="product-price">
                                     @if($product->sale_price)
                                         <span class="line-through text-gray-400">{{ $product->sale_price}}</span>
@@ -41,9 +42,13 @@
                                 </div>
                                 @if($product->in_stock > 0)
                                     <x-badge color="success">Raktáron</x-badge>
+                                @else
+                                    <x-badge color="danger">Elfogyott</x-badge>
                                 @endif
                             </div>
-                            <x-button class="w-full">Kosárba</x-button>
+
+                            <!-- Button -->
+                            <x-button class="w-full" :disabled="$product->in_stock === 0">Kosárba</x-button>
                             
                         </li>
                     @endforeach

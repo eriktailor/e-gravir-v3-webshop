@@ -28,7 +28,7 @@ class WebshopController extends Controller
         $category = ProductCategory::where('slug', $slug)->firstOrFail();
         $products = $category->products()
                             ->where('hidden', 0)
-                            ->where('in_stock', '>', 0)
+                            //->where('in_stock', '>', 0)
                             ->orderBy('menu_order')
                             ->paginate(12);
 
