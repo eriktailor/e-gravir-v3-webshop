@@ -3,10 +3,10 @@
     <x-head/>
     <body class="admin">
 
+        <x-loader/>  
+        
         <x-navbar.admin/>
-        
-        {{-- <x-success-fullwidth/> --}}
-        
+                
         @yield('content')
 
         <x-footer.admin/>

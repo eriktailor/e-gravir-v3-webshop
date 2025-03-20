@@ -6,7 +6,7 @@
             <div class="flex-none w-28">
                 <a class="no-underline flex gap-x-2" href="/admin">
                     <img src="{{ asset('/img/logos/logo_emblem.svg') }}" alt="E-Gravír Admin" width="25" height="25">
-                    <span class="text-white font-bold text-xl">Admin</span>
+                    <span class="text-white font-semibold tracking-tight text-xl">Admin</span>
                 </a>
             </div>
             <div class="navbar-menu hidden md:flex md:flex-row gap-3 absolute md:relative top-[60px] md:top-0 left-0 bg-stone-950 w-full md:w-auto px-2.5 pb-3 md:pb-0">

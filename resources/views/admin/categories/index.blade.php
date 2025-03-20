@@ -17,7 +17,6 @@
 <div class="container">
     <div class="categories-list flex flex-col gap-3">
         
-        
         @forelse($categories as $category)
             <div class="p-6 bg-white shadow-md rounded-lg flex items-center justify-between gap-3" data-id="{{ $category->id }}">
                 <div class="flex items-center space-x-4">
@@ -29,7 +28,7 @@
                         alt="{{ $category->name }}"
                         class="w-18 h-18 rounded-full object-cover object-center">
                     <div>
-                        <h3 class="mb-1">{{ $category->name }}</h3>
+                        <x-heading level="h4" class="mb-1">{{ $category->name }}</x-heading>
                         <p class="text-gray-400 text-sm max-w-[500px]">{{ $category->description }}</p>
                     </div>
                 </div>

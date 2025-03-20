@@ -6,14 +6,23 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\WebshopController;
 
 /**
  * Auth routes
  */    
 Route::prefix('admin')->controller(AuthController::class)->group(function() {
+    Route::get('/', 'showLogin')->name('admin.root');
     Route::get('/login', 'showLogin')->name('login');
     Route::post('/login', 'login')->name('admin.login');
     Route::post('/logout', 'logout')->name('logout');
+});
+
+/**
+ * Webshop routes
+ */
+Route::prefix('webshop')->controller(WebshopController::class)->group(function() {
+    Route::get('/', 'index')->name('shop.home');
 });
 
 /**
@@ -36,7 +45,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('categories', ProductCategoryController::class);
     Route::post('categories/reorder', [ProductCategoryController::class, 'reorder'])->name('categories.reorder');
 
-
 });
 
 Route::post('/upload', [FileUploadController::class, 'upload'])->name('file.upload');
@@ -47,9 +55,6 @@ Route::post('/upload', [FileUploadController::class, 'upload'])->name('file.uplo
 
 
 
-Route::get('/', function () {
-    return view('auth.login');
-});
 
 
 
