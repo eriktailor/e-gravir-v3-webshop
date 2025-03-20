@@ -21,8 +21,6 @@ return new class extends Migration
             $table->boolean('inner_image')->default(0);
             $table->boolean('inner_text')->default(0);
             $table->boolean('other_notes')->default(0);
-            $table->integer('back_extra_price')->nullable();
-            $table->integer('inner_extra_price')->nullable();
             $table->timestamps();
         });
     }

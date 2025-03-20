@@ -18,6 +18,8 @@ initDropdown();
 initVariation();
 initTooltip();
 
+$(document).ready(function() {
+
 /**
  * Page loader fades out when page is loaded
  */
@@ -50,4 +52,20 @@ $('.button-submit').on('click', function(e) {
     e.preventDefault();
     var form = $(this).data('target');
     $(form).trigger('submit');
+});
+
+/**
+ * Display topbar and hide it later, if have success or error message in session
+ */
+if ($('#topBar').children().length) {
+    setTimeout(function(){
+        $('#topBar').slideDown();
+    }, 300);
+
+    setTimeout(function(){
+        $('#topBar').slideUp();
+    }, 10000);
+}
+
+
 });

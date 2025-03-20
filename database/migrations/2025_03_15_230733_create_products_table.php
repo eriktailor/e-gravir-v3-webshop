@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('price');
             $table->integer('sale_price')->nullable();
+            $table->integer('extra_price')->nullable();
             $table->string('tags')->nullable(); // Comma-separated values
             $table->text('short_description')->nullable();
             $table->text('description')->nullable();

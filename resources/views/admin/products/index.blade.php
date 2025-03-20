@@ -51,7 +51,7 @@
 
                     <!-- Stock -->
                     <div class="flex justify-start">
-                        <span class="px-2 py-1 bg-green-100 text-green-500 text-sm rounded-md whitespace-nowrap">
+                        <span class="px-2 py-1 bg-green-100 text-green-600 text-sm rounded-md whitespace-nowrap">
                             {{ $product->in_stock }} db
                         </span>
                     </div>
