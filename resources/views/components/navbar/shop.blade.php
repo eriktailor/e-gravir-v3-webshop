@@ -32,6 +32,8 @@
     </div>
 </nav>
 
+<x-navbar.cart/>
+
 @push('scripts')
     <script>
         /**
