@@ -56,8 +56,10 @@
                             </div>
 
                             <!-- Button -->
-                            <x-button class="w-full" :disabled="$product->in_stock === 0">Kosárba</x-button>
-                            
+                            <x-button class="add-to-cart-btn w-full" data-id="{{ $product->id }}" :disabled="$product->in_stock === 0">
+                                Kosárba teszem
+                            </x-button>
+
                         </li>
                     @endforeach
                 </ul>
