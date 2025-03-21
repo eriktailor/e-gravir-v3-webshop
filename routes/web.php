@@ -25,6 +25,7 @@ Route::prefix('webshop')->controller(WebshopController::class)->group(function()
     Route::get('/', 'index')->name('webshop.home');
     Route::get('/{slug}', 'archive')->name('webshop.archive');
     Route::post('/cart/add/{product}', 'addToCart')->name('cart.add');
+    Route::post('/cart/remove/{product}', 'removeFromCart')->name('cart.remove');
 });
 
 /**

@@ -63,6 +63,22 @@ export default function initDropdown() {
             }
         });
     });
+
+    /**
+     * Remove from cart button clicked
+     */
+    $(document).on('click', '.remove-cart-item', function() {
+        var productId = $(this).data('id');
+    
+        $.ajax({
+            url: '/webshop/cart/remove/' + productId,
+            method: 'POST',
+            success: function(response) {
+                $('.cart-count').text(response.count);
+                $('#sideCart .cart-content').load(location.href + ' #sideCart .cart-content > *');
+            }
+        });
+    });
     
 
     /**
