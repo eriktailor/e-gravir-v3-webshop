@@ -49,7 +49,7 @@
 
             <!-- Cart Footer -->
             <div class="cart-footer flex-none p-6 {{ count(session('cart', [])) ? '' : 'hidden' }}">
-                <x-heading level="h3" class="flex justify-between mb-3">
+                <x-heading level="h4" class="flex justify-between mb-3">
                     <span>Összesen:</span>
                     <span class="font-normal">{{ number_format(cart_total(), 0, ',', ' ') }} Ft</span>
                 </x-heading>

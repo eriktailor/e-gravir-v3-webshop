@@ -9,7 +9,7 @@
     <main>
         <div class="container">
             @if($products->count())
-                <ul class="archive-products grid grid-cols-3 gap-6">
+                <ul class="archive-products grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     @foreach($products as $product)
                         <li class="product-item bg-white flex flex-col gap-y-3 rounded-xl shadow-sm shadow-amber-700/20 p-8">
 
