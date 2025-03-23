@@ -12,9 +12,13 @@
                 <ul class="archive-products grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                     @foreach($products as $product)
                         <li class="product-item bg-white flex flex-col gap-y-3 rounded-xl shadow-sm shadow-amber-700/20 p-8">
+                            
+                            @php
+                                $product_slug = Illuminate\Support\Str::slug($product->name, '-', 'hu');
+                            @endphp
 
                             <!-- Featured Image -->
-                            <a class="relative w-full h-64 overflow-hidden rounded-lg group" href="#">
+                            <a href="{{ route('webshop.single', [$category->slug, $product_slug]) }}" class="relative w-full h-64 overflow-hidden rounded-lg group">
                                 @if($product->images->count())
                                     @foreach($product->images->take(2) as $key => $image)
                                         <img class="absolute top-0 left-0 w-full h-full object-cover object-center transition-all ease-in-out duration-700 

@@ -22,30 +22,26 @@
             <div class="cart-content flex-grow overflow-auto no-scrollbar">
                 
                 @forelse(session('cart', []) as $id => $item)
-                    <div class="cart-item flex gap-x-4 p-6 border-b border-gray-300">
-                        <div class="relative w-18 h-18 flex-none">
-                            <img src="{{ $item['image'] ?? asset('/img/noimage.webp') }}" 
-                                alt="{{ $item['name'] }}" 
-                                class="w-full h-full object-cover rounded-lg" />
-                            @if($item['quantity'] > 1)
-                                <div class="cart-count absolute -top-1 -right-1 border border-white bg-red-600 text-white text-xs font-medium rounded-full w-5 h-5 flex text-center items-center justify-center pointer-events-none">
-                                    {{ $item['quantity'] }}
-                                </div>
-                            @endif
+                    @for($i = 0; $i < $item['quantity']; $i++)
+                        <div class="cart-item flex gap-x-4 p-6 border-b border-gray-300">
+                            <div class="relative w-18 h-18 flex-none">
+                                <img src="{{ $item['image'] ?? asset('/img/noimage.webp') }}" 
+                                    alt="{{ $item['name'] }}" 
+                                    class="w-full h-full object-cover rounded-lg" />
+                            </div>                       
+                            <div class="w-4/5">
+                                <x-heading level="h4" class="mb-2">
+                                    {{ $item['name'] }}
+                                </x-heading>
+                                <p class="text-sm text-gray-400">
+                                    {{ $item['price'] }} Ft
+                                </p>
+                            </div>
+                            <div class="flex-none">
+                                <x-button.chip icon="trash" class="remove-cart-item -mt-2" data-id="{{ $id }}"/>
+                            </div>
                         </div>
-                        
-                        <div class="w-4/5">
-                            <x-heading level="h4" class="mb-2">
-                                {{ $item['name'] }}
-                            </x-heading>
-                            <p class="text-sm text-gray-400">
-                                {{ $item['price'] }} Ft {{ $item['quantity'] > 1 ? 'x ' . $item['quantity'] : '' }}
-                            </p>
-                        </div>
-                        <div class="flex-none">
-                            <x-button.chip icon="trash" class="remove-cart-item -mt-2" data-id="{{ $id }}"/>
-                        </div>
-                    </div>
+                    @endfor
                 @empty
                     <div class="flex flex-col items-center gap-y-6">
                         <img class="px-8" src="{{ asset('/img/empty_cart.png') }}" alt="Üres kosár">

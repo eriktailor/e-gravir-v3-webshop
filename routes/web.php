@@ -32,6 +32,7 @@ Route::prefix('webshop')->group(function() {
         Route::get('/', 'index')->name('webshop.home');
         Route::post('/cart/add/{product}', 'addToCart')->name('cart.add');
         Route::post('/cart/remove/{product}', 'removeFromCart')->name('cart.remove');
+        Route::get('/{category}/{product}', 'single')->name('webshop.single');
         Route::get('/{slug}', 'archive')->name('webshop.archive'); // Keep last!
     });
 });

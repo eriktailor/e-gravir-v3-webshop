@@ -37,6 +37,23 @@ class WebshopController extends Controller
     }
 
     /**
+     * Display single product page
+     */
+    public function single($categorySlug, $productSlug)
+    {
+        // Fetch category (optional)
+        $category = ProductCategory::where('slug', $categorySlug)->firstOrFail();
+
+        // Fetch product
+        $product = Product::where('slug', $productSlug)
+                        ->where('category_id', $category->id) // optional: make sure product belongs to category
+                        ->firstOrFail();
+
+        return view('webshop.single', compact('category', 'product'));
+    }
+
+
+    /**
      * Add item to cart
      */
     public function addToCart(Request $request, Product $product)
