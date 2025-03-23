@@ -22,13 +22,14 @@
                     <x-icon name="align-right" class="text-gray-400 w-7 h-7"/>
                 </button>
                 <div class="relative">                        
-                    <button 
-                        class="cart-toggle cursor-pointer p-2 transition-all text-gray-500 hover:text-gray-300' }}" 
+                    <a 
+                        class="offcanvas-toggle cursor-pointer p-2 transition-all text-gray-500 hover:text-gray-300 block" 
                         id="cartToggle" 
+                        href="#sideCart"
                         {{ request()->routeIs('webshop.checkout') ? 'disabled' : '' }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"> <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path> <line x1="3" y1="6" x2="21" y2="6"></line> <path d="M16 10a4 4 0 0 1-8 0"></path> </svg>
-                    </button>
-                    <div class="cart-count absolute top-1 right-0.5 bg-red-600 text-white text-xs font-medium rounded-full w-4 h-4 flex text-center items-center justify-center pointer-events-none">
+                    </a>
+                    <div class="cart-count absolute top-0 right-0 bg-red-600 text-white text-xs font-medium rounded-full w-4 h-4 flex text-center items-center justify-center pointer-events-none">
                         {{ collect(session('cart', []))->sum('quantity') }}
                     </div>
                 </div>

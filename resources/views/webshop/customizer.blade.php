@@ -1,17 +1,17 @@
-<aside id="sideCart" class="offcanvas nav-cart fixed inset-0 z-50 invisible opacity-0 transition-opacity duration-300" data-cart-count="{{ count(session('cart', [])) }}">
+<aside id="sideCustomizer" class="offcanvas nav-cart fixed inset-0 z-50 invisible opacity-0 transition-opacity duration-300" data-cart-count="{{ count(session('cart', [])) }}">
 
     <!-- BACKDROP -->
-    <div class="offcanvas-backdrop absolute inset-0 bg-stone-950/50 opacity-0 transition-opacity duration-300"></div>
+    <div id="cartBackdrop" class="absolute inset-0 bg-stone-950/50 opacity-0 transition-opacity duration-300"></div>
 
     <!-- CART PANEL -->
-    <div class="offcanvas-panel absolute right-0 top-0 h-full w-full sm:w-[500px] transform translate-x-full transition-transform duration-300 ease-in-out p-8">
+    <div id="cartPanel" class="absolute right-0 top-0 h-full w-full sm:w-[500px] transform translate-x-full transition-transform duration-300 ease-in-out p-8">
         <div class="bg-white rounded-xl h-full flex flex-col">
 
             <!-- Cart Header -->
             <div class="cart-header p-6 border-b border-gray-300 flex-none">
                 <div class="flex justify-between">
-                    <x-heading level="h2">Kosaram</x-heading>
-                    <x-button.chip icon="x" class="offcanvas-close"/>
+                    <x-heading level="h2">Testreszabás</x-heading>
+                    <x-button.chip icon="x" class="close-cart"/>
                 </div>
                 @if(count(session('cart', [])))
                     <p class="text-gray-400 mt-3">A kosárban lévő termékeket a pénztár oldalon tudod majd személyre szabni.</p>

@@ -1,3 +1,8 @@
+/**
+ * COMPONENT: Cart
+ * -----------------------------------------------------------------------------------
+ */
+
 export default function initCart() {
 
     /**
@@ -19,42 +24,6 @@ export default function initCart() {
             }
         });
     }
-
-    /**
-     * Open cart sidebar function
-     */
-    function openCartSidebar() {
-        $('body').addClass('overflow-hidden');
-        $('#sideCart').removeClass('invisible opacity-0').addClass('opacity-100');
-        $('#cartBackdrop').removeClass('opacity-0').addClass('opacity-100');
-        $('#cartPanel').removeClass('translate-x-full').addClass('translate-x-0');
-    }
-
-    /**
-     * Close cart sidebar function
-     */
-    function closeCartSidebar() {
-        $('body').removeClass('overflow-hidden');
-        $('#cartBackdrop').removeClass('opacity-100').addClass('opacity-0');
-        $('#cartPanel').removeClass('translate-x-0').addClass('translate-x-full');
-        setTimeout(() => {
-            $('#sideCart').removeClass('opacity-100').addClass('opacity-0 invisible');
-        }, 300);
-    }
-
-    /**
-     * Cart button clicked, open sidebar
-     */
-    $('#cartToggle').on('click', function() {
-        openCartSidebar();
-    });
-
-    /**
-     * Cart close button or backdrop clicked
-     */
-    $(document).on('click', '#cartBackdrop, .close-cart', function() {
-        closeCartSidebar();
-    });
 
     /**
      * Add to cart button clicked

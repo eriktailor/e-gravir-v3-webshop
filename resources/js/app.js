@@ -4,7 +4,7 @@
 import initDropdown from './_dropdown';
 import initVariation from './_variation';
 import initTooltip from './_tooltip';
-import initCart from './_cart';
+import initOffcanvas from './_offcanvas';
 import initCheckout from './_checkout';
 import initModal from './_modal';
 
@@ -14,7 +14,7 @@ import initModal from './_modal';
 initDropdown();
 initVariation();
 initTooltip();
-initCart();
+initOffcanvas();
 initCheckout();
 initModal();
 

@@ -34,16 +34,21 @@
 
 @once('filepond')
     @push('styles')
-        <link href="https://unpkg.com/filepond/dist/filepond.min.css" rel="stylesheet">
+        <link  rel="stylesheet" href="https://unpkg.com/filepond/dist/filepond.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css"/>
     @endpush
-
+    
     @push('scripts')
+        <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
         <script src="https://unpkg.com/filepond/dist/filepond.min.js"></script>
     @endpush
 @endonce
 
 @push('scripts')
     <script>
+        // Register the plugin
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+
         document.addEventListener('DOMContentLoaded', function() {
             const pond = FilePond.create(document.getElementById('{{ $id }}'), {!! json_encode($finalConfig) !!});
         });

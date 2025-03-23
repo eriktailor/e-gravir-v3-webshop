@@ -149,7 +149,7 @@
 
 @section('modals')
 
-    <x-modal id="productCustomizeModal" title="Testreszabás">
+    <x-modal id="productCustomizeModal" title="Testreszabás" size="medium">
         <form action="" method="POST" id="productCustomizeForm" class="flex flex-col gap-y-4" novalidate>
             @csrf
             <div class="form-group">
