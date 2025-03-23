@@ -61,7 +61,7 @@
                     <span>Összesen:</span>
                     <span class="font-normal">{{ number_format(cart_total(), 0, ',', ' ') }} Ft</span>
                 </x-heading>
-                <x-button href="{{ route('webshop.checkout') }}" class="w-full">Tovább a Pénztárba</x-button>
+                <x-button href="{{ route('webshop.checkout') }}" class="w-full">Tovább a Megrendeléshez</x-button>
             </div>
             
 

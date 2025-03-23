@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductImageController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\WebshopController;
+use App\Http\Controllers\CheckoutController;
 
 /**
  * Auth routes
@@ -21,12 +22,18 @@ Route::prefix('admin')->controller(AuthController::class)->group(function() {
 /**
  * Webshop routes
  */
-Route::prefix('webshop')->controller(WebshopController::class)->group(function() {
-    Route::get('/', 'index')->name('webshop.home');
-    Route::get('/{slug}', 'archive')->name('webshop.archive');
-    Route::post('/cart/add/{product}', 'addToCart')->name('cart.add');
-    Route::post('/cart/remove/{product}', 'removeFromCart')->name('cart.remove');
-    Route::get('/checkout', 'indexCheckout')->name('webshop.checkout');
+Route::prefix('webshop')->group(function() {
+
+    Route::controller(CheckoutController::class)->group(function() {
+        Route::get('/checkout', 'index')->name('webshop.checkout');
+    });
+
+    Route::controller(WebshopController::class)->group(function() {
+        Route::get('/', 'index')->name('webshop.home');
+        Route::post('/cart/add/{product}', 'addToCart')->name('cart.add');
+        Route::post('/cart/remove/{product}', 'removeFromCart')->name('cart.remove');
+        Route::get('/{slug}', 'archive')->name('webshop.archive'); // Keep last!
+    });
 });
 
 /**

@@ -84,13 +84,6 @@ class WebshopController extends Controller
         ]);
     }
 
-    /**
-     * Display checkout page
-     */
-    public function indexCheckout()
-    {
-        return view('webshop.checkout');
-    }
     
     
 
