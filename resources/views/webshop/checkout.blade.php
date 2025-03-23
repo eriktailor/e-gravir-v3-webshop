@@ -11,8 +11,9 @@
             <div class="flex gap-6">
 
                 <div class="grow">
-                    <form id="checkoutForm" action="" method="POST" novalidate>
-                            
+                    <form id="checkoutForm" action="{{ route('checkout.store') }}" method="POST" novalidate>
+                        @csrf
+                        
                         <!-- Szállítás -->
                         <x-card title="Szállítás">
                             <div class="flex flex-col gap-4">

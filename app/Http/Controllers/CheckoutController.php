@@ -25,5 +25,7 @@ class CheckoutController extends Controller
         $validated = $request->validated();
 
         Order::create($validated);
+
+        return redirect()->back()->with('success', 'Megrendelés sikeresen elküldve.');
     }
 }

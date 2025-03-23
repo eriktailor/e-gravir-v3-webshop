@@ -26,6 +26,7 @@ Route::prefix('webshop')->group(function() {
 
     Route::controller(CheckoutController::class)->group(function() {
         Route::get('/checkout', 'index')->name('webshop.checkout');
+        Route::post('/checkout/store', 'store')->name('checkout.store');
     });
 
     Route::controller(WebshopController::class)->group(function() {
