@@ -10,6 +10,13 @@
         <div class="container">
             <div class="max-w-2xl">
 
+                <!-- Termékek -->
+                <x-card title="Termékek">
+                    <div class="flex flex-col gap-4">
+                       
+                    </div>
+                </x-card>
+
                 <!-- Személyes -->
                 <x-card title="Személyes">
                     <div class="flex flex-col gap-4">
@@ -77,6 +84,24 @@
                                     :checked="old('delivery_method') === $key"
                                 />
                             @endforeach
+                        </div>
+                        <div class="order-summary flex flex-col gap-y-2">
+                            <div class="flex justify-between">
+                                Termékek
+                                <span>0 Ft</span>
+                            </div>
+                            <div class="flex justify-between">
+                                Extra felár
+                                <span>0 Ft</span>
+                            </div>
+                            <div class="flex justify-between">
+                                Szállítási díj
+                                <span>0 Ft</span>
+                            </div>
+                            <div class="flex justify-between text-stone-950">
+                                <strong>Végösszeg</strong>
+                                <span>0 Ft</span>
+                            </div>
                         </div>
                     </div>
                 </x-card>
