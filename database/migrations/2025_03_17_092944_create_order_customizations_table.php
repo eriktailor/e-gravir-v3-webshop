@@ -18,11 +18,8 @@ return new class extends Migration
             $table->text('front_text')->nullable();
             $table->string('back_image')->nullable();
             $table->text('back_text')->nullable();
-            $table->string('inner_image')->nullable();
             $table->text('inner_text')->nullable();
             $table->text('other_notes')->nullable();
-            $table->integer('back_extra_price')->nullable();
-            $table->integer('inner_extra_price')->nullable();
             $table->timestamps();
         });
         

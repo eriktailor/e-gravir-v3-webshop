@@ -121,7 +121,6 @@
                         <x-form.checkbox for="front_text" label="1. oldal szöveg" :checked="old('front_text', $productCustomization->front_text ?? false)"/>
                         <x-form.checkbox for="back_image" label="2. oldal kép" :checked="old('back_image', $productCustomization->back_image ?? false)"/>
                         <x-form.checkbox for="back_text" label="2. oldal szöveg" :checked="old('back_text', $productCustomization->back_text ?? false)"/>
-                        <x-form.checkbox for="inner_image" label="3. oldal kép" :checked="old('inner_image', $productCustomization->inner_image ?? false)"/>
                         <x-form.checkbox for="inner_text" label="3. oldal szöveg" :checked="old('inner_text', $productCustomization->inner_text ?? false)"/>
                         <x-form.checkbox for="other_notes" label="Megjegyzés" :checked="old('other_notes', $productCustomization->other_notes ?? false)"/>
                     </div>

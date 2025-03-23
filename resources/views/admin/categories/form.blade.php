@@ -15,7 +15,6 @@
                 @method('PUT')
             @endif
 
-        
             <div class="flex flex-col gap-4">
                 <div class="form-group">
                     <x-form.input for="name" label="Név" type="text" :value="$category->name ?? ''"/>

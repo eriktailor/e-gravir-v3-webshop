@@ -18,7 +18,6 @@ return new class extends Migration
             $table->boolean('front_text')->default(0);
             $table->boolean('back_image')->default(0);
             $table->boolean('back_text')->default(0);
-            $table->boolean('inner_image')->default(0);
             $table->boolean('inner_text')->default(0);
             $table->boolean('other_notes')->default(0);
             $table->timestamps();

@@ -150,8 +150,38 @@
 @section('modals')
 
     <x-modal id="productCustomizeModal" title="Testreszabás">
-        <form action="" method="POST" id="productCustomizeForm" novalidate>
-            
+        <form action="" method="POST" id="productCustomizeForm" class="flex flex-col gap-y-4" novalidate>
+            @csrf
+            <div class="form-group">
+                <x-form.upload 
+                    for="front_image" 
+                    id="customizeFrontImage" 
+                    label="Előlap képe"
+                    multiple 
+                    :config="['allowMultiple' => false, 'maxFiles' => 1]"
+                />
+            </div>
+            <div class="form-group">
+                <x-form.input label="Előlap szöveg" for="customizeFrontText"/>
+            </div>
+            <div class="form-group">
+                <x-form.upload 
+                    for="front_image" 
+                    id="customizeBackImage" 
+                    label="Hátlap képe"
+                    multiple 
+                    :config="['allowMultiple' => false, 'maxFiles' => 1]"
+                />
+            </div>
+            <div class="form-group">
+                <x-form.input label="Hátlap szöveg" for="customizeBackText"/>
+            </div>
+            <div class="form-group">
+                <x-form.input label="Belső szöveg" for="customizeBackText"/>
+            </div>
+            <div class="form-group">
+                <x-form.textarea label="Egyéb instrukció" for="customizeBackText" rows="4"/>
+            </div>
         </form>
         <x-slot name="footer">
             <x-button class="w-full">Elmentem</x-button>

@@ -12,7 +12,6 @@ class ProductCustomization extends Model
         'front_text',
         'back_image',
         'back_text',
-        'inner_image',
         'inner_text',
         'other_notes',
     ];
