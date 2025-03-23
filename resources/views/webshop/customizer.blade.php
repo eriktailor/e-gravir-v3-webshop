@@ -42,7 +42,7 @@
                         class="toggle"
                         data-target="#customizeBackPage"/>
                     <div class="hidden" id="customizeBackPage">
-                        <div class="form-group">
+                        <div class="form-group mb-4">
                             <x-form.upload 
                                 for="front_image" 
                                 id="customizeBackImage" 
@@ -55,7 +55,7 @@
                             <x-form.input label="Hátlap szöveg" for="customizeBackText"/>
                         </div>
                     </div>
-
+                    
                     <x-form.checkbox 
                         for="engrave_third_page" 
                         label="A belső oldalra is kérek gravírozást (+2900 Ft)"
@@ -66,7 +66,6 @@
                             <x-form.input label="Belső szöveg" for="customizeBackText"/>
                         </div>
                     </div>
-                    
                 </form>
             </div>
 

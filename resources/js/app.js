@@ -7,6 +7,7 @@ import initTooltip from './_tooltip';
 import initOffcanvas from './_offcanvas';
 import initCheckout from './_checkout';
 import initModal from './_modal';
+import initToggle from './_toggle';
 
 /**
  * Initialize local components
@@ -17,6 +18,7 @@ initTooltip();
 initOffcanvas();
 initCheckout();
 initModal();
+initToggle();
 
 $(document).ready(function() {
 
