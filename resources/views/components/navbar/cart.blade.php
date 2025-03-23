@@ -11,11 +11,8 @@
             <div class="cart-header p-6 border-b border-gray-300 flex-none">
                 <div class="flex justify-between">
                     <x-heading level="h2">Kosaram</x-heading>
-                    <x-button.chip icon="x" class="offcanvas-close"/>
+                    <x-button.chip icon="x" class="offcanvas-close -mr-2"/>
                 </div>
-                @if(count(session('cart', [])))
-                    <p class="text-gray-400 mt-3">A kosárban lévő termékeket a pénztár oldalon tudod majd személyre szabni.</p>
-                @endif
             </div>
 
             <!-- Cart Content -->
@@ -37,7 +34,7 @@
                                     <x-button.chip icon="trash" class="remove-cart-item flex-none h-9 -mt-2 -mr-2" data-id="{{ $id }}"/>
                                 </div>
                                 <div class="flex justify-between">
-                                    <a class="text-sm text-red-600 underline underline-offset-2 hover:no-underline">
+                                    <a href="#sideCustomizer" class="offcanvas-toggle text-sm text-red-600 underline underline-offset-2 hover:no-underline">
                                         Testreszabás
                                     </a>
                                     <span class="text-sm text-gray-400">

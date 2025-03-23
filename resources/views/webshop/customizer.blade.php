@@ -1,68 +1,62 @@
-<aside id="sideCustomizer" class="offcanvas nav-cart fixed inset-0 z-50 invisible opacity-0 transition-opacity duration-300" data-cart-count="{{ count(session('cart', [])) }}">
+<aside id="sideCustomizer" class="offcanvas fixed inset-0 z-50 invisible opacity-0 transition-opacity duration-300">
 
     <!-- BACKDROP -->
-    <div id="cartBackdrop" class="absolute inset-0 bg-stone-950/50 opacity-0 transition-opacity duration-300"></div>
+    <div class="offcanvas-backdrop absolute inset-0 bg-stone-950/50 opacity-0 transition-opacity duration-300"></div>
 
-    <!-- CART PANEL -->
-    <div id="cartPanel" class="absolute right-0 top-0 h-full w-full sm:w-[500px] transform translate-x-full transition-transform duration-300 ease-in-out p-8">
+    <!-- PANEL -->
+    <div class="offcanvas-panel absolute right-0 top-0 h-full w-full sm:w-[500px] transform translate-x-full transition-transform duration-300 ease-in-out p-8">
         <div class="bg-white rounded-xl h-full flex flex-col">
 
-            <!-- Cart Header -->
-            <div class="cart-header p-6 border-b border-gray-300 flex-none">
+            <!-- Header -->
+            <div class="offcanvas-header p-6 border-b border-gray-300 flex-none">
                 <div class="flex justify-between">
                     <x-heading level="h2">Testreszabás</x-heading>
-                    <x-button.chip icon="x" class="close-cart"/>
+                    <x-button.chip icon="x" class="offcanvas-close"/>
                 </div>
-                @if(count(session('cart', [])))
-                    <p class="text-gray-400 mt-3">A kosárban lévő termékeket a pénztár oldalon tudod majd személyre szabni.</p>
-                @endif
+                <p class="text-gray-400 mt-3">A kosárban lévő termékeket a pénztár oldalon tudod majd személyre szabni.</p>
             </div>
 
-            <!-- Cart Content -->
-            <div class="cart-content flex-grow overflow-auto no-scrollbar">
+            <!-- Content -->
+            <div class="offcanvas-content flex-grow overflow-auto no-scrollbar p-6">
                 
-                @forelse(session('cart', []) as $id => $item)
-                    @for($i = 0; $i < $item['quantity']; $i++)
-                        <div class="cart-item flex gap-x-4 p-6 border-b border-gray-300">
-                            <div class="relative w-18 h-18 flex-none">
-                                <img src="{{ $item['image'] ?? asset('/img/noimage.webp') }}" 
-                                    alt="{{ $item['name'] }}" 
-                                    class="w-full h-full object-cover rounded-lg" />
-                            </div>            
-                            <div class="flex flex-col grow">
-                                <div class="flex justify-between flex-nowrap">
-                                    <x-heading level="h4" class="mb-2 mr-3">
-                                        {{ $item['name'] }}
-                                    </x-heading>
-                                    <x-button.chip icon="trash" class="remove-cart-item flex-none h-9 -mt-2 -mr-2" data-id="{{ $id }}"/>
-                                </div>
-                                <div class="flex justify-between">
-                                    <a class="text-sm text-red-600 underline underline-offset-2 hover:no-underline">
-                                        Testreszabás
-                                    </a>
-                                    <span class="text-sm text-gray-400">
-                                        {{ $item['price'] }} Ft
-                                    </span>
-                                </div>
-                            </div>           
-                        </div>
-                    @endfor
-                @empty
-                    <div class="flex flex-col items-center gap-y-6">
-                        <img class="px-8" src="{{ asset('/img/empty_cart.png') }}" alt="Üres kosár">
-                        <p>Jelenleg nincs termék a kosaradban.</p>
-                        <x-button href="{{ route('webshop.home') }}">Vásárlás Folytatása</x-button>
+                <form action="" method="POST" id="productCustomizeForm" class="flex flex-col gap-y-4" novalidate>
+                    @csrf
+                    <div class="form-group">
+                        <x-form.upload 
+                            for="front_image" 
+                            id="customizeFrontImage" 
+                            label="Előlap képe"
+                            multiple 
+                            :config="['allowMultiple' => false, 'maxFiles' => 1]"
+                        />
                     </div>
-                @endforelse
+                    <div class="form-group">
+                        <x-form.input label="Előlap szöveg" for="customizeFrontText"/>
+                    </div>
+                    <div class="form-group">
+                        <x-form.upload 
+                            for="front_image" 
+                            id="customizeBackImage" 
+                            label="Hátlap képe"
+                            multiple 
+                            :config="['allowMultiple' => false, 'maxFiles' => 1]"
+                        />
+                    </div>
+                    <div class="form-group">
+                        <x-form.input label="Hátlap szöveg" for="customizeBackText"/>
+                    </div>
+                    <div class="form-group">
+                        <x-form.input label="Belső szöveg" for="customizeBackText"/>
+                    </div>
+                    <div class="form-group">
+                        <x-form.textarea label="Egyéb instrukció" for="customizeBackText" rows="4"/>
+                    </div>
+                </form>
             </div>
 
-            <!-- Cart Footer -->
-            <div class="cart-footer flex-none p-6 {{ count(session('cart', [])) ? '' : 'hidden' }}">
-                <x-heading level="h4" class="flex justify-between mb-3">
-                    <span>Összesen:</span>
-                    <span class="font-normal">{{ number_format(cart_total(), 0, ',', ' ') }} Ft</span>
-                </x-heading>
-                <x-button href="{{ route('webshop.checkout') }}" class="w-full">Tovább a Megrendeléshez</x-button>
+            <!-- Footer -->
+            <div class="offcanvas-footer flex-none p-6">
+                <x-button href="#" class="w-full">Mentés</x-button>
             </div>
             
 
