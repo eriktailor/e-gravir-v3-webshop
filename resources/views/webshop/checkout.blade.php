@@ -26,7 +26,8 @@
                                             <x-heading level="h4" class="mb-2">
                                                 {{ $item['name'] }}
                                             </x-heading>
-                                            <a href="#productCustomizeModal" class="modal-toggle text-sm text-red-600 underline underline-offset-2">
+                                            <a href="#productCustomizeModal" 
+                                                class="modal-toggle text-sm text-red-600 underline underline-offset-2">
                                                 Testreszabás
                                             </a>
                                         </div>
@@ -149,7 +150,9 @@
 @section('modals')
 
     <x-modal id="productCustomizeModal" title="Testreszabás">
-        content
+        <form action="" method="POST" id="productCustomizeForm" novalidate>
+            
+        </form>
         <x-slot name="footer">
             <x-button class="w-full">Elmentem</x-button>
         </x-slot>
