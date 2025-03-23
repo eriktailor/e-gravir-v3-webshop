@@ -28,18 +28,23 @@
                                 <img src="{{ $item['image'] ?? asset('/img/noimage.webp') }}" 
                                     alt="{{ $item['name'] }}" 
                                     class="w-full h-full object-cover rounded-lg" />
-                            </div>                       
-                            <div class="w-4/5">
-                                <x-heading level="h4" class="mb-2">
-                                    {{ $item['name'] }}
-                                </x-heading>
-                                <p class="text-sm text-gray-400">
-                                    {{ $item['price'] }} Ft
-                                </p>
-                            </div>
-                            <div class="flex-none">
-                                <x-button.chip icon="trash" class="remove-cart-item -mt-2" data-id="{{ $id }}"/>
-                            </div>
+                            </div>            
+                            <div class="flex flex-col grow">
+                                <div class="flex justify-between flex-nowrap">
+                                    <x-heading level="h4" class="mb-2 mr-3">
+                                        {{ $item['name'] }}
+                                    </x-heading>
+                                    <x-button.chip icon="trash" class="remove-cart-item flex-none h-9 -mt-2 -mr-2" data-id="{{ $id }}"/>
+                                </div>
+                                <div class="flex justify-between">
+                                    <a class="text-sm text-red-600 underline underline-offset-2 hover:no-underline">
+                                        Testreszabás
+                                    </a>
+                                    <span class="text-sm text-gray-400">
+                                        {{ $item['price'] }} Ft
+                                    </span>
+                                </div>
+                            </div>           
                         </div>
                     @endfor
                 @empty

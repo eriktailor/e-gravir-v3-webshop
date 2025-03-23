@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -13,6 +14,7 @@ class Product extends Model
     
     protected $fillable = [
         'name',
+        'slug',
         'price',
         'sale_price',
         'extra_price',
@@ -56,6 +58,16 @@ class Product extends Model
     }
 
     /**
+     * Auto save product slug (created from product name)
+     */
+    protected static function booted()
+    {
+        static::saving(function ($product) {
+            $product->slug = Str::slug($product->name);
+        });
+    }
+
+    /** 
      * Relation with ProductImage model
      */
     public function images()

@@ -46,8 +46,8 @@ class WebshopController extends Controller
 
         // Fetch product
         $product = Product::where('slug', $productSlug)
-                        ->where('category_id', $category->id) // optional: make sure product belongs to category
-                        ->firstOrFail();
+                            ->where('category_id', $category->id)
+                            ->firstOrFail();
 
         return view('webshop.single', compact('category', 'product'));
     }

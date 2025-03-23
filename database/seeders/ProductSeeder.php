@@ -17,6 +17,7 @@ class ProductSeeder extends Seeder
             [
                 'id' => 1,                
                 'name' => 'Keskeny slim gravírozott pénztárca',
+                'slug' => 'keskeny-slim-gravirozott-penztarca',
                 'price' => 11990,
                 'sale_price' => null,
                 'extra_price' => 2900,
@@ -32,6 +33,7 @@ class ProductSeeder extends Seeder
             [
                 'id' => 2,
                 'name' => 'Kis sima gravírozott pénztárca',
+                'slug' => 'kis-sima-gravirozott-penztarca',
                 'price' => 13990,
                 'sale_price' => 10000,
                 'extra_price' => 2900,
@@ -47,6 +49,7 @@ class ProductSeeder extends Seeder
             [
                 'id' => 3,
                 'name' => 'Függőleges csatos gravírozott pénztárca',
+                'slug' => 'fuggoleges-csatos-gravirozott-penztarca',
                 'price' => 14990,
                 'sale_price' => null,
                 'extra_price' => 2900,
@@ -62,6 +65,7 @@ class ProductSeeder extends Seeder
             [
                 'id' => 4,
                 'name' => 'Nagy csatos gravírozott pénztárca',
+                'slug' => 'nagy-csatos-gravirozott-penztarca',
                 'price' => 14990,
                 'sale_price' => null,
                 'extra_price' => 2900,
