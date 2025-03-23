@@ -1,9 +1,9 @@
 /**
- * COMPONENT: Dropdown
+ * COMPONENT: Cart
  * -----------------------------------------------------------------------------------
  */
 
-export default function initDropdown() {
+export default function initCart() {
         
     /**
      * Cart button clicked, open the sidebar cart
