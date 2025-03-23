@@ -23,9 +23,17 @@
                 
                 @forelse(session('cart', []) as $id => $item)
                     <div class="cart-item flex gap-x-4 p-6 border-b border-gray-300">
-                        <img src="{{ $item['image'] ?? asset('/img/noimage.webp') }}" 
-                            alt="{{ $item['name'] }}" 
-                            class="w-18 h-18 object-cover rounded-lg" />
+                        <div class="relative w-18 h-18 flex-none">
+                            <img src="{{ $item['image'] ?? asset('/img/noimage.webp') }}" 
+                                alt="{{ $item['name'] }}" 
+                                class="w-full h-full object-cover rounded-lg" />
+                            @if($item['quantity'] > 1)
+                                <div class="cart-count absolute -top-1 -right-1 border border-white bg-red-600 text-white text-xs font-medium rounded-full w-5 h-5 flex text-center items-center justify-center pointer-events-none">
+                                    {{ $item['quantity'] }}
+                                </div>
+                            @endif
+                        </div>
+                        
                         <div class="w-4/5">
                             <x-heading level="h4" class="mb-2">
                                 {{ $item['name'] }}
