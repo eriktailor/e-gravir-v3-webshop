@@ -19,19 +19,24 @@
                                 @for ($i = 0; $i < $item['quantity']; $i++)
                                     <div class="cart-item border border-gray-300 p-4 rounded-lg flex gap-x-3">
                                         <img src="{{ $item['image'] ?? asset('/img/noimage.webp') }}" 
-                                            class="w-16 h-16 object-cover object-center rounded-lg"
+                                            class="w-18 h-18 object-cover object-center rounded-lg"
                                             alt="{{ $item['name'] }}" 
                                             class="w-full h-full object-cover rounded-lg" />
-                                        <div class="w-4/5">
+                                        <div class="w-4/5 flex flex-col justify-between">
                                             <x-heading level="h4" class="mb-2">
                                                 {{ $item['name'] }}
                                             </x-heading>
-                                            <p class="text-sm text-gray-400">
-                                                {{ $item['price'] }} Ft {{ $item['quantity'] > 1 ? 'x ' . $item['quantity'] : '' }}
-                                            </p>
+                                            <a href="#" class="text-sm text-red-600 underline underline-offset-2">
+                                                Testreszabás
+                                            </a>
                                         </div>
-                                        <div class="flex-none">
-                                            <x-button.chip icon="trash" class="remove-cart-item -mt-2" data-id="{{ $id }}"/>
+                                        <div class="w-1/5 flex flex-col justify-between items-end">
+                                            <x-tooltip text="Törlés">
+                                                <x-button.chip icon="trash" class="remove-cart-item -mt-2.5 -mr-2" data-id="{{ $id }}"/>
+                                            </x-tooltip>
+                                            <p class="text-sm text-gray-400">
+                                                {{ $item['price'] }} Ft
+                                            </p>
                                         </div>
                                     </div>
                                 @endfor
@@ -40,7 +45,7 @@
                             @endforelse
                         </div>
                     </x-card>
-                    
+
                     <!-- Személyes -->
                     <x-card title="Személyes">
                         <div class="flex flex-col gap-4">
