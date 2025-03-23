@@ -51,9 +51,17 @@ export default function initDropdown() {
             success: function(response) {
                 // Update cart count badge dynamically
                 $('.cart-count').text(response.count);
-    
-                // OPTIONAL: Reload sidebar cart content dynamically
+                
+                // Reload cart header
+                $('#sideCart .cart-header').load(location.href + ' #sideCart .cart-header > *');
+
+                // Reload cart content
                 $('#sideCart .cart-content').load(location.href + ' #sideCart .cart-content > *');
+
+                // Reload cart footer
+                $('#sideCart .cart-footer').load(location.href + ' #sideCart .cart-footer > *', function() {
+                    $('#sideCart .cart-footer').removeClass('hidden');
+                });
     
                 // OPEN CART SIDEBAR AFTER ADDING
                 $('body').addClass('overflow-hidden');
@@ -69,21 +77,44 @@ export default function initDropdown() {
      */
     $(document).on('click', '.remove-cart-item', function() {
         var productId = $(this).data('id');
-    
+        
         $.ajax({
             url: '/webshop/cart/remove/' + productId,
             method: 'POST',
             success: function(response) {
                 $('.cart-count').text(response.count);
+                
+                // Reload cart header
+                $('#sideCart .cart-header').load(location.href + ' #sideCart .cart-header > *');
+
+                // Reload cart content
                 $('#sideCart .cart-content').load(location.href + ' #sideCart .cart-content > *');
+                
+                // Reload footer
+                $('#sideCart .cart-footer').load(location.href + ' #sideCart .cart-footer > *', function() {
+                    // If cart is empty → hide footer
+                    if (response.count === 0) {
+                        $('#sideCart .cart-footer').addClass('hidden');
+                    } else {
+                        $('#sideCart .cart-footer').removeClass('hidden');
+                    }
+                });
             }
         });
     });
-    
 
     /**
      * Reload sidebar cart content dynamically
      */
     $('#sideCart .cart-content').load(location.href + ' #sideCart .cart-content > *');
+
+    /**
+     * Reload sidebar cart content dynamically
+     */
+    $('#sideCart .cart-footer').load(location.href + ' #sideCart .cart-footer > *');
+
+    // Reload cart header
+    $('#sideCart .cart-header').load(location.href + ' #sideCart .cart-header > *');
+
 
 }

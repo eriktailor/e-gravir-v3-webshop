@@ -5,17 +5,21 @@
 
     <!-- CART PANEL -->
     <div id="cartPanel" class="absolute right-0 top-0 h-full w-full sm:w-[500px] transform translate-x-full transition-transform duration-300 ease-in-out p-8">
-        <div class="bg-white rounded-xl h-full">
-            <div class="cart-header p-6 border-b border-gray-300">
+        <div class="bg-white rounded-xl h-full flex flex-col">
+
+            <!-- Cart Header -->
+            <div class="cart-header p-6 border-b border-gray-300 flex-none">
                 <div class="flex justify-between">
-                    <x-heading level="h2" class="mb-3">Kosaram</x-heading>
+                    <x-heading level="h2">Kosaram</x-heading>
                     <x-button.chip icon="x" class="close-cart"/>
                 </div>
                 @if(count(session('cart', [])))
-                    <p class="text-gray-400">A kosárban lévő termékeket a pénztár oldalon tudod majd személyre szabni.</p>
+                    <p class="text-gray-400 mt-3">A kosárban lévő termékeket a pénztár oldalon tudod majd személyre szabni.</p>
                 @endif
             </div>
-            <div class="cart-content h-[calc(100%-100px)]">
+
+            <!-- Cart Content -->
+            <div class="cart-content h-[calc(100%-100px)] flex-grow">
                 
                 @forelse(session('cart', []) as $id => $item)
                     <div class="cart-item flex gap-x-4 p-6 border-b border-gray-300">
@@ -42,7 +46,26 @@
                     </div>
                 @endforelse
             </div>
-            <div class="cart-footer"></div>
+
+            <!-- Cart Footer -->
+            @if(count(session('cart', [])))
+                <div class="cart-footer flex-none p-6">
+                    @php
+                        $total = 0;
+                        foreach (session('cart', []) as $item) {
+                            $total += $item['price'] * $item['quantity'];
+                        }
+                    @endphp
+                    <x-heading level="h3" class="flex justify-between mb-3">
+                        <span>Összesen:</span>
+                        <span class="font-normal">{{ number_format($total, 0, ',', ' ') }} Ft</span>
+                    </x-heading>
+                    <x-button href="{{ route('webshop.checkout') }}" class="w-full">Tovább a Pénztárba</x-button>
+                </div>
+            @else
+                <div class="cart-footer p-6 hidden"></div>
+            @endif
+
         </div>
     </div>
 

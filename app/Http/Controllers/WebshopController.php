@@ -83,6 +83,14 @@ class WebshopController extends Controller
             'message' => 'Termék eltávolítva a kosárból!',
         ]);
     }
+
+    /**
+     * Display checkout page
+     */
+    public function indexCheckout()
+    {
+        return view('webshop.checkout');
+    }
     
     
 
