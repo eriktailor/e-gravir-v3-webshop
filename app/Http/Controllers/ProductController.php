@@ -17,9 +17,19 @@ class ProductController extends Controller
     /**
      * Display products listing
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with('images')->get();
+        $query = Product::query()->with('category');
+
+        if ($search = $request->input('search')) {
+            $query->where('name', 'like', "%{$search}%");
+        }
+
+        $products = $query->get();
+
+        if ($request->ajax()) {
+            return view('admin.products.list', compact('products'));
+        }
 
         return view('admin.products.index', compact('products'));
     }
