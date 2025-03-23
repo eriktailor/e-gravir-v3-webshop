@@ -19,7 +19,7 @@
             </div>
 
             <!-- Cart Content -->
-            <div class="cart-content h-[calc(100%-100px)] flex-grow">
+            <div class="cart-content flex-grow overflow-auto no-scrollbar">
                 
                 @forelse(session('cart', []) as $id => $item)
                     <div class="cart-item flex gap-x-4 p-6 border-b border-gray-300">

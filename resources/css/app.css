@@ -151,3 +151,16 @@ div.pell-content {
         @apply list-decimal list-inside;
     }
 }
+
+/* --------------------------------------------------------------
+HIDE SCROLLBAR
+-------------------------------------------------------------- */
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+}
