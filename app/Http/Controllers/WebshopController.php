@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductImage;
 use App\Models\ProductCategory;
 
 use Illuminate\Http\Request;
@@ -41,15 +42,11 @@ class WebshopController extends Controller
      */
     public function single($categorySlug, $productSlug)
     {
-        // Fetch category (optional)
         $category = ProductCategory::where('slug', $categorySlug)->firstOrFail();
+        $product = Product::where('slug', $productSlug)->where('category_id', $category->id)->firstOrFail();
+        $images = ProductImage::where('product_id', $product->id)->get();
 
-        // Fetch product
-        $product = Product::where('slug', $productSlug)
-                            ->where('category_id', $category->id)
-                            ->firstOrFail();
-
-        return view('webshop.single', compact('category', 'product'));
+        return view('webshop.single', compact('category', 'product', 'images'));
     }
 
 
