@@ -8,12 +8,89 @@
 
     <main>
         <div class="container">
-            <div class="grid grid-cols-2 gap-12">
+            <div class="grid grid-cols-2 gap-6">
 
                 <div>
 
+                    <!-- Szállítás -->
+                    <x-card title="Szállítás">
+                        <div class="flex flex-col gap-4">
+                            <div class="form-group grid grid-cols-3 gap-4">
+                                @foreach(config('checkout.delivery_methods') as $key => $method)
+                                    <x-form.radio-button 
+                                        name="delivery_method"
+                                        :value="$key"
+                                        :icon="$method['icon']"
+                                        :label="$method['label']"
+                                        :info="$method['info']"
+                                        :price="$method['price']"
+                                        :checked="old('delivery_method') === $key"
+                                    />
+                                @endforeach
+                            </div>
+                            <div class="form-group">
+                                <x-form.select for="delivery_foxpost_box" placeholder="Válassz csomagautómatát">
+
+                                </x-form.select>
+                            </div>
+                            <div class="form-group">
+                                <x-form.textarea for="delivery_notes" rows="1" placeholder="Megjegyzés a szállításhoz (nem kötelező)"/>
+                            </div>
+                        </div>
+                    </x-card>
+
+                    <!-- Személyes -->
+                    <x-card title="Személyes">
+                        <div class="flex flex-col gap-4">
+                            <div class="form-group">
+                                <x-form.input for="customer_name" placeholder="Teljes név"/>
+                            </div>
+                            <div class="form-group">
+                                <x-form.input for="customer_email" placeholder="Email cím" type="email"/>
+                            </div>
+                            <div class="form-group">
+                                <x-form.input for="customer_phone" placeholder="Telefonszám"/>
+                            </div>
+                            <div class="flex gap-4">
+                                <div class="form-group w-[150px] flex-none">
+                                    <x-form.input for="customer_zip" placeholder="Irányítószám" type="number" min="0"/>
+                                </div>
+                                <div class="form-group grow">
+                                    <x-form.input for="customer_city" placeholder="Város"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <x-form.input for="customer_address" placeholder="Utca, házszám"/>
+                            </div>
+                        </div>
+                    </x-card>
+
+                    <!-- Fizetés -->
+                    <x-card title="Fizetés">
+                        <div class="flex flex-col gap-4">
+                            <div class="form-group grid grid-cols-3 gap-4">
+                                @foreach(config('checkout.payment_methods') as $key => $method)
+                                    <x-form.radio-button 
+                                        name="payment_method"
+                                        :value="$key"
+                                        :icon="$method['icon']"
+                                        :label="$method['label']"
+                                        :info="$method['info']"
+                                        :checked="old('delivery_method') === $key"
+                                    />
+                                @endforeach
+                            </div>
+                            <div class="form-group">
+                                <x-form.checkbox for="accept_terms" label="Elfogadom az ÁSZF-ben leírtakat"/>
+                            </div>
+                        </div>
+                    </x-card>
+
+                </div>
+                <div>
+
                     <!-- Termékek -->
-                    <x-card title="Termékek">
+                    <x-card title="Összesítés" class="sticky top-[96px]">
                         <div class="cart-items flex flex-col gap-y-4">
                             @forelse(session('cart', []) as $id => $item)
                                 @for ($i = 0; $i < $item['quantity']; $i++)
@@ -44,81 +121,7 @@
                             @empty
                                 <p>Nincs termék a kosárban.</p>
                             @endforelse
-                        </div>
-                    </x-card>
-
-                    <!-- Személyes -->
-                    <x-card title="Személyes">
-                        <div class="flex flex-col gap-4">
-                            <div class="form-group">
-                                <x-form.input for="customer_name" placeholder="Teljes név"/>
-                            </div>
-                            <div class="form-group">
-                                <x-form.input for="customer_email" placeholder="Email cím" type="email"/>
-                            </div>
-                            <div class="form-group">
-                                <x-form.input for="customer_phone" placeholder="Telefonszám"/>
-                            </div>
-                            <div class="flex gap-4">
-                                <div class="form-group w-[150px] flex-none">
-                                    <x-form.input for="customer_zip" placeholder="Irányítószám" type="number" min="0"/>
-                                </div>
-                                <div class="form-group grow">
-                                    <x-form.input for="customer_city" placeholder="Város"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <x-form.input for="customer_address" placeholder="Utca, házszám"/>
-                            </div>
-                        </div>
-                    </x-card>
-
-                    <!-- Szállítás -->
-                    <x-card title="Szállítás">
-                        <div class="flex flex-col gap-4">
-                            <div class="form-group grid grid-cols-3 gap-4">
-                                @foreach(config('checkout.delivery_methods') as $key => $method)
-                                    <x-form.radio-button 
-                                        name="delivery_method"
-                                        :value="$key"
-                                        :icon="$method['icon']"
-                                        :label="$method['label']"
-                                        :info="$method['info']"
-                                        :price="$method['price']"
-                                        :checked="old('delivery_method') === $key"
-                                    />
-                                @endforeach
-                            </div>
-                            <div class="form-group">
-                                <x-form.select for="delivery_foxpost_box" placeholder="Válassz csomagautómatát">
-
-                                </x-form.select>
-                            </div>
-                            <div class="form-group">
-                                <x-form.textarea for="delivery_notes" rows="1" placeholder="Megjegyzés a szállításhoz (nem kötelező)"/>
-                            </div>
-                        </div>
-                    </x-card>
-
-                </div>
-                <div>
-
-                    <!-- Fizetés -->
-                    <x-card title="Fizetés">
-                        <div class="flex flex-col gap-4">
-                            <div class="form-group grid grid-cols-3 gap-4">
-                                @foreach(config('checkout.payment_methods') as $key => $method)
-                                    <x-form.radio-button 
-                                        name="payment_method"
-                                        :value="$key"
-                                        :icon="$method['icon']"
-                                        :label="$method['label']"
-                                        :info="$method['info']"
-                                        :checked="old('delivery_method') === $key"
-                                    />
-                                @endforeach
-                            </div>
-                            <div class="order-summary flex flex-col gap-y-2">
+                            <div class="order-summary flex flex-col gap-y-2 my-3">
                                 <div class="flex justify-between">
                                     Termékek
                                     <span>0 Ft</span>
@@ -136,8 +139,11 @@
                                     <span>0 Ft</span>
                                 </div>
                             </div>
+                            <x-button class="button-submit" data-target="#checkoutForm">
+                                Megrendelés Elküldése
+                            </x-button>
                         </div>
-                    </x-card>
+                    </x-card>                    
                     
                 </div>
 
