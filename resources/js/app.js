@@ -5,6 +5,7 @@ import initDropdown from './_dropdown';
 import initVariation from './_variation';
 import initTooltip from './_tooltip';
 import initCart from './_cart';
+import initCheckout from './_checkout';
 
 /**
  * Initialize local components
@@ -13,6 +14,7 @@ initDropdown();
 initVariation();
 initTooltip();
 initCart();
+initCheckout();
 
 $(document).ready(function() {
 

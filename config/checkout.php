@@ -8,9 +8,24 @@ return [
     |--------------------------------------------------------------------------
     */
     'delivery_methods' => [
-        'personal' => 'Személyes átvétel',
-        'courier' => 'Házhozszállítás',
-        'pickup_point' => 'Átvételi pont',
+        'foxpost' => [
+            'label' => 'Csomagautómata',
+            'info' => '1500 Ft',
+            'icon'  => 'inbox',
+            'price' => 1500,
+        ],
+        'hazhozszallitas' => [
+            'label' => 'Házhozszállítás',
+            'info' => '2500 Ft',
+            'icon'  => 'truck',
+            'price' => 1500,
+        ],
+        'szemelyes' => [
+            'label' => 'Személyes átvétel',
+            'info' => 'Budapest',
+            'icon'  => 'user-circle',
+            'price' => 0,
+        ],
     ],
 
     /*
@@ -19,19 +34,21 @@ return [
     |--------------------------------------------------------------------------
     */
     'payment_methods' => [
-        'barion' => 'Barion',
-        'paypal' => 'PayPal',
-        'cod' => 'Utánvét',
-    ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Other Options (Optional)
-    |--------------------------------------------------------------------------
-    */
-    'invoice_types' => [
-        'personal' => 'Magánszemély',
-        'company' => 'Céges számla',
+        'barion' => [
+            'label' => 'Bankkártya',
+            'info' => 'Barion',
+            'icon'  => 'credit-card',
+        ],
+        'atutalas' => [
+            'label' => 'Átutalás',
+            'info' => 'OTP Bank',
+            'icon'  => 'home-dollar',
+        ],
+        'cod' => [
+            'label' => 'Utánvét',
+            'info' => 'Személyes',
+            'icon'  => 'coins',
+        ],
     ],
 
 ];

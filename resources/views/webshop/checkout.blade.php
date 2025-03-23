@@ -11,7 +11,7 @@
             <div class="max-w-2xl">
 
                 <!-- Személyes -->
-                <x-card title="Személyes adatok">
+                <x-card title="Személyes">
                     <div class="flex flex-col gap-4">
                         <div class="form-group">
                             <x-form.input for="customer_name" placeholder="Teljes név"/>
@@ -37,27 +37,46 @@
                 </x-card>
 
                 <!-- Szállítás -->
-                <x-card title="Szállítási mód">
+                <x-card title="Szállítás">
                     <div class="flex flex-col gap-4">
-                        <div class="grid grid-cols-3 gap-4">
-                            <label class="border border-gray-300 hover:border-stone-950 cursor-pointer rounded-lg flex flex-col items-center text-center px-4 py-6">
-                                <input type="radio" name="delivery_method" value="foxpost" data-price="1500">
-                                <x-icon name="inbox" class="text-red-600 w-8 h-8 mb-3"/>
-                                <p class="text-stone-950 font-medium mb-1">Foxpost autómata</p>
-                                <p class="text-sm text-gray-400">(1500 Ft)</p>
-                            </label>
-                            <label class="border border-gray-300 hover:border-stone-950 cursor-pointer rounded-lg flex flex-col items-center text-center px-4 py-6">
-                                <input type="radio" name="delivery_method" value="hazhozszallitas" data-price="2500">
-                                <x-icon name="truck" class="text-red-600 w-8 h-8 mb-3"/>
-                                <p class="text-stone-950 font-medium mb-1">Házhozszállítás</p>
-                                <p class="text-sm text-gray-400">(2500 Ft)</p>
-                            </label>
-                            <label class="border border-gray-300 hover:border-stone-950 cursor-pointer rounded-lg flex flex-col items-center text-center px-4 py-6">
-                                <input type="radio" name="delivery_method" value="szemelyes" data-price="1500">
-                                <x-icon name="user-circle" class="text-red-600 w-8 h-8 mb-3"/>
-                                <p class="text-stone-950 font-medium mb-1">Személyes átvétel</p>
-                                <p class="text-sm text-gray-400">(Budapest)</p>
-                            </label>
+                        <div class="form-group grid grid-cols-3 gap-4">
+                            @foreach(config('checkout.delivery_methods') as $key => $method)
+                                <x-form.radio-button 
+                                    name="delivery_method"
+                                    :value="$key"
+                                    :icon="$method['icon']"
+                                    :label="$method['label']"
+                                    :info="$method['info']"
+                                    :price="$method['price']"
+                                    :checked="old('delivery_method') === $key"
+                                />
+                            @endforeach
+                        </div>
+                        <div class="form-group">
+                            <x-form.select for="delivery_foxpost_box" placeholder="Válassz csomagautómatát">
+
+                            </x-form.select>
+                        </div>
+                        <div class="form-group">
+                            <x-form.textarea for="delivery_notes" rows="1" placeholder="Megjegyzés a szállításhoz (nem kötelező)"/>
+                        </div>
+                    </div>
+                </x-card>
+
+                <!-- Fizetés -->
+                <x-card title="Fizetés">
+                    <div class="flex flex-col gap-4">
+                        <div class="form-group grid grid-cols-3 gap-4">
+                            @foreach(config('checkout.payment_methods') as $key => $method)
+                                <x-form.radio-button 
+                                    name="payment_method"
+                                    :value="$key"
+                                    :icon="$method['icon']"
+                                    :label="$method['label']"
+                                    :info="$method['info']"
+                                    :checked="old('delivery_method') === $key"
+                                />
+                            @endforeach
                         </div>
                     </div>
                 </x-card>
