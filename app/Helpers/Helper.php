@@ -15,3 +15,16 @@ if (!function_exists('get_image_or_placeholder')) {
         }
     }
 }
+
+/**
+ * Count and display cart total
+ */
+if (!function_exists('cart_total')) {
+    function cart_total() {
+        $total = 0;
+        foreach (session('cart', []) as $item) {
+            $total += $item['price'] * $item['quantity'];
+        }
+        return $total;
+    }
+}

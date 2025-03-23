@@ -1,4 +1,4 @@
-<aside id="sideCart" class="nav-cart fixed inset-0 z-50 invisible opacity-0 transition-opacity duration-300">
+<aside id="sideCart" class="nav-cart fixed inset-0 z-50 invisible opacity-0 transition-opacity duration-300" data-cart-count="{{ count(session('cart', [])) }}">
 
     <!-- BACKDROP -->
     <div id="cartBackdrop" class="absolute inset-0 bg-stone-950/50 opacity-0 transition-opacity duration-300"></div>
@@ -48,25 +48,15 @@
             </div>
 
             <!-- Cart Footer -->
-            @if(count(session('cart', [])))
-                <div class="cart-footer flex-none p-6">
-                    @php
-                        $total = 0;
-                        foreach (session('cart', []) as $item) {
-                            $total += $item['price'] * $item['quantity'];
-                        }
-                    @endphp
-                    <x-heading level="h3" class="flex justify-between mb-3">
-                        <span>Összesen:</span>
-                        <span class="font-normal">{{ number_format($total, 0, ',', ' ') }} Ft</span>
-                    </x-heading>
-                    <x-button href="{{ route('webshop.checkout') }}" class="w-full">Tovább a Pénztárba</x-button>
-                </div>
-            @else
-                <div class="cart-footer p-6 hidden"></div>
-            @endif
+            <div class="cart-footer flex-none p-6 {{ count(session('cart', [])) ? '' : 'hidden' }}">
+                <x-heading level="h3" class="flex justify-between mb-3">
+                    <span>Összesen:</span>
+                    <span class="font-normal">{{ number_format(cart_total(), 0, ',', ' ') }} Ft</span>
+                </x-heading>
+                <x-button href="{{ route('webshop.checkout') }}" class="w-full">Tovább a Pénztárba</x-button>
+            </div>
+            
 
         </div>
     </div>
-
 </aside>
