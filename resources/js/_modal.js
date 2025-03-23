@@ -20,6 +20,7 @@ export default function initModal() {
         $modal.removeClass('invisible');
 
         setTimeout(() => {
+            $('body').addClass('overflow-hidden');
             $modal.addClass('opacity-100');
             $backdrop.addClass('opacity-100');
             $panel.removeClass('scale-75').addClass('scale-100');
@@ -52,6 +53,7 @@ export default function initModal() {
         const $panel = $modal.find('.modal-panel');
         const $backdrop = $modal.find('.modal-backdrop');
 
+        $('body').removeClass('overflow-hidden');
         $modal.removeClass('opacity-100');
         $backdrop.removeClass('opacity-100');
         $panel.removeClass('scale-100').addClass('scale-75');
