@@ -11,7 +11,7 @@
             <div class="flex gap-6">
 
                 <div class="grow">
-                    <form id="checkoutForm">
+                    <form id="checkoutForm" action="" method="POST" novalidate>
                             
                         <!-- Szállítás -->
                         <x-card title="Szállítás">
@@ -29,10 +29,11 @@
                                         />
                                     @endforeach
                                 </div>
-                                <div class="form-group">
-                                    <x-form.select for="delivery_foxpost_box" placeholder="Válassz csomagautómatát">
-
-                                    </x-form.select>
+                                <div class="form-group hidden" id="foxpostBoxSelect">
+                                    <x-form.select for="delivery_foxpost_box" placeholder="Válassz csomagautómatát"/>
+                                </div>
+                                <div id="takeOffAddress" class="py-3 px-4 bg-green-100 text-green-600 hidden">
+                                    Átvétel itt: <strong class="font-semibold">1157 Budapest, Zsókavár utca 22.</strong>
                                 </div>
                                 <div class="form-group">
                                     <x-form.textarea for="delivery_notes" rows="1" placeholder="Megjegyzés a szállításhoz (nem kötelező)"/>
@@ -89,14 +90,14 @@
 
                     </form>
                 </div>
-                <div class="w-[768px]">
+                <div class="w-[500px] flex-none">
 
                     <!-- Termékek -->
                     <x-card title="Összesítés" class="sticky top-[96px]">
-                        <div class="cart-items flex flex-col space-y-4 divide-y-1 divide-gray-300">
+                        <div class="cart-items flex flex-col">
                             @forelse(session('cart', []) as $id => $item)
                                 @for ($i = 0; $i < $item['quantity']; $i++)
-                                    <div class="cart-item flex gap-x-3 pb-4 mb-4">
+                                    <div class="cart-item flex gap-x-3 pb-4 mb-4 border-b border-gray-300">
                                         <img src="{{ $item['image'] ?? asset('/img/noimage.webp') }}" 
                                             class="w-18 h-18 object-cover object-center rounded-lg"
                                             alt="{{ $item['name'] }}" 
@@ -132,11 +133,11 @@
                                     Extra felár
                                     <span>0 Ft</span>
                                 </div>
-                                <div class="flex justify-between">
+                                <div class="flex justify-between border-b border-gray-300 mb-2 pb-4">
                                     Szállítási díj
                                     <span>0 Ft</span>
                                 </div>
-                                <div class="flex justify-between text-stone-950">
+                                <div class="flex justify-between text-stone-950 mb-1">
                                     <strong>Végösszeg</strong>
                                     <span>0 Ft</span>
                                 </div>

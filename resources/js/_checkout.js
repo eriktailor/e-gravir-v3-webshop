@@ -5,12 +5,17 @@
 
 export default function initCheckout() {
 
-$(document).ready(function() {
-
     /**
      * Populate foxpost select dropdown with items
      */
     $.getJSON('https://cdn.foxpost.hu/foxplus.json', function(data) {
+
+        // Sort by item.name alphabetically
+        data.sort(function(a, b) {
+            return a.name.localeCompare(b.name);
+        });
+        
+        // Loop & append
         $.each(data, function(index, item) {
             $('#delivery_foxpost_box').append(
                 $('<option>', {
@@ -21,6 +26,19 @@ $(document).ready(function() {
         });
     });
 
-});
+    /**
+     * If foxpost delivery method gets selected, show the foxpost box selector field
+     */
+    $('input[name="delivery_method"]').on('change', function() {
+        $('#foxpostBoxSelect, #takeOffAddress').slideUp(50);
+
+        if ($(this).val() == 'foxpost') {
+            $('#foxpostBoxSelect').slideDown(300);
+        } 
+
+        if ($(this).val() == 'szemelyes') {
+            $('#takeOffAddress').slideDown(300);
+        } 
+    });
 
 }
