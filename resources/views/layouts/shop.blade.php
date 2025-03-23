@@ -9,6 +9,8 @@
 
         @yield('content')
 
+        @yield('modals')
+        
         @stack('scripts')
         
         @vite('resources/js/app.js')

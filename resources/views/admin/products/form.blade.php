@@ -113,8 +113,6 @@
                         </div>
                     </div>
                 </x-card>
-                
-                
 
                 <!-- Testreszabás -->
                 <x-card title="Testreszabás">
@@ -128,11 +126,6 @@
                         <x-form.checkbox for="other_notes" label="Megjegyzés" :checked="old('other_notes', $productCustomization->other_notes ?? false)"/>
                     </div>
                 </x-card>
-       
-
-                
-
-                
 
         </div>
 
