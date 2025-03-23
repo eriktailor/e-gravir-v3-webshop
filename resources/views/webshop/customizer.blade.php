@@ -13,7 +13,6 @@
                     <x-heading level="h2">Testreszabás</x-heading>
                     <x-button.chip icon="x" class="offcanvas-close"/>
                 </div>
-                <p class="text-gray-400 mt-3">A kosárban lévő termékeket a pénztár oldalon tudod majd személyre szabni.</p>
             </div>
 
             <!-- Content -->
@@ -34,23 +33,40 @@
                         <x-form.input label="Előlap szöveg" for="customizeFrontText"/>
                     </div>
                     <div class="form-group">
-                        <x-form.upload 
-                            for="front_image" 
-                            id="customizeBackImage" 
-                            label="Hátlap képe"
-                            multiple 
-                            :config="['allowMultiple' => false, 'maxFiles' => 1]"
-                        />
-                    </div>
-                    <div class="form-group">
-                        <x-form.input label="Hátlap szöveg" for="customizeBackText"/>
-                    </div>
-                    <div class="form-group">
-                        <x-form.input label="Belső szöveg" for="customizeBackText"/>
-                    </div>
-                    <div class="form-group">
                         <x-form.textarea label="Egyéb instrukció" for="customizeBackText" rows="4"/>
                     </div>
+
+                    <x-form.checkbox 
+                        for="engrave_second_page" 
+                        label="A hátoldalra is kérek gravírozást (+2900 Ft)"
+                        class="toggle"
+                        data-target="#customizeBackPage"/>
+                    <div class="hidden" id="customizeBackPage">
+                        <div class="form-group">
+                            <x-form.upload 
+                                for="front_image" 
+                                id="customizeBackImage" 
+                                label="Hátlap képe"
+                                multiple 
+                                :config="['allowMultiple' => false, 'maxFiles' => 1]"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <x-form.input label="Hátlap szöveg" for="customizeBackText"/>
+                        </div>
+                    </div>
+
+                    <x-form.checkbox 
+                        for="engrave_third_page" 
+                        label="A belső oldalra is kérek gravírozást (+2900 Ft)"
+                        class="toggle"
+                        data-target="#customizeInnerPage"/>
+                    <div class="hidden" id="customizeInnerPage">
+                        <div class="form-group">
+                            <x-form.input label="Belső szöveg" for="customizeBackText"/>
+                        </div>
+                    </div>
+                    
                 </form>
             </div>
 
