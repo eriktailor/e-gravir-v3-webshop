@@ -41,9 +41,14 @@
                             'color' => 'default',
                         ];
                     @endphp
-                    <x-badge color="{{ $order_status['color'] }}">
-                        {{ $order_status['label'] }}
-                    </x-badge>
+                    <a href="#changeStatusModal" 
+                        class="modal-toggle change-status-btn" 
+                        data-id="{{ $order->id }}" 
+                        data-status="{{ $order->status }}">
+                        <x-badge color="{{ $order_status['color'] }}">
+                            {{ $order_status['label'] }}
+                        </x-badge>
+                    </a>
                 </div>
                 <div class="flex items-center gap-x-3 justify-between">
                     <x-icon name="{{ $order->invoice_number ? 'circle-check-filled' : 'circle-check' }}" 

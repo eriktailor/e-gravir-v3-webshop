@@ -41,4 +41,19 @@ class OrderController extends Controller
 
         return view('admin.orders.show', compact('order'));
     }
+
+    /**
+     * Update order status
+     */
+    public function status(Request $request, Order $order)
+    {
+        $validated = $request->validate([
+            'status' => ['required', 'in:' . implode(',', array_keys(config('checkout.order_statuses')))],
+        ]);
+
+        $order->status = $validated['status'];
+        $order->save();
+
+        return redirect()->back()->with('success', 'Rendelés státusza frissítve!');
+    }
 }
