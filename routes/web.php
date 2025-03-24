@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\WebshopController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 
 /**
  * Auth routes
@@ -42,6 +43,9 @@ Route::prefix('webshop')->group(function() {
  * Admin routes
  */
 Route::prefix('admin')->middleware('auth')->group(function () {
+
+    // Orders
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
 
     // Products
     Route::resource('products', ProductController::class)->except(['show']);;
