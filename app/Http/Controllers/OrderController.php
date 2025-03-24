@@ -12,7 +12,7 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        $query = \App\Models\Order::query();
+        $query = Order::query();
 
         if ($search = $request->input('search')) {
             $query->where(function ($q) use ($search) {
@@ -35,9 +35,9 @@ class OrderController extends Controller
     /**
      * Display order single page
      */
-    public function show(\App\Models\Order $order)
+    public function show(Order $order)
     {
-        $order->load('items');
+        $order->load('items.product.images');
 
         return view('admin.orders.show', compact('order'));
     }

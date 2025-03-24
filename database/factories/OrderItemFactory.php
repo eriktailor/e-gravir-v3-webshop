@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\OrderItem;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class OrderItemFactory extends Factory
@@ -11,10 +12,12 @@ class OrderItemFactory extends Factory
 
     public function definition()
     {
+        $product = Product::inRandomOrder()->first();
+
         return [
-            'product_id' => \App\Models\Product::inRandomOrder()->first()->id,
-            'product_name' => $this->faker->word,
-            'product_price' => rand(5000, 15000),
+            'product_id' => $product->id,
+            'product_name' => $product->name,
+            'product_price' => $product->price,
             'customizations' => json_encode([
                 'front_image' => $this->faker->boolean,
                 'front_text' => $this->faker->words(3, true),

@@ -64,9 +64,15 @@
             <x-card title="Termékek" padding="p-12">
                 <div class="flex flex-col gap-4">
                     @foreach($order->items as $item)
-                        <div class="border border-gray-300 p-4 rounded-lg flex justify-between">
-                            <div>
-                                <strong>{{ $item->product_name }}</strong><br>
+                        <div class="border border-gray-300 p-4 rounded-lg flex flex-col justify-between">
+                            <div class="flex">
+                                <img 
+                                    src="{{ $item->product->firstImageUrl() }}" 
+                                    alt="{{ $item->product_name }} termékkép"
+                                    class="w-12 h-12 rounded-lg object-cover object-center">
+                                <strong class="font-semibold">
+                                    {{ $item->product_name }}
+                                </strong>
                                 Ár: {{ $item->product_price }} Ft<br>
                             </div>
                             @if($item->customizations)

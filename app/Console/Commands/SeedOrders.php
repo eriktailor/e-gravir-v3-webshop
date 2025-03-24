@@ -21,7 +21,7 @@ class SeedOrders extends Command
                 'order_id' => $order->id,
             ]);
 
-            \App\Models\OrderCustomization::factory(5)->create([
+            OrderCustomization::factory(5)->create([
                 'order_id' => $order->id,
             ]);
         });

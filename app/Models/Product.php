@@ -44,18 +44,11 @@ class Product extends Model
     /**
      * Get the first image of the product
      */
-    public function firstImageUrl(): Attribute
+    public function firstImageUrl()
     {
-        return Attribute::make(
-            get: function () {
-                $image = $this->images->first();
-                if ($image && Storage::disk('public')->exists($image->image_path)) {
-                    return asset('storage/' . $image->image_path);
-                } else {
-                    return asset('/img/noimage.webp');
-                }
-            }
-        );
+        return $this->images->first()?->image_path 
+            ? asset('storage/' . $this->images->first()->image_path) 
+            : asset('/img/noimage.webp');
     }
 
     /**
