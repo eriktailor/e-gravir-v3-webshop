@@ -10,6 +10,8 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\OrderCustomization;
 
+use App\Http\Requests\OrderRequest;
+
 class CheckoutController extends Controller
 {
     /**
@@ -23,53 +25,26 @@ class CheckoutController extends Controller
     /**
      * Store checkout form values in order
      */
-    public function store(Request $request)
+    public function store(OrderRequest $request)
     {
-        Log::info('Checkout STARTED', $request->all());
-    
-        try {
-            $validated = $request->validate([
-                'delivery_method' => 'required',
-                'customer_name' => 'required|string',
-                'customer_email' => 'required|email',
-                'customer_phone' => 'required|string',
-                'customer_zip' => 'required|string',
-                'customer_city' => 'required|string',
-                'customer_address' => 'required|string',
-                'payment_method' => 'required',
-                'accept_terms' => 'accepted',
-            ]);
-        
-            Log::info('Validation PASSED', $validated);
-        
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            Log::error('Validation FAILED', $e->errors());
-            return back()
-                ->withErrors($e->errors())
-                ->withInput()
-                ->with('error', 'Kérlek javítsd a hibákat, majd küldd be újra az űrlapot.');
-        }
-    
         if (empty(session('cart'))) {
             Log::error('Cart is EMPTY');
             return back()->with('error', 'A kosarad üres!');
         }
-    
+
         DB::beginTransaction();
-    
+
         try {
-            Log::info('Starting order creation...');
-    
-            // Árak kiszámítása
+            $validated = $request->validated();
+            
             $products_total = 0;
             foreach (session('cart') as $item) {
-                $products_total += ($item['price'] * $item['quantity']);
+                $products_total += $item['price'];
             }
-            Log::info('Products total:', ['total' => $products_total]);
-    
+
             $delivery_price = config('checkout.delivery_methods')[$validated['delivery_method']]['price'] ?? 0;
             $order_total = $products_total + $delivery_price;
-    
+
             $order = Order::create([
                 'customer_name' => $validated['customer_name'],
                 'customer_email' => $validated['customer_email'],
@@ -86,12 +61,10 @@ class CheckoutController extends Controller
                 'order_total' => $order_total,
                 'status' => 'pending',
             ]);
-    
-            Log::info('Order CREATED', ['order_id' => $order->id]);
-    
-            // Kosár elemek mentése
+
+            // OrderItems
             foreach (session('cart') as $id => $item) {
-                $orderItem = OrderItem::create([
+                OrderItem::create([
                     'order_id' => $order->id,
                     'product_id' => $item['product_id'] ?? null,
                     'product_name' => $item['name'],
@@ -99,20 +72,21 @@ class CheckoutController extends Controller
                     'quantity' => $item['quantity'],
                     'customizations' => $item['customizations'] ?? null,
                 ]);
-                Log::info('Order ITEM saved', ['item_id' => $orderItem->id]);
             }
-    
+
             DB::commit();
-            Log::info('Transaction COMMITTED, Order Completed!');
-    
+
             session()->forget('cart');
-    
+
             return redirect()->route('webshop.home')->with('success', 'Köszönjük a rendelésed!');
-    
+        
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::error('Checkout ERROR', ['message' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
-            return back()->with('error', 'Hiba történt: ' . $e->getMessage());
+            Log::error('Checkout ERROR', ['message' => $e->getMessage()]);
+        
+            return back()
+                ->withInput()
+                ->with('error', 'Hiba történt: ' . $e->getMessage());
         }
     }
     
