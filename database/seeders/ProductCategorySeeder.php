@@ -13,7 +13,7 @@ class ProductCategorySeeder extends Seeder
             [
                 'name' => 'Pénztárcák',
                 'slug' => 'gravirozott-penztarcak',
-                'image' => '/storage/categories/1/penztarcak.webp',
+                'image' => '/storage/categories/1/wallet_hero.webp',
                 'description' => 'Egyedileg, saját fénykép alapján gravírozott, kiváló minőségű bőr férfi pénztárcák. Tökéletes ajándék apáknak, férjeknek, pároknak.',
                 'order' => 1,
             ],
