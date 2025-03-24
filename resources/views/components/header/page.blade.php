@@ -3,14 +3,14 @@
         <div class="flex justify-between items-center">
             @isset($button)
                 <x-heading level="h1">
-                    {{ $title }}
+                    {!! $title !!}
                 </x-heading>
                 <div class="ml-4">
                     {{ $button }}
                 </div>
             @else
                 <x-heading level="h1" class="text-center w-full">
-                    {{ $title }}
+                    {!! $title !!}
                 </x-heading>
             @endisset
         </div>

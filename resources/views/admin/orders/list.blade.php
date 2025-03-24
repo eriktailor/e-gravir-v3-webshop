@@ -48,7 +48,7 @@
                 <div class="flex items-center gap-x-3 justify-between">
                     <x-icon name="{{ $order->invoice_number ? 'circle-check-filled' : 'circle-check' }}" 
                             class="ml-6 {{ $order->invoice_number ? 'fill-green-600 text-white' : 'text-gray-400' }}"/>
-                    <x-button.chip icon="chevron-right" href="{{ route('orders.edit', $order->id) }}"/>
+                    <x-button.chip icon="chevron-right" href="{{ route('orders.show', $order->id) }}"/>
                 </div>
             </div>
         </x-card>

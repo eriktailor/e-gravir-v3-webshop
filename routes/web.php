@@ -47,6 +47,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     // Orders
     Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('orders/edit', [OrderController::class, 'edit'])->name('orders.edit');
+    Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 
     // Products
     Route::resource('products', ProductController::class)->except(['show']);;

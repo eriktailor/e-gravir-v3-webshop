@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
     /**
-     * Display admin orders page
+     * Display admin orders listing
      */
     public function index(Request $request)
     {
@@ -30,5 +30,15 @@ class OrderController extends Controller
         }
 
         return view('admin.orders.index', compact('orders'));
+    }
+
+    /**
+     * Display order single page
+     */
+    public function show(\App\Models\Order $order)
+    {
+        $order->load('items');
+
+        return view('admin.orders.show', compact('order'));
     }
 }
