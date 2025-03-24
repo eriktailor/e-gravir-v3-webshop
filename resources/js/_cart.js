@@ -6,6 +6,18 @@
 export default function initCart() {
 
     /**
+     * Open cart sidebar function
+     */
+    function openCartSidebar() {
+        const $sideCart = $('#sideCart');
+
+        $('body').addClass('overflow-hidden');
+        $sideCart.removeClass('invisible opacity-0').addClass('opacity-100');
+        $sideCart.find('.offcanvas-backdrop').removeClass('opacity-0').addClass('opacity-100');
+        $sideCart.find('.offcanvas-panel').removeClass('translate-x-full').addClass('translate-x-0');
+    }
+
+    /**
      * Reload cart partials function
      */
     function reloadCartContent(count = null) {

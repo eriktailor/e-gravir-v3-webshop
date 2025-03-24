@@ -8,6 +8,7 @@ import initOffcanvas from './_offcanvas';
 import initCheckout from './_checkout';
 import initModal from './_modal';
 import initToggle from './_toggle';
+import initCart from './_cart';
 
 /**
  * Initialize local components
@@ -19,6 +20,7 @@ initOffcanvas();
 initCheckout();
 initModal();
 initToggle();
+initCart();
 
 $(document).ready(function() {
 
