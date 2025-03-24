@@ -61,7 +61,15 @@
             </x-card>
 
             <!-- Termékek -->
-            <x-card title="Termékek" padding="p-12">
+            <x-card title="Termékek" padding="p-12" class="relative">
+                <x-button id="downloadOrderImages" 
+                        color="white" 
+                        size="small" 
+                        class="absolute top-10 right-12" 
+                        href="{{ route('orders.downloadImages', $order->id) }}" 
+                        target="_blank">
+                    Képek Letöltése
+                </x-button>
                 <div class="flex flex-col gap-4">
                     @foreach($order->items as $item)
                         <div class="border border-gray-300 rounded-lg flex flex-col justify-between">
@@ -148,6 +156,44 @@
 
                         </div>
                     @endforeach
+                </div>
+            </x-card>
+
+            <!-- Ügyfél -->
+            <x-card title="Ügyfél" padding="p-12">
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="col-span-1">
+                        <strong class="font-semibold">Név:</strong> 
+                    </div>
+                    <div class="col-span-3">
+                        {{ $order->customer_name }}
+                    </div>
+                    <div class="col-span-1">
+                        <strong class="font-semibold">Email:</strong> 
+                    </div>
+                    <div class="col-span-3">
+                        <span>{{ $order->customer_email }}</span>
+                    </div>
+                    <div class="col-span-1">
+                        <strong class="font-semibold">Telefon:</strong> 
+                    </div>
+                    <div class="col-span-3">
+                        <span>{{ $order->customer_phone }}</span>
+                    </div>
+                    <div class="col-span-1">
+                        <strong class="font-semibold">Lakcím:</strong> 
+                    </div>
+                    <div class="col-span-3">
+                        <span>{{ $order->customer_zip . ' ' . $order->customer_city . ', ' . $order->customer_address }}</span>
+                    </div>
+                    @if($order->delivery_notes)
+                        <div class="col-span-1">
+                            <strong class="font-semibold">Megjegyzés:</strong> 
+                        </div>
+                        <div class="col-span-3">
+                            <span>{{ $order->delivery_notes }}</span>
+                        </div>
+                    @endif
                 </div>
             </x-card>
 
