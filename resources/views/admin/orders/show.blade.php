@@ -159,6 +159,41 @@
                 </div>
             </x-card>
 
+            <!-- Számlázás -->
+            <x-card title="Számlázás" padding="p-12">
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="col-span-1">
+                        <strong class="font-semibold">Termékek:</strong> 
+                    </div>
+                    <div class="col-span-3">
+                        {{ $order->products_total }} Ft
+                    </div>
+                    <div class="col-span-1">
+                        <strong class="font-semibold">Extra felár:</strong> 
+                    </div>
+                    <div class="col-span-3">
+                        <span>{{ $order->extra_price }} Ft</span>
+                    </div>
+                    <div class="col-span-1">
+                        <strong class="font-semibold">Szállítási díj:</strong> 
+                    </div>
+                    <div class="col-span-3">
+                        <span>{{ $order->delivery_price }} Ft</span>
+                    </div>
+                    <div class="col-span-1">
+                        <strong class="font-semibold">Végösszeg:</strong> 
+                    </div>
+                    <div class="col-span-3">
+                        <span class="text-red-600">{{ $order->order_total }} Ft</span>
+                    </div>
+                </div>
+                @if($order->invoice_number)
+                    <div class="bg-green-100 text-green-600 py-3 px-4 rounded-lg mt-6">
+                        A <strong>{{ $order->invoice_number }}</strong> sorszámú számla elkészült.
+                    </div>
+                @endif
+            </x-card>
+
             <!-- Ügyfél -->
             <x-card title="Ügyfél" padding="p-12">
                 <div class="grid grid-cols-4 gap-4">
