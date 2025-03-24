@@ -170,3 +170,39 @@ HIDE SCROLLBAR
         scrollbar-width: none;
     }
 }
+
+/* --------------------------------------------------------------
+MARKDOWN
+-------------------------------------------------------------- */
+.markdown {
+    
+    @apply py-12 font-normal text-gray-500 leading-8;
+
+    h1, h3 {
+        @apply text-stone-950 tracking-tight font-bold;
+    }
+
+    h1 {
+        @apply text-3xl mb-12;
+    }
+
+    h3 {
+        @apply text-xl mb-6;
+    }
+
+    b, strong {
+        @apply text-stone-950;
+    }
+
+    p, hr, ul, ol {
+        @apply mb-6;
+    }
+
+    hr {
+        @apply border-gray-300;
+    }
+
+    a {
+        @apply underline underline-offset-2 hover:no-underline;
+    }
+}

@@ -9,6 +9,7 @@ use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\WebshopController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PageController;
 
 /**
  * Auth routes
@@ -37,6 +38,13 @@ Route::prefix('webshop')->group(function() {
         Route::get('/{category}/{product}', 'single')->name('webshop.single');
         Route::get('/{slug}', 'archive')->name('webshop.archive'); // Keep last!
     });
+});
+
+/**
+ * Static page routes
+ */
+Route::controller(PageController::class)->group(function() {
+    Route::get('/aszf', 'terms')->name('page.terms');
 });
 
 /**
