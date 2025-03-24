@@ -44,7 +44,10 @@ class CheckoutController extends Controller
         
         } catch (\Illuminate\Validation\ValidationException $e) {
             Log::error('Validation FAILED', $e->errors());
-            return back()->withErrors($e->errors())->withInput();
+            return back()
+                ->withErrors($e->errors())
+                ->withInput()
+                ->with('error', 'Kérlek javítsd a hibákat, majd küldd be újra az űrlapot.');
         }
     
         if (empty(session('cart'))) {

@@ -15,7 +15,7 @@
                         @csrf
                         
                         <!-- Szállítás -->
-                        <x-card title="Szállítás">
+                        <x-card title="Szállítás" padding="p-6 lg:p-12">
                             <div class="flex flex-col gap-4">
                                 <div class="form-group grid grid-cols-3 gap-4">
                                     @foreach(config('checkout.delivery_methods') as $key => $method)
@@ -43,7 +43,7 @@
                         </x-card>
 
                         <!-- Személyes -->
-                        <x-card title="Személyes">
+                        <x-card title="Személyes" padding="p-6 lg:p-12">
                             <div class="flex flex-col gap-4">
                                 <div class="form-group">
                                     <x-form.input for="customer_name" placeholder="Teljes név"/>
@@ -69,7 +69,7 @@
                         </x-card>
 
                         <!-- Fizetés -->
-                        <x-card title="Fizetés">
+                        <x-card title="Fizetés" padding="p-6 lg:p-12">
                             <div class="flex flex-col gap-4">
                                 <div class="form-group grid grid-cols-3 gap-4">
                                     @foreach(config('checkout.payment_methods') as $key => $method)
@@ -94,7 +94,7 @@
                 <div class="w-[500px] flex-none">
 
                     <!-- Termékek -->
-                    <x-card title="Összesítés" class="sticky top-[96px]">
+                    <x-card title="Összesítés" padding="p-6 lg:p-12" class="sticky top-[96px]">
                         <div class="cart-items flex flex-col">
                             @forelse(session('cart', []) as $id => $item)
                                 @for ($i = 0; $i < $item['quantity']; $i++)

@@ -52,7 +52,15 @@ $.ajaxSetup({
 });
 
 
-
+/**
+ * Hide error message & invalid class from input if anything is entered 
+ */
+$('input, textarea, select').on('input change', function() {
+    if ($(this).val().trim() !== '') {
+        $(this).removeClass('is-invalid'); 
+        $(this).siblings('.error-message').fadeOut(200); 
+    }
+});
 
 
 });
