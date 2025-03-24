@@ -14,11 +14,11 @@
                     $menu_item_class = 'block w-full md:w-auto rounded-md py-1 px-2 text-gray-400 hover:text-white hover:bg-white/15';
                     $active_class = 'bg-white/15 text-white';
                 @endphp
-                <a class="{{ $menu_item_class }} {{ request()->routeIs('products.index') ? $active_class : '' }}" href="{{ route('products.index') }}">
-                    Termékek
-                </a>
                 <a class="{{ $menu_item_class }} {{ request()->routeIs('categories.index') ? $active_class : '' }}" href="{{ route('categories.index') }}">
                     Kategóriák
+                </a>
+                <a class="{{ $menu_item_class }} {{ request()->routeIs('products.index') ? $active_class : '' }}" href="{{ route('products.index') }}">
+                    Termékek
                 </a>
                 <a class="{{ $menu_item_class }} {{ request()->routeIs('orders.index') ? $active_class : '' }}" href="#">
                     Rendelések

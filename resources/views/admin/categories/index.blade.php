@@ -15,28 +15,35 @@
 </x-header.page>
 
 <div class="container">
-    <div class="categories-list flex flex-col gap-3">
+    <div class="categories-list flex flex-col">
         
         @forelse($categories as $category)
-            <div class="p-6 bg-white shadow-md rounded-lg flex items-center justify-between gap-3" data-id="{{ $category->id }}">
-                <div class="flex items-center space-x-4">
-                    <button class="p-2 grip-handle">
+            <x-card class="flex items-center justify-between" data-id="{{ $category->id }}">
+                <div class="flex items-center sm:w-2/5 md:w-3/5">
+                    <button class="p-2 grip-handle mr-3 hidden md:block">
                         <x-icon name="grip-horizontal" class="text-gray-400"/>
                     </button>
                     <img 
                         src="{{ get_image_or_placeholder($category->image) }}" 
                         alt="{{ $category->name }}"
-                        class="w-18 h-18 rounded-full object-cover object-center">
+                        class="w-12 h-12 lg:w-18 lg:h-18 rounded-lg object-cover object-center mr-4">
                     <div>
-                        <x-heading level="h4" class="mb-1">{{ $category->name }}</x-heading>
-                        <p class="text-gray-400 text-sm max-w-[500px]">{{ $category->description }}</p>
+                        <x-heading level="h4" class="lg:mb-2">{{ $category->name }}</x-heading>
+                        <p class="text-gray-400 text-sm max-w-[500px] hidden lg:block lg:mr-6">{{ $category->description }}</p>
                     </div>
                 </div>
-                <div class="flex justify-end items-center gap-x-4">
-                    <span class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap">{{ $category->slug }}</span>     
+                <div class="w-1/5 hidden sm:block text-right">
+                    <x-badge color="success" class="mr-6">
+                        {{ $category->products->count() }} termék
+                    </x-badge>
+                </div>
+                <div class="flex items-center justify-end w-2/5 lg:w-1/5">
+                    <x-badge class="hidden sm:block mr-3">
+                        /{{ $category->slug }}
+                    </x-badge>     
                     <x-button.chip icon="chevron-right" href="{{ route('categories.edit', $category->id) }}"/>
                 </div>
-            </div>
+            </x-card>
         @empty
             <p>Nincs kategória</p>
         @endforelse

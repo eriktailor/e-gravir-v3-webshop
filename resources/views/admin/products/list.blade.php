@@ -5,13 +5,13 @@
 
                 <!-- Product Image & Name -->
                 <div class="flex justify-start items-center gap-x-4 col-span-3">
-                    <span class="px-2 py-1 bg-gray-200 text-sm rounded-md whitespace-nowrap mr-1">
-                        {{ $product->id }}
+                    <span class="px-2 py-1 bg-gray-200 text-xs font-medium rounded-md whitespace-nowrap mr-1">
+                        #{{ $product->id }}
                     </span>
                     <img 
                         src="{{ $product->first_image_url }}" 
                         alt="{{ $product->name }} termékkép"
-                        class="w-12 h-12 rounded-full object-cover object-center">
+                        class="w-12 h-12 rounded-lg object-cover object-center">
                     <x-heading level="h4">{{ $product->name }}</x-heading>
                 </div>
                 

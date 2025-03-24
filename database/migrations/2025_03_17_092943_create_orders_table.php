@@ -29,9 +29,9 @@ return new class extends Migration
 
             // Pricing
             $table->integer('products_total')->default(0);
-            $table->integer('extra_fees')->default(0);
-            $table->integer('delivery_fee')->default(0);
-            $table->integer('total_amount')->default(0);
+            $table->integer('extra_price')->default(0);
+            $table->integer('delivery_price')->default(0);
+            $table->integer('order_total')->default(0);
 
             // Order status
             $table->string('status')->default('pending');

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class CheckoutRequest extends FormRequest
 {
@@ -11,14 +13,14 @@ class CheckoutRequest extends FormRequest
         return true; // Allow anyone to submit
     }
 
-    public function rules()
+    public function rules(): array
     {
         return [
             // Personal Info
             'customer_name'     => 'required|string|max:255',
             'customer_email'    => 'required|email|max:255',
             'customer_phone'    => 'required|string|max:50',
-            'customer_zip'      => 'required|numeric|digits_between:3,5',
+            'customer_zip'      => 'required',
             'customer_city'     => 'required|string|max:100',
             'customer_address'  => 'required|string|max:255',
 

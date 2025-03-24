@@ -18,7 +18,7 @@
     <div class="mb-4">
         <x-form.input for="product_search" placeholder="Keresés név alapján..."/>
     </div>
-    <div class="products-list flex flex-col gap-3" id="productsList">
+    <div id="productsList">
         @include('admin.products.list', ['products' => $products])
     </div>
 </div>

@@ -10,21 +10,11 @@ class Order extends Model
     use SoftDeletes;
     
     protected $fillable = [
-        'customer_name',
-        'customer_email',
-        'customer_phone',
-        'customer_zip',
-        'customer_city',
-        'customer_address',
-        'delivery_method',
-        'delivery_foxpost_box',
-        'delivery_notes',
-        'payment_method',
-        'products_total',
-        'extra_fees',
-        'delivery_fee',
-        'total_amount',
-        'status',
+        'customer_name', 'customer_email', 'customer_phone',
+        'customer_zip', 'customer_city', 'customer_address',
+        'delivery_method', 'delivery_foxpost_box', 'delivery_notes',
+        'payment_method', 'products_total', 'extra_price', 
+        'delivery_price', 'order_total', 'status',
     ];
 
     /**
