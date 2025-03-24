@@ -51,4 +51,24 @@ return [
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Order Statuses
+    |--------------------------------------------------------------------------
+    */
+    'order_statuses' => [
+        'pending' => [
+            'label' => 'Függőben',
+            'color' => 'warning',
+        ],
+        'done' => [
+            'label' => 'Elkészült',
+            'color' => 'success',
+        ],
+        'cancelled' => [
+            'label' => 'Törölve',
+            'color' => 'danger',
+        ],
+    ],
+
 ];

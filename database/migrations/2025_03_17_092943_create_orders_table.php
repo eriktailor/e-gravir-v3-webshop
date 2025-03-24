@@ -26,6 +26,9 @@ return new class extends Migration
 
             // Payment
             $table->string('payment_method');
+            $table->string('barion_status');
+            $table->string('barion_pay_id');
+            $table->string('bank_status');
 
             // Pricing
             $table->integer('products_total')->default(0);
@@ -33,8 +36,11 @@ return new class extends Migration
             $table->integer('delivery_price')->default(0);
             $table->integer('order_total')->default(0);
 
-            // Order status
+            // Order
             $table->string('status')->default('pending');
+            $table->text('my_notes')->nullable();
+            $table->boolean('accept_terms')->default(0);
+            $table->string('invoice_number')->nullable();
 
             // Timestamps
             $table->softDeletes();
