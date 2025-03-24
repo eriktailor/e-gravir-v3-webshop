@@ -6,8 +6,7 @@
 
     <x-header.page :title="'Rendelések'">
         <x-slot name="button">
-            <x-button href="#" color="white" class="mr-2">Export Foxpost Csv</x-button>
-            <x-button href="#">Új Rendelés</x-button>
+            <x-button href="#">Export Foxpost Csv</x-button>
         </x-slot>
     </x-header.page>
 

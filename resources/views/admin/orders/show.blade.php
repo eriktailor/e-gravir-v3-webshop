@@ -10,7 +10,7 @@
 
 <x-header.page :title="$headerTitle">
     <x-slot name="button">
-        <x-button href="{{ route('orders.index') }}">Vissza</x-button>
+        <x-button href="{{ route('orders.edit', $order) }}">Szerkesztés</x-button>
     </x-slot>
 </x-header.page>
 
