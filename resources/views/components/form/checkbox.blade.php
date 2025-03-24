@@ -22,10 +22,10 @@
             </div>
         </label>
         <label class="mt-px cursor-pointer select-none font-light text-gray-500 text-sm" for="{{ $for }}">
-            {{ $label }}
+            {!! $label !!}
         </label>
     </div>
 
-    <x-form.error :for="$for" />
+    <x-form.error :for="$for" class="block"/>
 </div>
 
