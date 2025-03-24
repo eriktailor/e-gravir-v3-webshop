@@ -37,9 +37,9 @@ class Order extends Model
     /**
      * Make relation with OrderCustomization model
      */
-    public function customization()
+    public function customizations()
     {
-        return $this->hasOne(OrderCustomization::class);
+        return $this->hasMany(OrderCustomization::class);
     }
 
     /**

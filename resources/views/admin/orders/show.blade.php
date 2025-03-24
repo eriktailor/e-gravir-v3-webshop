@@ -64,23 +64,70 @@
             <x-card title="Termékek" padding="p-12">
                 <div class="flex flex-col gap-4">
                     @foreach($order->items as $item)
-                        <div class="border border-gray-300 p-4 rounded-lg flex flex-col justify-between">
-                            <div class="flex">
-                                <img 
-                                    src="{{ $item->product->firstImageUrl() }}" 
-                                    alt="{{ $item->product_name }} termékkép"
-                                    class="w-12 h-12 rounded-lg object-cover object-center">
-                                <strong class="font-semibold">
-                                    {{ $item->product_name }}
-                                </strong>
-                                Ár: {{ $item->product_price }} Ft<br>
-                            </div>
-                            @if($item->customizations)
-                                <div class="text-sm text-gray-500">
-                                    Testreszabás:
-                                    <pre>{{ json_encode($item->customizations, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) }}</pre>
+                        <div class="border border-gray-300 rounded-lg flex flex-col justify-between">
+                            <div class="flex gap-x-3 justify-between p-4">
+                                <div class="flex gap-x-3">
+                                    <img 
+                                        src="{{ $item->product->firstImageUrl() }}" 
+                                        alt="{{ $item->product_name }} termékkép"
+                                        class="w-12 h-12 rounded-lg object-cover object-center">
+                                    <x-heading level="h4">
+                                        {{ $item->product_name }}
+                                    </x-heading>
                                 </div>
+                                <span class="text-gray-400">
+                                    {{ $item->product_price }} Ft
+                                </span>
+                            </div>
+                            @php
+                                $custom = $order->customizations->firstWhere('product_id', $item->product_id);
+                            @endphp
+                            @if($custom)
+
+                                @if($custom->front_image || $custom->front_text)
+                                    <div class="p-4 border-t border-gray-300">
+                                        <x-heading level="h5">Előlap</x-heading>
+                                        <div class="flex items-center gap-x-3">
+                                            @if($custom->front_image)
+                                                <div>
+                                                    <img src="{{ asset('storage/' . $custom->front_image) }}" alt="Front Image" class="w-12 h-12 rounded-lg">
+                                                </div>
+                                            @endif
+
+                                            @if($custom->front_text)
+                                                <div>
+                                                    {{ $custom->front_text }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                @endif
+{{-- 
+                                <div class="text-sm text-gray-500 mt-2">
+                                    <ul class="list-disc ml-4">
+
+                                        
+
+                                        @if($custom->back_image)
+                                            <li>
+                                                <strong>Hátlap kép:</strong><br>
+                                                <img src="{{ asset('storage/' . $custom->back_image) }}" alt="Back Image" class="w-16 h-16 rounded-lg mt-2">
+                                            </li>
+                                        @endif
+
+                                        @if($custom->inner_text)
+                                            <li><strong>Belső szöveg:</strong> {{ $custom->inner_text }}</li>
+                                        @endif
+
+                                        @if($custom->other_notes)
+                                            <li><strong>Megjegyzés:</strong> {{ $custom->other_notes }}</li>
+                                        @endif
+
+                                    </ul>
+                                </div> --}}
                             @endif
+
+
                         </div>
                     @endforeach
                 </div>
