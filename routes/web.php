@@ -45,6 +45,7 @@ Route::prefix('webshop')->group(function() {
  */
 Route::controller(PageController::class)->group(function() {
     Route::get('/aszf', 'terms')->name('page.terms');
+    Route::get('/adatvedelem', 'privacy')->name('page.privacy');
 });
 
 /**
