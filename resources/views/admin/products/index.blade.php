@@ -11,7 +11,7 @@
 </x-header.page>
 
 <div class="container">
-    <div class="mb-4">
+    <div class="mb-6">
         <x-form.input for="product_search" placeholder="Keresés név alapján..."/>
     </div>
     <div id="productsList">
