@@ -1,9 +1,10 @@
 @props([
     'title' => null,
-    'description' => null
+    'description' => null,
+    'padding' => 'p-6'
 ])
 
-<div {{ $attributes->merge(['class' => 'card p-6 lg:p-12 bg-white rounded-2xl shadow-sm shadow-amber-700/20 break-inside-avoid mb-6']) }}>
+<div {{ $attributes->merge(['class' => "card $padding bg-white rounded-2xl shadow-sm shadow-amber-700/20 break-inside-avoid mb-6"]) }}>
     
     @if($title || $description)
         <div class="card-header mb-8">

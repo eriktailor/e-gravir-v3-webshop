@@ -14,7 +14,7 @@
     <div class="orders-list flex flex-col">
         
         @forelse($orders as $order)
-            <x-card class="flex items-center justify-between">
+            <x-card padding="p-8" class="flex items-center justify-between">
                 <div class="grid grid-cols-12 items-center w-full">
                     <div class="flex items-center">
                         <x-form.checkbox for="select_order[' . $order->id .']"/>
@@ -59,8 +59,9 @@
                             {{ $order_status['label'] }}
                         </x-badge>
                     </div>
-                    <div class="flex items-center gap-x-3 justify-end">
-                        <x-icon name="check-circle" class="text-gray-400"/>
+                    <div class="flex items-center gap-x-3 justify-between">
+                        <x-icon name="{{ $order->invoice_number ? 'circle-check-filled' : 'circle-check' }}" 
+                                class="ml-6 {{ $order->invoice_number ? 'fill-green-600 text-white' : 'text-gray-400' }}"/>
                         <x-button.chip icon="chevron-right" href="{{ route('orders.edit', $order->id) }}"/>
                     </div>
                 </div>

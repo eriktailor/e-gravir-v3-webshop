@@ -26,9 +26,9 @@ return new class extends Migration
 
             // Payment
             $table->string('payment_method');
-            $table->string('barion_status');
-            $table->string('barion_pay_id');
-            $table->string('bank_status');
+            $table->string('barion_status')->nullable();
+            $table->string('barion_pay_id')->nullable();
+            $table->string('bank_status')->nullable();
 
             // Pricing
             $table->integer('products_total')->default(0);
