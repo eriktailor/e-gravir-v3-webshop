@@ -4,7 +4,12 @@
 
 @section('content')
 
-    <x-header.page :title="'Gravírozott ' . $category->name"/>
+    {{-- <x-header.page :title="'Gravírozott ' . $category->name"/> --}}
+    <header style="background-image: url('/img/backgrounds/wallets_hero.webp')" class="bg-contain bg-no-repeat bg-center h-[500px] flex items-center justify-center py-24 bg-stone-950">
+        <div class="container">
+            <x-heading level="h1" class="text-5xl text-center text-white">Gravírozott Pénztárcák</x-heading>
+        </div>
+    </header>
 
     <main>
         <div class="container">

@@ -86,7 +86,7 @@
                                 <div class="form-group">
                                     <x-form.checkbox for="accept_terms">
                                         Elfogadom az 
-                                        <a href="{{ route('webshop.terms') }}" class="underline underline-offset-2 text-red-600 hover:text-red-500 hover:no-underline" target="_blank">ÁSZF</a>-ben 
+                                        <a href="{{ route('page.terms') }}" class="underline underline-offset-2 text-red-600 hover:text-red-500 hover:no-underline" target="_blank">ÁSZF</a>-ben 
                                         leírtakat
                                     </x-form.checkbox>
                                 </div>

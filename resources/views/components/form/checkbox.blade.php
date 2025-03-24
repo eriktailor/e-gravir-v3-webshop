@@ -22,7 +22,7 @@
             </div>
         </label>
         <label class="mt-px cursor-pointer select-none font-light text-gray-500 text-sm" for="{{ $for }}">
-            {!! $label !!}
+            {{ $slot }}
         </label>
     </div>
 
