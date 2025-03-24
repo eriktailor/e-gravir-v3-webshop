@@ -4,17 +4,12 @@
 
 @section('content')
 
-    {{-- <x-header.page :title="'Gravírozott ' . $category->name"/> --}}
-    <header style="background-image: url('/img/backgrounds/wallets_hero.webp')" class="bg-contain bg-no-repeat bg-center h-[500px] flex items-center justify-center py-24 bg-stone-950">
-        <div class="container">
-            <x-heading level="h1" class="text-5xl text-center text-white">Gravírozott Pénztárcák</x-heading>
-        </div>
-    </header>
+    <x-header.image :title="'Gravírozott ' . $category->name" :image="$category->image" :description="$category->description"/>
 
-    <main>
+    <main class="bg-orange-100 relative z-40">
         <div class="container">
             @if($products->count())
-                <ul class="archive-products grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <ul class="archive-products grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-6">
                     @foreach($products as $product)
                         <li class="product-item bg-white flex flex-col gap-y-3 rounded-xl shadow-sm shadow-amber-700/20 p-8">
                             
