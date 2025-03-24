@@ -15,7 +15,7 @@ class PageController extends Controller
         $markdown = file_get_contents(resource_path('markdown/terms.md'));
         $html = Str::markdown($markdown);
 
-        return view('pages.terms', compact('html'));
+        return view('pages.markdown', compact('html'));
     }
 
     /**
@@ -26,6 +26,6 @@ class PageController extends Controller
         $markdown = file_get_contents(resource_path('markdown/privacy.md'));
         $html = Str::markdown($markdown);
 
-        return view('pages.terms', compact('html'));
+        return view('pages.markdown', compact('html'));
     }
 }
