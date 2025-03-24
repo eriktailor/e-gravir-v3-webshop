@@ -4,7 +4,7 @@
 ])
 
 
-<label for="{{ $for }}" class="form-label block mb-1 text-sm text-gray-500">
+<label for="{{ $for }}" {{ $attributes->merge(['class' => 'form-label block text-sm text-gray-500 leading-6']) }}>
     {{ $slot }}
     @if($helptext)
         <x-tooltip text="{{ $helptext}}" class="top-[3px] -left-0.5">

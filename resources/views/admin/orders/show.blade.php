@@ -15,15 +15,15 @@
 </x-header.page>
 
 <div class="container">
-    <div class="grid grid-cols-1 lg:grid-cols-2">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         <div>
 
             <!-- Rendelés -->
-            <x-card title="Rendelés" padding="p-12">
+            <x-card title="Rendelés" padding="p-12" class="font-normal">
                 <div class="grid grid-cols-4 items-center gap-4">
                     <div class="col-span-1">
-                        <strong class="font-semibold">Státusz:</strong> 
+                        <strong class="font-medium text-stone-950">Státusz:</strong> 
                     </div>
                     <div class="col-span-3">
                         @php
@@ -34,13 +34,13 @@
                         </x-badge>
                     </div>
                     <div class="col-span-1">
-                        <strong class="font-semibold">Dátum:</strong> 
+                        <strong class="font-medium text-stone-950">Dátum:</strong> 
                     </div>
                     <div class="col-span-3">
                         <span>{{ $order->created_at->toDateString() }}</span>
                     </div>
                     <div class="col-span-1">
-                        <strong class="font-semibold">Szállítás:</strong> 
+                        <strong class="font-medium text-stone-950">Szállítás:</strong> 
                     </div>
                     <div class="col-span-3">
                         @php
@@ -49,7 +49,7 @@
                         <span>{{ $delivery_label }}</span>
                     </div>
                     <div class="col-span-1">
-                        <strong class="font-semibold">Fizetés:</strong> 
+                        <strong class="font-medium text-stone-950">Fizetés:</strong> 
                     </div>
                     <div class="col-span-3">
                         @php
@@ -61,7 +61,7 @@
             </x-card>
 
             <!-- Termékek -->
-            <x-card title="Termékek" padding="p-12" class="relative">
+            <x-card title="Termékek" padding="p-12" class="relative font-normal">
                 <x-button id="downloadOrderImages" 
                         color="white" 
                         size="small" 
@@ -83,7 +83,7 @@
                                         {{ $item->product_name }}
                                     </x-heading>
                                 </div>
-                                <span class="text-gray-400">
+                                <span class="text-gray-400 font-normal">
                                     {{ $item->product_price }} Ft
                                 </span>
                             </div>
@@ -160,31 +160,31 @@
             </x-card>
 
             <!-- Számlázás -->
-            <x-card title="Számlázás" padding="p-12">
+            <x-card title="Számlázás" padding="p-12" class="font-normal">
                 <div class="grid grid-cols-4 gap-4">
                     <div class="col-span-1">
-                        <strong class="font-semibold">Termékek:</strong> 
+                        <strong class="font-medium text-stone-950">Termékek:</strong> 
                     </div>
                     <div class="col-span-3">
                         {{ $order->products_total }} Ft
                     </div>
                     <div class="col-span-1">
-                        <strong class="font-semibold">Extra felár:</strong> 
+                        <strong class="font-medium text-stone-950">Extra felár:</strong> 
                     </div>
                     <div class="col-span-3">
                         <span>{{ $order->extra_price }} Ft</span>
                     </div>
                     <div class="col-span-1">
-                        <strong class="font-semibold">Szállítási díj:</strong> 
+                        <strong class="font-medium text-stone-950">Szállítási díj:</strong> 
                     </div>
                     <div class="col-span-3">
                         <span>{{ $order->delivery_price }} Ft</span>
                     </div>
                     <div class="col-span-1">
-                        <strong class="font-semibold">Végösszeg:</strong> 
+                        <strong class="font-medium text-stone-950">Végösszeg:</strong> 
                     </div>
                     <div class="col-span-3">
-                        <span class="text-red-600">{{ $order->order_total }} Ft</span>
+                        <span class="text-red-600 font-semibold">{{ $order->order_total }} Ft</span>
                     </div>
                 </div>
                 @if($order->invoice_number)
@@ -195,35 +195,35 @@
             </x-card>
 
             <!-- Ügyfél -->
-            <x-card title="Ügyfél" padding="p-12">
+            <x-card title="Ügyfél" padding="p-12" class="font-normal">
                 <div class="grid grid-cols-4 gap-4">
                     <div class="col-span-1">
-                        <strong class="font-semibold">Név:</strong> 
+                        <strong class="font-medium text-stone-950">Név:</strong> 
                     </div>
                     <div class="col-span-3">
                         {{ $order->customer_name }}
                     </div>
                     <div class="col-span-1">
-                        <strong class="font-semibold">Email:</strong> 
+                        <strong class="font-medium text-stone-950">Email:</strong> 
                     </div>
                     <div class="col-span-3">
                         <span>{{ $order->customer_email }}</span>
                     </div>
                     <div class="col-span-1">
-                        <strong class="font-semibold">Telefon:</strong> 
+                        <strong class="font-medium text-stone-950">Telefon:</strong> 
                     </div>
                     <div class="col-span-3">
                         <span>{{ $order->customer_phone }}</span>
                     </div>
                     <div class="col-span-1">
-                        <strong class="font-semibold">Lakcím:</strong> 
+                        <strong class="font-medium text-stone-950">Lakcím:</strong> 
                     </div>
                     <div class="col-span-3">
                         <span>{{ $order->customer_zip . ' ' . $order->customer_city . ', ' . $order->customer_address }}</span>
                     </div>
                     @if($order->delivery_notes)
                         <div class="col-span-1">
-                            <strong class="font-semibold">Megjegyzés:</strong> 
+                            <strong class="font-medium text-stone-950">Megjegyzés:</strong> 
                         </div>
                         <div class="col-span-3">
                             <span>{{ $order->delivery_notes }}</span>
@@ -234,6 +234,24 @@
 
         </div>
         <div>
+
+            <!-- Projekt -->
+            <x-card title="Projekt" padding="p-12 sticky top-[96px]">
+               <form action="" class="flex flex-col gap-4">
+                    <x-form.select for="status">
+                        @foreach(config('checkout.order_statuses') as $key => $status)
+                            <option value="{{ $key }}" @selected($order->status === $key)>
+                                {{ $status['label'] }}
+                            </option>
+                        @endforeach
+                    </x-form.select>
+                    <x-form.textarea for="my_notes" placeholder="Személyes megjegyzés" rows="4"/>
+                    <x-form.switch for="send_invoice" label="Számla kiküldése mentéskor"/>
+                    <x-button type="submit" class="w-full">
+                        Projekt Mentése
+                    </x-button>
+               </form>
+            </x-card>
 
         </div>
 
