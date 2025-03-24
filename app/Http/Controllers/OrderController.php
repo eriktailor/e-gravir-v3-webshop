@@ -34,6 +34,31 @@ class OrderController extends Controller
     }
 
     /**
+     * Show the form for creating a new order. (optional)
+     */
+    public function create()
+    {
+        return view('admin.orders.create');
+    }
+
+    /**
+     * Store a newly created order in storage.
+     */
+    public function store(Request $request)
+    {
+        // Validation & storing logic
+        $validated = $request->validate([
+            'customer_name' => 'required|string',
+            'customer_email' => 'required|email',
+            // add more fields...
+        ]);
+
+        $order = Order::create($validated);
+
+        return redirect()->route('orders.index')->with('success', 'Rendelés létrehozva!');
+    }
+
+    /**
      * Display order single page
      */
     public function show(Order $order)
@@ -43,6 +68,30 @@ class OrderController extends Controller
         return view('admin.orders.show', compact('order'));
     }
 
+    /**
+     * Show the form for editing the specified order.
+     */
+    public function edit(Order $order)
+    {
+        return view('admin.orders.edit', compact('order'));
+    }
+
+    /**
+     * Update the specified order in storage.
+     */
+    public function update(Request $request, Order $order)
+    {
+        $validated = $request->validate([
+            'customer_name' => 'required|string',
+            'customer_email' => 'required|email',
+            // add more fields...
+        ]);
+
+        $order->update($validated);
+
+        return redirect()->route('orders.index')->with('success', 'Rendelés frissítve!');
+    }
+    
     /**
      * Update order status
      */

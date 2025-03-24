@@ -45,9 +45,7 @@ Route::prefix('webshop')->group(function() {
 Route::prefix('admin')->middleware('auth')->group(function () {
 
     // Orders
-    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
-    Route::get('orders/edit', [OrderController::class, 'edit'])->name('orders.edit');
-    Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::resource('orders', OrderController::class)->except(['destroy']);
     Route::get('orders/{order}/download-images', [OrderController::class, 'downloadImages'])->name('orders.downloadImages');
     Route::patch('orders/{order}/status', [OrderController::class, 'updateStatus'])->name('orders.updateStatus');
 
