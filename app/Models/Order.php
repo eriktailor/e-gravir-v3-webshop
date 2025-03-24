@@ -24,4 +24,12 @@ class Order extends Model
     {
         return $this->hasOne(OrderCustomization::class);
     }
+
+    /**
+     * Make relation with OrderItem model
+     */
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 }

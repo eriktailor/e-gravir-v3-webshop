@@ -20,7 +20,7 @@
                 <a class="{{ $menu_item_class }} {{ request()->routeIs('products.index') ? $active_class : '' }}" href="{{ route('products.index') }}">
                     Termékek
                 </a>
-                <a class="{{ $menu_item_class }} {{ request()->routeIs('orders.index') ? $active_class : '' }}" href="#">
+                <a class="{{ $menu_item_class }} {{ request()->routeIs('orders.index') ? $active_class : '' }}" href="{{ route('orders.index') }}">
                     Rendelések
                 </a>
             </div>

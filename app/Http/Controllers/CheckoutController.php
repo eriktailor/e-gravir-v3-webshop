@@ -34,6 +34,16 @@ class CheckoutController extends Controller
 
         Order::create($validated);
 
+        foreach (session('cart') as $productId => $item) {
+            $order->items()->create([
+                'product_id' => $productId,
+                'product_name' => $item['name'],
+                'product_price' => $item['price'],
+                'quantity' => $item['quantity'],
+                'customizations' => $item['customizations'] ?? [],
+            ]);
+        }
+
         return redirect()->back()->with('success', 'Megrendelés sikeresen elküldve!');
     }
 

@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('order_customizations', function (Blueprint $table) {
+        Schema::create('order_items', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->string('front_image')->nullable();
-            $table->text('front_text')->nullable();
-            $table->string('back_image')->nullable();
-            $table->text('back_text')->nullable();
-            $table->text('inner_text')->nullable();
-            $table->text('other_notes')->nullable();
+            $table->string('product_name');
+            $table->integer('product_price');
+            $table->json('customizations')->nullable(); // Front image/text per darab
             $table->timestamps();
         });
         
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_customizations');
+        Schema::dropIfExists('order_items');
     }
 };
