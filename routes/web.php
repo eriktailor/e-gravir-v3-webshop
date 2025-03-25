@@ -11,6 +11,8 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 
+
+
 /**
  * Auth routes
  */    
@@ -78,11 +80,23 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 Route::post('/upload', [FileUploadController::class, 'upload'])->name('file.upload');
 
+Route::get('/resize/{path}', [ImageController::class, 'show'])->where('path', '.*');
 
 
 
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Imagick\Driver;
 
+use Illuminate\Support\Facades\Storage;
 
+Route::get('/image', function () {
+    $manager = new ImageManager(new Driver());
+    $image = $manager->read('storage/categories/2/2007zCcnQzD5ac2RakPnzkKab0m7Gv7K0IPsruu9.jpg');
+
+    $image->scale(width: 200);    
+
+    return response($image->toWebp())->header('Content-Type', 'image/webp');
+});
 
 
 
