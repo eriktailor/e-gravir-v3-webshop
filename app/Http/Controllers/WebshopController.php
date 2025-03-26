@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductCategory;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class WebshopController extends Controller
@@ -56,21 +57,16 @@ class WebshopController extends Controller
     public function addToCart(Request $request, Product $product)
     {
         $cart = session()->get('cart', []);
+        $id = Str::uuid()->toString();
     
-        if (isset($cart[$product->id])) {
-            $cart[$product->id]['quantity'] += 1;
-        } else {
-            // Get first product image
-            $firstImage = $product->images->first();
-            $imagePath = $firstImage ? asset('storage/' . $firstImage->image_path) : asset('/img/noimage.webp');
-    
-            $cart[$product->id] = [
-                'name' => $product->name,
-                'price' => $product->price,
-                'quantity' => 1,
-                'image' => $imagePath,
-            ];
-        }
+        $cart[$id] = [
+            'product_id' => $product->id,
+            'name' => $product->name,
+            'price' => $product->price,
+            'quantity' => 1,
+            'image' => $product->images->first()?->image_path,
+            'customizations' => [],
+        ];
     
         session()->put('cart', $cart);
     
@@ -98,7 +94,41 @@ class WebshopController extends Controller
         ]);
     }
 
-    
+    /**
+     * Save product customizations in session
+     */
+    public function updateCustomization(Request $request)
+    {
+        $id = $request->input('cart_item_id');
+        $cart = session()->get('cart', []);
+
+        if (!isset($cart[$id])) {
+            return back()->with('error', 'A kosár elem nem található.');
+        }
+
+        $data = $request->only([
+            'front_text',
+            'back_text',
+            'inner_text',
+            'engrave_second_page',
+            'engrave_third_page'
+        ]);
+
+        // handle optional image uploads
+        if ($request->hasFile('front_image')) {
+            $data['front_image'] = $request->file('front_image')->store('customizations', 'public');
+        }
+
+        if ($request->hasFile('back_image')) {
+            $data['back_image'] = $request->file('back_image')->store('customizations', 'public');
+        }
+
+        $cart[$id]['customizations'] = $data;
+        session()->put('cart', $cart);
+
+        return back()->with('success', 'Testreszabás elmentve!');
+    }
+
     
 
 

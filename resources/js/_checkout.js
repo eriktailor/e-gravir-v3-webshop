@@ -41,4 +41,23 @@ export default function initCheckout() {
         } 
     });
 
+    /**
+     * Customize products in cart with customize form
+     */
+    $('.openCustomizer').on('click', function (e) {
+        const itemId = $(this).data('id');
+        const custom = $(this).data('customizations') || {};
+    
+        $('#customizeCartItemId').val(itemId);
+        $('input[name="front_text"]').val(custom.front_text || '');
+        $('input[name="back_text"]').val(custom.back_text || '');
+        $('input[name="inner_text"]').val(custom.inner_text || '');
+        
+        $('input[name="engrave_second_page"]').prop('checked', !!custom.engrave_second_page);
+        $('input[name="engrave_third_page"]').prop('checked', !!custom.engrave_third_page);
+    
+        // Optional: show/hide panels if checked
+    });
+    
+
 }

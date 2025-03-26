@@ -112,7 +112,9 @@
                                                 {{ $item['name'] }}
                                             </x-heading>
                                             <a href="#sideCustomizer" 
-                                                class="offcanvas-toggle text-sm text-red-600 underline underline-offset-2">
+                                                data-id="{{ $id }}"
+                                                data-customizations="{{ json_encode($item['customizations'] ?? []) }}"
+                                                class="openCustomizer offcanvas-toggle text-sm text-red-600 underline underline-offset-2">
                                                 Testreszabás
                                             </a>
                                         </div>
