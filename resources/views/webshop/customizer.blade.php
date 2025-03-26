@@ -18,14 +18,13 @@
             <!-- Content -->
             <div class="offcanvas-content flex-grow overflow-auto no-scrollbar p-6">
                 
-                <form action="" method="POST" id="productCustomizeForm" class="flex flex-col gap-y-4" novalidate>
+                <form action="" method="POST" id="productCustomizeForm" class="flex flex-col gap-y-4" enctype="multipart/form-data" novalidate>
                     @csrf
                     <div class="form-group">
                         <x-form.upload 
                             for="front_image" 
                             id="customizeFrontImage" 
                             label="Előlap képe"
-                            multiple 
                             :config="['allowMultiple' => false, 'maxFiles' => 1]"
                         />
                     </div>
@@ -33,21 +32,21 @@
                         <x-form.input label="Előlap szöveg" for="customizeFrontText"/>
                     </div>
                     <div class="form-group">
-                        <x-form.textarea label="Egyéb instrukció" for="customizeBackText" rows="4"/>
+                        <x-form.textarea label="Egyéb instrukció" for="customizeOtherNotes" rows="4"/>
                     </div>
 
                     <x-form.checkbox 
                         for="engrave_second_page" 
-                        label="A hátoldalra is kérek gravírozást (+2900 Ft)"
                         class="toggle"
-                        data-target="#customizeBackPage"/>
+                        data-target="#customizeBackPage">
+                        A hátoldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
+                    </x-form.checkbox>
                     <div class="hidden" id="customizeBackPage">
                         <div class="form-group mb-4">
                             <x-form.upload 
                                 for="front_image" 
                                 id="customizeBackImage" 
                                 label="Hátlap képe"
-                                multiple 
                                 :config="['allowMultiple' => false, 'maxFiles' => 1]"
                             />
                         </div>
@@ -58,12 +57,13 @@
                     
                     <x-form.checkbox 
                         for="engrave_third_page" 
-                        label="A belső oldalra is kérek gravírozást (+2900 Ft)"
                         class="toggle"
-                        data-target="#customizeInnerPage"/>
+                        data-target="#customizeInnerPage">
+                        A belső oldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
+                    </x-form.checkbox>
                     <div class="hidden" id="customizeInnerPage">
                         <div class="form-group">
-                            <x-form.input label="Belső szöveg" for="customizeBackText"/>
+                            <x-form.input label="Belső szöveg" for="customizeInnerText"/>
                         </div>
                     </div>
                 </form>

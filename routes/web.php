@@ -82,7 +82,7 @@ Route::post('/upload', [FileUploadController::class, 'upload'])->name('file.uplo
 
 
 
-
+/* 
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Imagick\Driver;
 
@@ -96,7 +96,7 @@ Route::get('/image', function () {
 
     return response($image->toWebp())->header('Content-Type', 'image/webp');
 });
-
+ */
 
 
 
