@@ -75,7 +75,9 @@
 
             <!-- Footer -->
             <div class="offcanvas-footer flex-none p-6">
-                <x-button href="#" class="w-full">Mentés</x-button>
+                <x-button href="#" class="button-submit w-full" data-target="#productCustomizeForm">
+                    Mentés
+                </x-button>
             </div>
             
 

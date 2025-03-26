@@ -19,6 +19,7 @@ class CheckoutController extends Controller
      */
     public function index()
     {
+        dd(session('cart'));
         return view('webshop.checkout');
     }
 

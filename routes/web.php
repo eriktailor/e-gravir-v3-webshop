@@ -90,17 +90,20 @@ use Intervention\Image\Drivers\Imagick\Driver;
 
 use Illuminate\Support\Facades\Storage;
 
-Route::get('/image', function () {
+/* Route::get('/image', function () {
     $manager = new ImageManager(new Driver());
     $image = $manager->read('storage/categories/2/2007zCcnQzD5ac2RakPnzkKab0m7Gv7K0IPsruu9.jpg');
 
     $image->scale(width: 500);    
 
     return response($image->toWebp())->header('Content-Type', 'image/webp');
+}); */
+
+
+// Debug session cart
+Route::get('/debug/cart', function () {
+    return response()->json(session('cart'));
 });
-
-
-
 
 
 
