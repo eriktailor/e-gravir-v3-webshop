@@ -23,4 +23,83 @@ class FileUploadController extends Controller
             'path' => $path
         ]);
     }
+
+    /**
+     * Teszt törölni!!!!
+     */
+    public function update(Request $request)
+    {
+        // Single and multiple file validation
+        $this->validate($request, [
+            'avatar' => Rule::filepond([
+                'required',
+                'image',
+                'max:2000'
+            ]),
+            'gallery.*' => Rule::filepond([
+                'required',
+                'image',
+                'max:2000'
+            ])
+        ]);
+    
+        // Set filename
+        $avatarName = 'avatar-' . auth()->id();
+    
+        // Move the file to permanent storage
+        // Automatic file extension set
+        $fileInfo = Filepond::field($request->avatar)
+            ->moveTo('avatars/' . $avatarName);
+
+        // dd($fileInfo);
+        // [
+        //     "id" => 1,
+        //     "dirname" => "avatars",
+        //     "basename" => "avatar-1.png",
+        //     "extension" => "png",
+        //     "mimetype" => "image/png",
+        //     "filename" => "avatar-1",
+        //     "location" => "avatars/avatar-1.png",
+        //     "url" => "http://localhost/storage/avatars/avatar-1.png",
+        // ];
+
+        $galleryName = 'gallery-' . auth()->id();
+
+        $fileInfos = Filepond::field($request->gallery)
+            ->moveTo('galleries/' . $galleryName);
+    
+        // dd($fileInfos);
+        // [
+        //     [
+        //         "id" => 1,
+        //         "dirname" => "galleries",
+        //         "basename" => "gallery-1-1.png",
+        //         "extension" => "png",
+        //         "mimetype" => "image/png",
+        //         "filename" => "gallery-1-1",
+        //         "location" => "galleries/gallery-1-1.png",
+        //         "url" => "http://localhost/storage/galleries/gallery-1-1.png",
+        //     ],
+        //     [
+        //         "id" => 2,
+        //         "dirname" => "galleries",
+        //         "basename" => "gallery-1-2.png",
+        //         "extension" => "png",
+        //         "mimetype" => "image/png",
+        //         "filename" => "gallery-1-2",
+        //         "location" => "galleries/gallery-1-2.png",
+        //         "url" => "http://localhost/storage/galleries/gallery-1-2.png",
+        //     ],
+        //     [
+        //         "id" => 3,
+        //         "dirname" => "galleries",
+        //         "basename" => "gallery-1-3.png",
+        //         "extension" => "png",
+        //         "mimetype" => "image/png",
+        //         "filename" => "gallery-1-3",
+        //         "location" => "galleries/gallery-1-3.png",
+        //         "url" => "http://localhost/storage/galleries/gallery-1-3.png",
+        //     ],
+        // ]
+    }
 }

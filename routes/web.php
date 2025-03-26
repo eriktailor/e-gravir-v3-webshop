@@ -79,8 +79,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 });
 
 Route::post('/upload', [FileUploadController::class, 'upload'])->name('file.upload');
+Route::post('/update', [FileUploadController::class, 'update'])->name('avatar');
 
 
+
+
+// Teszt, törölni!
+Route::get('/teszt', function() {
+    return view('welcome');
+});
 
 /* 
 use Intervention\Image\ImageManager;
