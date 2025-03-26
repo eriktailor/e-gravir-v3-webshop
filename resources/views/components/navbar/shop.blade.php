@@ -38,7 +38,7 @@
     </div>
 </nav>
 
-<x-navbar.cart/>
+@include('webshop.cart')
 
 @push('scripts')
     <script>

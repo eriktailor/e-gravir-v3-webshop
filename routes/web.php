@@ -93,7 +93,7 @@ Route::get('/image', function () {
     $manager = new ImageManager(new Driver());
     $image = $manager->read('storage/categories/2/2007zCcnQzD5ac2RakPnzkKab0m7Gv7K0IPsruu9.jpg');
 
-    $image->scale(width: 200);    
+    $image->scale(width: 500);    
 
     return response($image->toWebp())->header('Content-Type', 'image/webp');
 });
