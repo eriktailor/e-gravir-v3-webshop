@@ -66,7 +66,7 @@
 
             <!-- Footer -->
             <div class="offcanvas-footer flex-none p-6">
-                <x-button href="#" class="button-submit w-full" data-target="#productCustomizeForm">Mentés</x-button>
+                <x-button href="#" class="button-submit w-full" data-target="#productCustomizeForm" data-product-id="{{ $id }}">Mentés</x-button>
             </div>
             
 
@@ -92,5 +92,29 @@
 
     // Create the FilePond instance
     FilePond.create(document.querySelector('input[name="front_image"]'));
+</script>
+<script>
+$('.button-submit').on('click', function(e) {
+    e.preventDefault();
+
+    let form = $('#productCustomizeForm')[0];
+    let formData = new FormData(form);
+    let productId = $(this).data('product-id');
+
+    $.ajax({
+        url: '/webshop/cart/customize/' + productId,
+        method: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(res) {
+            alert(res.message);
+        },
+        error: function(err) {
+            alert('Hiba történt');
+        }
+    });
+});
+
 </script>
 @endpush

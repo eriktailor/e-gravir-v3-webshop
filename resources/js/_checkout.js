@@ -41,4 +41,11 @@ export default function initCheckout() {
         } 
     });
 
+    let selectedProductId = null;
+
+$(document).on('click', '.offcanvas-toggle', function () {
+    selectedProductId = $(this).data('product-id');
+    $('.button-submit[data-target="#productCustomizeForm"]').data('product-id', selectedProductId);
+});
+
 }

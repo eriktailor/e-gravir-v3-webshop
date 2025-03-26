@@ -112,7 +112,8 @@
                                                 {{ $item['name'] }}
                                             </x-heading>
                                             <a href="#sideCustomizer" 
-                                                class="offcanvas-toggle text-sm text-red-600 underline underline-offset-2">
+                                                class="offcanvas-toggle text-sm text-red-600 underline underline-offset-2"
+                                                data-product-id="{{ $id }}">
                                                 Testreszabás
                                             </a>
                                         </div>
@@ -166,3 +167,4 @@
     @include('webshop.customizer')
 
 @endsection
+

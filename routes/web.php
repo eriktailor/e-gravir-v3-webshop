@@ -37,6 +37,7 @@ Route::prefix('webshop')->group(function() {
         Route::get('/', 'index')->name('webshop.home');
         Route::post('/cart/add/{product}', 'addToCart')->name('cart.add');
         Route::post('/cart/remove/{product}', 'removeFromCart')->name('cart.remove');
+        Route::post('/cart/customize/{id}', 'customizeCartItem')->name('cart.customize');
         Route::get('/{category}/{product}', 'single')->name('webshop.single');
         Route::get('/{slug}', 'archive')->name('webshop.archive'); // Keep last!
     });
@@ -84,11 +85,9 @@ Route::post('/update', [FileUploadController::class, 'update'])->name('avatar');
 
 
 
-// Teszt, törölni!
-Route::get('/teszt', function() {
-    return view('welcome');
+Route::get('/debug/cart', function () {
+    return session('cart');
 });
-
 /* 
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Imagick\Driver;
