@@ -80,7 +80,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 Route::post('/upload', [FileUploadController::class, 'upload'])->name('file.upload');
 
-Route::get('/resize/{path}', [ImageController::class, 'show'])->where('path', '.*');
 
 
 
