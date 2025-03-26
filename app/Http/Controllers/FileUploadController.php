@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Routing\Controller;
+use Illuminate\Validation\Rule;
+use RahulHaque\Filepond\Facades\Filepond;
 
 class FileUploadController extends Controller
 {
@@ -27,29 +31,23 @@ class FileUploadController extends Controller
     /**
      * Teszt törölni!!!!
      */
-    public function update(Request $request)
+    public function uploadCustomizeImage(Request $request)
     {
         // Single and multiple file validation
         $this->validate($request, [
-            'avatar' => Rule::filepond([
+            'front_image' => Rule::filepond([
                 'required',
                 'image',
-                'max:2000'
+                'max:10000'
             ]),
-            'gallery.*' => Rule::filepond([
-                'required',
-                'image',
-                'max:2000'
-            ])
         ]);
     
         // Set filename
-        $avatarName = 'avatar-' . auth()->id();
+        $frontImageName = 'front-image-' . Str::random(7);
     
         // Move the file to permanent storage
         // Automatic file extension set
-        $fileInfo = Filepond::field($request->avatar)
-            ->moveTo('avatars/' . $avatarName);
+        $fileInfo = Filepond::field($request->front_image)->moveTo('customizations/' . $frontImageName);
 
         // dd($fileInfo);
         // [
@@ -63,43 +61,6 @@ class FileUploadController extends Controller
         //     "url" => "http://localhost/storage/avatars/avatar-1.png",
         // ];
 
-        $galleryName = 'gallery-' . auth()->id();
-
-        $fileInfos = Filepond::field($request->gallery)
-            ->moveTo('galleries/' . $galleryName);
-    
-        // dd($fileInfos);
-        // [
-        //     [
-        //         "id" => 1,
-        //         "dirname" => "galleries",
-        //         "basename" => "gallery-1-1.png",
-        //         "extension" => "png",
-        //         "mimetype" => "image/png",
-        //         "filename" => "gallery-1-1",
-        //         "location" => "galleries/gallery-1-1.png",
-        //         "url" => "http://localhost/storage/galleries/gallery-1-1.png",
-        //     ],
-        //     [
-        //         "id" => 2,
-        //         "dirname" => "galleries",
-        //         "basename" => "gallery-1-2.png",
-        //         "extension" => "png",
-        //         "mimetype" => "image/png",
-        //         "filename" => "gallery-1-2",
-        //         "location" => "galleries/gallery-1-2.png",
-        //         "url" => "http://localhost/storage/galleries/gallery-1-2.png",
-        //     ],
-        //     [
-        //         "id" => 3,
-        //         "dirname" => "galleries",
-        //         "basename" => "gallery-1-3.png",
-        //         "extension" => "png",
-        //         "mimetype" => "image/png",
-        //         "filename" => "gallery-1-3",
-        //         "location" => "galleries/gallery-1-3.png",
-        //         "url" => "http://localhost/storage/galleries/gallery-1-3.png",
-        //     ],
-        // ]
+     
     }
 }

@@ -21,12 +21,7 @@
                 <form action="" method="POST" id="productCustomizeForm" class="flex flex-col gap-y-4" enctype="multipart/form-data" novalidate>
                     @csrf
                     <div class="form-group">
-                        <x-form.upload 
-                            for="front_image" 
-                            id="customizeFrontImage" 
-                            label="Előlap képe"
-                            :config="['allowMultiple' => false, 'maxFiles' => 1]"
-                        />
+                        <input type="file" name="front_image" required/>
                     </div>
                     <div class="form-group">
                         <x-form.input label="Előlap szöveg" for="customizeFrontText"/>
@@ -43,12 +38,12 @@
                     </x-form.checkbox>
                     <div class="hidden" id="customizeBackPage">
                         <div class="form-group mb-4">
-                            <x-form.upload 
+                            {{-- <x-form.upload 
                                 for="front_image" 
                                 id="customizeBackImage" 
                                 label="Hátlap képe"
                                 :config="['allowMultiple' => false, 'maxFiles' => 1]"
-                            />
+                            /> --}}
                         </div>
                         <div class="form-group">
                             <x-form.input label="Hátlap szöveg" for="customizeBackText"/>
@@ -71,10 +66,31 @@
 
             <!-- Footer -->
             <div class="offcanvas-footer flex-none p-6">
-                <x-button href="#" class="w-full">Mentés</x-button>
+                <x-button href="#" class="button-submit w-full" data-target="#productCustomizeForm">Mentés</x-button>
             </div>
             
 
         </div>
     </div>
 </aside>
+
+@push('styles')
+<link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+@endpush
+@push('scripts')
+<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+<script>
+    // Set default FilePond options
+    FilePond.setOptions({
+        server: {
+            url: "{{ config('filepond.server.url') }}",
+            headers: {
+                'X-CSRF-TOKEN': "{{ @csrf_token() }}",
+            }
+        }
+    });
+
+    // Create the FilePond instance
+    FilePond.create(document.querySelector('input[name="front_image"]'));
+</script>
+@endpush
