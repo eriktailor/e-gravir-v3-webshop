@@ -84,7 +84,7 @@
                                             data-id="{{ $cartItemId }}"
                                             data-toggle-target="secondPageOptions"
                                         >
-                                            A hátoldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
+                                            A hátoldalra is kérek gravírozást <span class="text-gray-400">(+{{ $item['extra_price'] }} Ft)</span>
                                         </x-form.checkbox>
                                         <div id="secondPageOptions-{{ $cartItemId }}" class="{{ !$engraveSecond ? 'hidden' : '' }}">
                                             @if($custom?->back_image)
@@ -106,7 +106,7 @@
                                             :checked="$engraveThird"
                                             data-id="{{ $cartItemId }}"
                                             data-toggle-target="thirdPageOptions">
-                                            A belső oldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
+                                            A belső oldalra is kérek gravírozást <span class="text-gray-400">(+{{ $item['extra_price'] }} Ft)</span>
                                         </x-form.checkbox>
                                         <div id="thirdPageOptions-{{ $cartItemId }}" class="{{ !$engraveThird ? 'hidden' : '' }}">
                                             @if($custom?->inner_text)
