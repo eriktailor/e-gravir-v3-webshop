@@ -50,7 +50,7 @@
             <span class="font-normal">{{ number_format(cart_total(), 0, ',', ' ') }} Ft</span>
         </x-heading>
         <x-button href="{{ route('webshop.cart') }}" class="w-full">
-            Tovább a testreszabáshoz
+            Testreszabás
         </x-button>
     </div>
 
