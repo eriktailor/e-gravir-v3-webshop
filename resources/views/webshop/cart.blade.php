@@ -33,10 +33,11 @@
                                             Testreszabás
                                         </x-button>
                                         <x-tooltip text="Törlés">
-                                            <x-button.chip icon="trash" 
-                                                class="remove-cart-item flex-none h-9 -mt-2 -mr-2" 
-                                                data-id="{{ $item['product_id'] }}"
-                                                type="submit"/>
+                                            <x-button.chip 
+                                                icon="trash" 
+                                                class="remove-cart-item flex-none h-9 -mt-2 -mr-2"
+                                                type="button"
+                                                data-id="{{ $cartItemId }}"/>
                                         </x-tooltip>
                                     </div>
                                 </div>
@@ -120,7 +121,27 @@
                 </div>
 
             </form>
+
+            {{-- Remove item from cart form --}}
+            <form method="POST" action="{{ route('cart.remove') }}" id="removeCartItemForm" class="hidden">
+                @csrf
+                <input type="hidden" name="cart_item_id" id="removeCartItemId">
+            </form>
+
         </div>
     </main>
 
 @endsection
+
+@push('scripts')
+    <script>
+        document.querySelectorAll('.remove-cart-item').forEach(button => {
+            button.addEventListener('click', function () {
+                const cartItemId = this.dataset.id;
+                const form = document.getElementById('removeCartItemForm');
+                document.getElementById('removeCartItemId').value = cartItemId;
+                form.submit();
+            });
+        });
+    </script>
+@endpush

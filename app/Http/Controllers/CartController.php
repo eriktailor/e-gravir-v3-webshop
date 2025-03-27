@@ -65,6 +65,8 @@ class CartController extends Controller
      */
     public function storeCustomizations(Request $request)
     {
+        $all = [];
+    
         foreach ($request->input('customizations', []) as $cartItemId => $fields) {
             $frontImage = $request->file("customizations.$cartItemId.front_image");
             $backImage = $request->file("customizations.$cartItemId.back_image");
@@ -73,14 +75,16 @@ class CartController extends Controller
                 $path = $frontImage->store("customizations/$cartItemId", 'public');
                 $fields['front_image'] = $path;
             }
-
+    
             if ($backImage) {
                 $path = $backImage->store("customizations/$cartItemId", 'public');
                 $fields['back_image'] = $path;
             }
     
-            dd($fields);
+            $all[$cartItemId] = $fields;
         }
+    
+        dd($all);
     }
 
     
