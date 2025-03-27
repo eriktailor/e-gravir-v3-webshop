@@ -9,7 +9,7 @@
                         #{{ $product->id }}
                     </span>
                     <img 
-                        src="{{ $product->first_image_url }}" 
+                        src="{{ $product->firstImageUrl() }}" 
                         alt="{{ $product->name }} termékkép"
                         class="w-12 h-12 rounded-lg object-cover object-center">
                     <x-heading level="h4">{{ $product->name }}</x-heading>
@@ -23,9 +23,9 @@
                 </div>
 
                 <!-- Price -->
-                <div class="flex justify-start gap-x-1">
+                <div class="flex flex-col justify-start gap-x-1">
                     @if($product->sale_price)
-                        <span class="line-through">{{ $product->price }} Ft</span> 
+                        <span class="line-through text-gray-400">{{ $product->price }} Ft</span> 
                         <span class="text-red-600">{{ $product->sale_price }} Ft</span>
                     @else
                         <span class="text-red-600">{{ $product->price }} Ft</span> 
