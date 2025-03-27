@@ -61,15 +61,3 @@
     </form>
 
 </div>
-
-@push('scripts')
-    <script>
-        document.querySelectorAll('.remove-cart-item').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const id = btn.dataset.id;
-                document.getElementById('removeCartItemId').value = id;
-                document.getElementById('removeCartItemForm').submit();
-            });
-        });
-    </script>
-@endpush

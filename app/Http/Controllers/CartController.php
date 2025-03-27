@@ -52,10 +52,9 @@ class CartController extends Controller
         $cartItemId = $request->cart_item_id;
     
         unset($cart[$cartItemId]);
-    
         session()->put('cart', $cart);
     
-        return redirect()->back()->with('success', 'Termék eltávolítva a kosárból!');
+        return response()->json(['success' => 'Termék eltávolítva a kosárból!']);
     }
 
     /**

@@ -31,8 +31,26 @@ export default function initCart() {
             .always(function() {
                 btn.prop('disabled', false).text('Kosárba teszem');
             });
-        
-        
+    });
+
+    /**
+     * Remove item from cart
+     */
+    $(document).on('click', '.remove-cart-item', function() {
+        const id = $(this).data('id');
+
+        $.post('/webshop/cart/remove', {
+            cart_item_id: id
+        })
+        .done(function (response) {
+            $('#miniCart').load(location.href + ' #miniCart > *', function () {
+                initDropdown();
+                showTopbarMessage(response.success);
+            });
+        })
+        .fail(function () {
+            alert('Hiba történt a termék törlésekor.');
+        });
     });
 
 }
