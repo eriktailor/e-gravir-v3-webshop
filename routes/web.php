@@ -79,11 +79,21 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 });
 
-Route::post('/upload', [FileUploadController::class, 'upload'])->name('file.upload');
-Route::post('/update', [FileUploadController::class, 'update'])->name('avatar');
+//Route::post('/upload', [FileUploadController::class, 'upload'])->name('file.upload');
 
 
 
+// Teszt törölni
+Route::get('/filepond-test', function () {
+    return view('filepond-test');
+});
+
+use Illuminate\Support\Facades\Storage;
+Route::post('/upload', function (\Illuminate\Http\Request $request) {
+    $file = $request->file('file');
+    $path = $file->store('uploads', 'public');
+    dd(Storage::url($path));
+})->name('file.upload');
 
 Route::get('/debug/cart', function () {
     return session('cart');
