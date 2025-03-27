@@ -68,46 +68,29 @@
                                         @endif
                                     </div>
                                     
-                                    {{-- Hátlap mezők --}}
-                                    @if($custom?->back_image || $custom?->back_text)
-                                        <div>
-                                            <x-form.checkbox 
-                                                for="customizations[{{ $cartItemId }}][engrave_second_page]" 
-                                                class="toggle"
-                                                data-target="#customizeBackPage-{{ $loop->index }}">
-                                                A hátoldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
-                                            </x-form.checkbox>
-                                            <div class="hidden" id="customizeBackPage-{{ $loop->index }}">
-                                                @if($custom?->back_image)
-                                                    <div class="form-group mb-4">
-                                                        <x-form.upload for="customizations[{{ $cartItemId }}][back_image]" id="customizeBackImage-{{ $loop->index }}" label="Hátlap képe"/>
-                                                    </div>
-                                                @endif
-                                                @if($custom?->back_text)
-                                                    <div class="form-group">
-                                                        <x-form.input for="customizations[{{ $cartItemId }}][back_text]" id="customizeBackText-{{ $loop->index }}" label="Hátlap szöveg"/>
-                                                    </div>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    @endif
-                                    
-                                    {{-- Belső mezők --}}
-                                    @if($custom?->inner_text)
-                                        <div>
-                                            <x-form.checkbox 
-                                                for="customizations[{{ $cartItemId }}][engrave_third_page]" 
-                                                class="toggle"
-                                                data-target="#customizeInnerPage-{{ $loop->index }}">
-                                                A belső oldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
-                                            </x-form.checkbox>
-                                            <div class="hidden" id="customizeInnerPage-{{ $loop->index }}">
-                                                <div class="form-group">
-                                                    <x-form.input for="customizations[{{ $cartItemId }}][inner_text]" id="customizeInnerText-{{ $loop->index }}" label="Belső szöveg"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endif
+                                    @php
+                                        $engraveSecond = $item['customization']['engrave_second'] ?? false;
+                                        $engraveThird = $item['customization']['engrave_third'] ?? false;
+                                    @endphp
+
+                                    {{-- Extra gravírozás mezők --}}
+                                    <div class="flex flex-col gap-4 mt-4">
+
+                                        <x-form.checkbox 
+                                            for="engrave_second_page_{{ $cartItemId }}" 
+                                            name="customizations[{{ $cartItemId }}][engrave_second_page]"
+                                            :checked="$engraveSecond">
+                                            A hátoldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
+                                        </x-form.checkbox>
+
+                                        <x-form.checkbox 
+                                            for="engrave_third_page_{{ $cartItemId }}" 
+                                            name="customizations[{{ $cartItemId }}][engrave_third_page]"
+                                            :checked="$engraveThird">
+                                            A belső oldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
+                                        </x-form.checkbox>
+
+                                    </div>
 
                                 </div>
                             </div>
