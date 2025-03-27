@@ -130,24 +130,34 @@
                             @empty
                                 <p>Nincs termék a kosárban.</p>
                             @endforelse
+                            
+                            <!-- Cart summary -->
+                            @php
+                                $cart = session('cart', []);
+                                $productTotal = collect($cart)->sum(fn($item) => $item['price'] * $item['quantity']);
+                                $extraTotal = collect($cart)->sum(fn($item) => ($item['extra_price'] ?? 0) * $item['quantity']);
+                                $shipping = 0; // ha van fix vagy dinamikus szállítási díj, itt állítsd
+                                $grandTotal = $productTotal + $extraTotal + $shipping;
+                            @endphp
                             <div class="order-summary flex flex-col gap-y-2 my-3">
                                 <div class="flex justify-between">
                                     Termékek
-                                    <span>0 Ft</span>
+                                    <span>{{ number_format($productTotal, 0, ',', ' ') }} Ft</span>
                                 </div>
                                 <div class="flex justify-between">
                                     Extra felár
-                                    <span>0 Ft</span>
+                                    <span>{{ number_format($extraTotal, 0, ',', ' ') }} Ft</span>
                                 </div>
                                 <div class="flex justify-between border-b border-gray-300 mb-2 pb-4">
                                     Szállítási díj
-                                    <span>0 Ft</span>
+                                    <span>{{ number_format($shipping, 0, ',', ' ') }} Ft</span>
                                 </div>
                                 <div class="flex justify-between text-stone-950 mb-1">
                                     <strong>Végösszeg</strong>
-                                    <span>0 Ft</span>
+                                    <span>{{ number_format($grandTotal, 0, ',', ' ') }} Ft</span>
                                 </div>
                             </div>
+
                             <x-button class="button-submit" data-target="#checkoutForm">
                                 Megrendelés Elküldése
                             </x-button>

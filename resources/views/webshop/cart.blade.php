@@ -79,9 +79,22 @@
                                         <x-form.checkbox 
                                             for="customizations[{{ $cartItemId }}][engrave_second_page]"
                                             name="customizations[{{ $cartItemId }}][engrave_second_page]"
-                                            :checked="$engraveSecond">
+                                            :checked="$engraveSecond"
+                                        >
                                             A hátoldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
                                         </x-form.checkbox>
+                                        <div class="{{ $engraveSecond == false ? 'hidden' : '' }}" id="toggleSecondPageOptions-{{ $cartItemId }}">
+                                            @if($custom?->back_image)
+                                                <div class="form-group">
+                                                    <x-form.upload for="customizations[{{ $cartItemId }}][back_image]" id="customizeBackImage-{{ $loop->index }}" label="Hátlap képe"/>
+                                                </div>
+                                            @endif
+                                            @if($custom?->back_text)
+                                                <div class="form-group">
+                                                    <x-form.input for="customizations[{{ $cartItemId }}][back_text]" id="customizeBackText-{{ $loop->index }}" label="Hátlap szöveg"/>
+                                                </div>
+                                            @endif
+                                        </div>
 
                                         <x-form.checkbox 
                                             for="customizations[{{ $cartItemId }}][engrave_third_page]"
