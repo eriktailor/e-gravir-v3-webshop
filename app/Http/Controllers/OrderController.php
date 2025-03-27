@@ -112,36 +112,34 @@ class OrderController extends Controller
      */
     public function downloadImages(Order $order)
     {
-        $zipFileName = 'order_'.$order->id.'_images.zip';
-        $zip = new ZipArchive;
+        $zipFileName = 'order_' . $order->id . '_images.zip';
         $tempZip = storage_path('app/public/' . $zipFileName);
+        $zip = new \ZipArchive;
 
-        if ($zip->open($tempZip, ZipArchive::CREATE | ZipArchive::OVERWRITE) === TRUE) {
-            
+        if ($zip->open($tempZip, \ZipArchive::CREATE | \ZipArchive::OVERWRITE) === true) {
+
             foreach ($order->items as $item) {
-                $custom = $order->customizations->firstWhere('product_id', $item->product_id);
+                $folderName = 'Product_' . $item->product_id;
 
-                if ($custom) {
-                    $folderName = 'Product_' . $item->product_id;
-                    
-                    foreach (['front_image', 'back_image'] as $field) {
-                        if (!empty($custom->$field)) {
-                            $imagePath = storage_path('app/public/' . $custom->$field);
-                            if (file_exists($imagePath)) {
-                                $zip->addFile($imagePath, $folderName . '/' . basename($custom->$field));
-                            }
+                $custom = $item->customizations;
+
+                foreach (['front_image', 'back_image'] as $field) {
+                    if (!empty($custom[$field])) {
+                        $imagePath = storage_path('app/public/' . $custom[$field]);
+
+                        if (file_exists($imagePath)) {
+                            $zip->addFile($imagePath, $folderName . '/' . basename($custom[$field]));
                         }
                     }
                 }
             }
 
             $zip->close();
-
         } else {
-            return back()->with('error', 'Nem sikerült létrehozni a zip fájlt!');
+            return back()->with('error', 'Nem sikerült létrehozni a ZIP fájlt!');
         }
 
-        // Letöltés
         return response()->download($tempZip)->deleteFileAfterSend(true);
     }
+
 }
