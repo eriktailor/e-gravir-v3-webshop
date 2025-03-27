@@ -18,7 +18,7 @@ return [
             'label' => 'Házhozszállítás',
             'info' => '2500 Ft',
             'icon'  => 'truck',
-            'price' => 1500,
+            'price' => 2500,
         ],
         'szemelyes' => [
             'label' => 'Személyes átvétel',

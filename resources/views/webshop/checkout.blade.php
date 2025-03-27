@@ -172,3 +172,22 @@
 
 @endsection
 
+@push('scripts')
+    <script>
+        $(document).ready(function () {
+            const formatFt = num => new Intl.NumberFormat('hu-HU').format(num) + ' Ft';
+
+            $('input[name="delivery_method"]').on('change', function () {
+                const shipping = parseInt($(this).data('price')) || 0;
+
+                const productTotal = parseInt({{ $productTotal }});
+                const extraTotal = parseInt({{ $extraTotal }});
+                const grandTotal = productTotal + extraTotal + shipping;
+
+                $('.order-summary span').eq(2).text(formatFt(shipping)); // Szállítási díj
+                $('.order-summary span').eq(3).text(formatFt(grandTotal)); // Végösszeg
+            });
+        });
+    </script>
+@endpush
+
