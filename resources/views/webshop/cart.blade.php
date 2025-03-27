@@ -77,14 +77,14 @@
                                     <div class="flex flex-col gap-4 mt-4">
 
                                         <x-form.checkbox 
-                                            for="engrave_second_page_{{ $cartItemId }}" 
+                                            for="customizations[{{ $cartItemId }}][engrave_second_page]"
                                             name="customizations[{{ $cartItemId }}][engrave_second_page]"
                                             :checked="$engraveSecond">
                                             A hátoldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
                                         </x-form.checkbox>
 
                                         <x-form.checkbox 
-                                            for="engrave_third_page_{{ $cartItemId }}" 
+                                            for="customizations[{{ $cartItemId }}][engrave_third_page]"
                                             name="customizations[{{ $cartItemId }}][engrave_third_page]"
                                             :checked="$engraveThird">
                                             A belső oldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Models\Product;
 use App\Models\ProductCustomization;
 
@@ -63,12 +62,9 @@ class CartController extends Controller
      */
     public function storeCustomizations(Request $request)
     {
-        dd($request->all());
         $cart = session()->get('cart', []);
-        $customData = [];
 
         foreach ($request->input('customizations', []) as $cartItemId => $fields) {
-            // File mentés
             $frontImage = $request->file("customizations.$cartItemId.front_image");
             $backImage = $request->file("customizations.$cartItemId.back_image");
 
@@ -82,7 +78,6 @@ class CartController extends Controller
                 $fields['back_image'] = $path;
             }
 
-            // Extra ár hozzáadása
             $productId = $cart[$cartItemId]['product_id'];
             $product = Product::find($productId);
             $baseExtra = $product->extra_price ?? 0;
@@ -111,8 +106,5 @@ class CartController extends Controller
         session(['cart' => $cart]);
 
         return redirect()->route('webshop.checkout')->with('success', 'Testreszabások elmentve!');
-    }   
-
-
-    
+    }
 }
