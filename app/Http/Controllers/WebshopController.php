@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductCategory;
-use RahulHaque\Filepond\Facades\Filepond;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WebshopController extends Controller
 {
@@ -111,8 +111,8 @@ class WebshopController extends Controller
         }
     
         // handle FilePond image
-        $file = Filepond::field($request->front_image)->moveTo('customizations');
-        $imagePath = $file['location'] ?? null;
+        $file = $request->file('file');
+        $path = $file->store('uploads', 'public');
     
         // save customization
         $cart[$id]['customization'] = [
@@ -122,7 +122,7 @@ class WebshopController extends Controller
             'back_text' => $request->input('customizeBackText'),
             'engrave_third' => $request->has('engrave_third_page'),
             'inner_text' => $request->input('customizeInnerText'),
-            'front_image' => $imagePath,
+            'front_image' => Storage::url($path),
         ];
     
         session()->put('cart', $cart);

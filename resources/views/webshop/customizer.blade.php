@@ -18,10 +18,10 @@
             <!-- Content -->
             <div class="offcanvas-content flex-grow overflow-auto no-scrollbar p-6">
                 
-                <form action="" method="POST" id="productCustomizeForm" class="flex flex-col gap-y-4" enctype="multipart/form-data" novalidate>
+                <form action="{{ route('cart.customize', ['id' => $id]) }}" method="POST" id="productCustomizeForm" class="flex flex-col gap-y-4" enctype="multipart/form-data" novalidate>
                     @csrf
                     <div class="form-group">
-                        <input type="file" name="front_image" required/>
+                        <input type="file" name="file" id="customizeFrontImage" required/>
                     </div>
                     <div class="form-group">
                         <x-form.input label="Előlap szöveg" for="customizeFrontText"/>
@@ -80,41 +80,10 @@
 @push('scripts')
 <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
 <script>
-    // Set default FilePond options
-    FilePond.setOptions({
-        server: {
-            url: "{{ config('filepond.server.url') }}",
-            headers: {
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-        }
-    });
-
-    // Create the FilePond instance
-    FilePond.create(document.querySelector('input[name="front_image"]'));
-</script>
-<script>
-$('.button-submit').on('click', function(e) {
-    e.preventDefault();
-
-    let form = $('#productCustomizeForm')[0];
-    let formData = new FormData(form);
-    let productId = $(this).data('product-id');
-
-    $.ajax({
-        url: '/webshop/cart/customize/' + productId,
-        method: 'POST',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(res) {
-            alert(res.message);
-        },
-        error: function(err) {
-            alert('Hiba történt');
-        }
-    });
+const inputElement = document.querySelector('#customizeFrontImage');
+const pond = FilePond.create(inputElement, {
+    allowProcess: false,
+    storeAsFile: true // 👈 important! keeps real file for form submission
 });
-
 </script>
 @endpush
