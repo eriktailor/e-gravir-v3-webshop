@@ -6,10 +6,10 @@
 
     <x-header.page :title="'Testreszabás'"/>
 
-    <main>
+    <main class="pb-24">
         <div class="container">
             <div class="flex flex-col gap-y-6 max-w-3xl mx-auto">
-                <p class="text-lg max-w-xl mx-auto text-center">Ezen az oldalon tudod személyre szabni a kosaraban lévő termékeket. Kattints a "Testreszabás" linkre a termékeknél alább!</p>
+                <p class="text-lg max-w-xl mx-auto text-center">Ezen az oldalon tudod személyre szabni a kosaraban lévő termékeket. Kattints a "Testreszabás" gombra a termékeknél.</p>
                 @forelse($cart as $cartItemId => $item)
                     @for($i = 0; $i < $item['quantity']; $i++)
                         <div class="cart-item bg-white rounded-xl shadow">
@@ -21,18 +21,27 @@
                                             class="w-full h-full object-cover rounded-lg" />
                                     </div>
                                     <div>
-                                        <x-heading level="h3">{{ $item['name'] }}</x-heading>
+                                        <x-heading level="h3" class="mb-1">{{ $item['name'] }}</x-heading>
                                         <p>{{ $item['price'] }} Ft </p>
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-x-3">
-                                    <x-button color="white" class="ml-auto">Testreszabás</x-button>
-                                    <x-tooltip text="Törlés">
-                                        <x-button.chip icon="trash" class="remove-cart-item flex-none h-9 -mt-2 -mr-2" data-id="{{ $item['product_id'] }}"/>
-                                    </x-tooltip>
+                                    <x-button color="white" class="toggle" data-target="#productCustomizeForm-{{ $loop->index }}">
+                                        Testreszabás
+                                    </x-button>
+                                    <form method="POST" action="{{ route('cart.remove') }}">
+                                        @csrf
+                                        <input type="hidden" name="cart_item_id" value="{{ $cartItemId }}">
+                                        <x-tooltip text="Törlés">
+                                            <x-button.chip icon="trash" 
+                                                class="remove-cart-item flex-none h-9 -mt-2 -mr-2" 
+                                                data-id="{{ $item['product_id'] }}"
+                                                type="submit"/>
+                                        </x-tooltip>
+                                    </form>
                                 </div>
                             </div>
-                            <form action="" method="POST" id="productCustomizeForm" class="flex flex-col gap-y-4 p-6 border-t border-gray-300" enctype="multipart/form-data" novalidate>
+                            <form action="" method="POST" id="productCustomizeForm-{{ $loop->index }}" class="hidden flex flex-col gap-y-4 p-6 border-t border-gray-300" enctype="multipart/form-data" novalidate>
                                 @csrf
                                 @php
                                     $productId = $item['product_id'];

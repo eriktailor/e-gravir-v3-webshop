@@ -44,5 +44,20 @@ class CartController extends Controller
     
         return back()->with('success', 'Termék a kosárba került!');
     }
+
+    /**
+     * Remove item from cart
+     */
+    public function removeFromCart(Request $request)
+    {
+        $cart = session()->get('cart', []);
+        $cartItemId = $request->cart_item_id;
+    
+        unset($cart[$cartItemId]);
+    
+        session()->put('cart', $cart);
+    
+        return redirect()->back()->with('success', 'Termék eltávolítva a kosárból!');
+    }
     
 }

@@ -51,26 +51,6 @@ class WebshopController extends Controller
     }
 
 
-    
-
-    /**
-     * Remove item from cart
-     */
-    public function removeFromCart(Request $request, Product $product)
-    {
-        $cart = session()->get('cart', []);
-
-        if (isset($cart[$product->id])) {
-            unset($cart[$product->id]);
-            session()->put('cart', $cart);
-        }
-
-        return response()->json([
-            'count' => count($cart),
-            'message' => 'Termék eltávolítva a kosárból!',
-        ]);
-    }
-
     /**
      * Customize products in cart
      */

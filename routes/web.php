@@ -32,6 +32,8 @@ Route::prefix('webshop')->group(function() {
     Route::controller(CartController::class)->group(function() {
         Route::get('/cart', 'index')->name('webshop.cart');
         Route::post('/cart/add/{product}', 'addToCart')->name('cart.add');
+        Route::post('/cart/remove', 'removeFromCart')->name('cart.remove');
+
     });
 
     Route::controller(CheckoutController::class)->group(function() {
