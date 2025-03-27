@@ -69,50 +69,52 @@
                                     </div>
                                     
                                     {{-- Hátlap mezők --}}
-                                    <div>
-                                        <x-form.checkbox 
-                                            for="customizations[{{ $cartItemId }}][engrave_second_page]" 
-                                            class="toggle"
-                                            data-target="#customizeBackPage-{{ $loop->index }}">
-                                            A hátoldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
-                                        </x-form.checkbox>
-                                        <div class="hidden" id="customizeBackPage-{{ $loop->index }}">
-                                            @if($custom?->back_image)
-                                                <div class="form-group mb-4">
-                                                    <x-form.upload for="customizations[{{ $cartItemId }}][back_image]" id="customizeBackImage-{{ $loop->index }}" label="Hátlap képe"/>
-                                                </div>
-                                            @endif
-                                            @if($custom?->back_text)
-                                                <div class="form-group">
-                                                    <x-form.input for="customizations[{{ $cartItemId }}][back_text]" id="customizeBackText-{{ $loop->index }}" label="Hátlap szöveg"/>
-                                                </div>
-                                            @endif
+                                    @if($custom?->back_image || $custom?->back_text)
+                                        <div>
+                                            <x-form.checkbox 
+                                                for="customizations[{{ $cartItemId }}][engrave_second_page]" 
+                                                class="toggle"
+                                                data-target="#customizeBackPage-{{ $loop->index }}">
+                                                A hátoldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
+                                            </x-form.checkbox>
+                                            <div class="hidden" id="customizeBackPage-{{ $loop->index }}">
+                                                @if($custom?->back_image)
+                                                    <div class="form-group mb-4">
+                                                        <x-form.upload for="customizations[{{ $cartItemId }}][back_image]" id="customizeBackImage-{{ $loop->index }}" label="Hátlap képe"/>
+                                                    </div>
+                                                @endif
+                                                @if($custom?->back_text)
+                                                    <div class="form-group">
+                                                        <x-form.input for="customizations[{{ $cartItemId }}][back_text]" id="customizeBackText-{{ $loop->index }}" label="Hátlap szöveg"/>
+                                                    </div>
+                                                @endif
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
                                     
                                     {{-- Belső mezők --}}
-                                    <div>
-                                        <x-form.checkbox 
-                                            for="customizations[{{ $cartItemId }}][engrave_third_page]" 
-                                            class="toggle"
-                                            data-target="#customizeInnerPage-{{ $loop->index }}">
-                                            A belső oldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
-                                        </x-form.checkbox>
-                                        <div class="hidden" id="customizeInnerPage-{{ $loop->index }}">
-                                            @if($custom?->inner_text)
+                                    @if($custom?->inner_text)
+                                        <div>
+                                            <x-form.checkbox 
+                                                for="customizations[{{ $cartItemId }}][engrave_third_page]" 
+                                                class="toggle"
+                                                data-target="#customizeInnerPage-{{ $loop->index }}">
+                                                A belső oldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
+                                            </x-form.checkbox>
+                                            <div class="hidden" id="customizeInnerPage-{{ $loop->index }}">
                                                 <div class="form-group">
                                                     <x-form.input for="customizations[{{ $cartItemId }}][inner_text]" id="customizeInnerText-{{ $loop->index }}" label="Belső szöveg"/>
                                                 </div>
-                                            @endif
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
 
                                 </div>
                             </div>
                         @endfor
                     @empty
                         <div class="flex flex-col items-center gap-y-6">
-                            <img class="px-8" src="{{ asset('/img/empty_cart.png') }}" alt="Üres kosár">
+                            <img class="px-8" src="{{ asset('img/empty_cart.png') }}" alt="Üres kosár">
                             <p>Jelenleg nincs termék a kosaradban.</p>
                             <x-button href="{{ route('webshop.home') }}">Vásárlás Folytatása</x-button>
                         </div>

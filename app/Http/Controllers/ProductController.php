@@ -95,7 +95,7 @@ class ProductController extends Controller
             'options' => $options,
             'categories' => $categories,
             'existingImages' => $existingImages,
-            'customizations' => $customization,
+            'productCustomization' => $customization,
         ]);
     }
 
@@ -210,7 +210,6 @@ class ProductController extends Controller
                 'front_text' => $request->has('front_text') ? 1 : 0,
                 'back_image' => $request->has('back_image') ? 1 : 0,
                 'back_text' => $request->has('back_text') ? 1 : 0,
-                'inner_image' => $request->has('inner_image') ? 1 : 0,
                 'inner_text' => $request->has('inner_text') ? 1 : 0,
                 'other_notes' => $request->has('other_notes') ? 1 : 0,
             ]);
@@ -220,7 +219,6 @@ class ProductController extends Controller
                 'front_text' => $request->has('front_text') ? 1 : 0,
                 'back_image' => $request->has('back_image') ? 1 : 0,
                 'back_text' => $request->has('back_text') ? 1 : 0,
-                'inner_image' => $request->has('inner_image') ? 1 : 0,
                 'inner_text' => $request->has('inner_text') ? 1 : 0,
                 'other_notes' => $request->has('other_notes') ? 1 : 0,
             ]);

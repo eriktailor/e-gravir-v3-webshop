@@ -98,6 +98,30 @@
                         Új variáció hozzáadása
                     </x-button>
                 </x-card>
+
+                 <!-- Testreszabás -->
+                 <x-card title="Testreszabás">
+                    <div class="grid grid-cols-3 gap-2">
+                        <x-form.checkbox for="front_image" :checked="old('front_image', $productCustomization->front_image ?? false) == 1">
+                            Előlap kép
+                        </x-form.checkbox>
+                        <x-form.checkbox for="front_text" :checked="old('front_text', $productCustomization->front_text ?? false) == 1">
+                            Előlap szöveg
+                        </x-form.checkbox>
+                        <x-form.checkbox for="back_image" :checked="old('back_image', $productCustomization->back_image ?? false) == 1">
+                            Hátlap kép
+                        </x-form.checkbox>
+                        <x-form.checkbox for="back_text" :checked="old('back_text', $productCustomization->back_text ?? false) == 1">
+                            Hátlap szöveg
+                        </x-form.checkbox>
+                        <x-form.checkbox for="inner_text" :checked="old('inner_text', $productCustomization->inner_text ?? false) == 1">
+                            Belső oldal szöveg
+                        </x-form.checkbox>
+                        <x-form.checkbox for="other_notes" :checked="old('other_notes', $productCustomization->other_notes ?? false) == 1">
+                            Egyéb megjegyzés
+                        </x-form.checkbox>
+                    </div>
+                </x-card>
                 
                 <!-- Képek -->
                 <x-card title="Képek">
@@ -115,30 +139,6 @@
                         <div class="form-group">
                             <x-form.editor for="description" label="Hosszú leírás"/>
                         </div>
-                    </div>
-                </x-card>
-
-                <!-- Testreszabás -->
-                <x-card title="Testreszabás">
-                    <div class="grid grid-cols-3 gap-2">
-                        <x-form.checkbox for="front_image" :checked="old('front_image', $productCustomization->front_image ?? false)">
-                            Előlap kép
-                        </x-form.checkbox>
-                        <x-form.checkbox for="front_text" :checked="old('front_text', $productCustomization->front_text ?? false)">
-                            Előlap szöveg
-                        </x-form.checkbox>
-                        <x-form.checkbox for="back_image" :checked="old('back_image', $productCustomization->back_image ?? false)">
-                            Hátlap kép
-                        </x-form.checkbox>
-                        <x-form.checkbox for="back_text" :checked="old('back_text', $productCustomization->back_text ?? false)">
-                            Hátlap szöveg
-                        </x-form.checkbox>
-                        <x-form.checkbox for="inner_text" :checked="old('inner_text', $productCustomization->inner_text ?? false)">
-                            Belső oldal szöveg
-                        </x-form.checkbox>
-                        <x-form.checkbox for="other_notes" :checked="old('other_notes', $productCustomization->other_notes ?? false)">
-                            Egyéb megjegyzés
-                        </x-form.checkbox>
                     </div>
                 </x-card>
 
