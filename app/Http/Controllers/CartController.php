@@ -59,5 +59,29 @@ class CartController extends Controller
     
         return redirect()->back()->with('success', 'Termék eltávolítva a kosárból!');
     }
+
+    /**
+     * Store cart customizations
+     */
+    public function storeCustomizations(Request $request)
+    {
+        foreach ($request->input('customizations', []) as $cartItemId => $fields) {
+            $frontImage = $request->file("customizations.$cartItemId.front_image");
+            $backImage = $request->file("customizations.$cartItemId.back_image");
+    
+            if ($frontImage) {
+                $path = $frontImage->store("customizations/$cartItemId", 'public');
+                $fields['front_image'] = $path;
+            }
+
+            if ($backImage) {
+                $path = $backImage->store("customizations/$cartItemId", 'public');
+                $fields['back_image'] = $path;
+            }
+    
+            dd($fields);
+        }
+    }
+
     
 }

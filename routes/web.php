@@ -33,6 +33,7 @@ Route::prefix('webshop')->group(function() {
         Route::get('/cart', 'index')->name('webshop.cart');
         Route::post('/cart/add/{product}', 'addToCart')->name('cart.add');
         Route::post('/cart/remove', 'removeFromCart')->name('cart.remove');
+        Route::post('/cart/customization', 'storeCustomizations')->name('cart.customizations.store');
 
     });
 
