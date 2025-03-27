@@ -51,10 +51,14 @@
                         </div>
                         <div class="grid grid-cols-3">
                             <div class="form-group">
-                                <x-form.checkbox for="featured" label="Kiemelt termék" :checked="old('is_featured', $product->featured ?? false)"/>                   
+                                <x-form.checkbox for="featured" :checked="old('is_featured', $product->featured ?? false)">
+                                    Kiemelt termék
+                                </x-form.checkbox>                   
                             </div>
                             <div class="form-group">
-                                <x-form.checkbox for="hidden" label="Rejtett termék" :checked="old('hidden', $product->hidden ?? false)"/>                   
+                                <x-form.checkbox for="hidden" :checked="old('hidden', $product->hidden ?? false)">
+                                    Rejtett termék
+                                </x-form.checkbox>                   
                             </div>
                         </div>
                     </div>
@@ -117,12 +121,24 @@
                 <!-- Testreszabás -->
                 <x-card title="Testreszabás">
                     <div class="grid grid-cols-3 gap-2">
-                        <x-form.checkbox for="front_image" label="1. oldal kép" :checked="old('front_image', $productCustomization->front_image ?? false)"/>
-                        <x-form.checkbox for="front_text" label="1. oldal szöveg" :checked="old('front_text', $productCustomization->front_text ?? false)"/>
-                        <x-form.checkbox for="back_image" label="2. oldal kép" :checked="old('back_image', $productCustomization->back_image ?? false)"/>
-                        <x-form.checkbox for="back_text" label="2. oldal szöveg" :checked="old('back_text', $productCustomization->back_text ?? false)"/>
-                        <x-form.checkbox for="inner_text" label="3. oldal szöveg" :checked="old('inner_text', $productCustomization->inner_text ?? false)"/>
-                        <x-form.checkbox for="other_notes" label="Megjegyzés" :checked="old('other_notes', $productCustomization->other_notes ?? false)"/>
+                        <x-form.checkbox for="front_image" :checked="old('front_image', $productCustomization->front_image ?? false)">
+                            Előlap kép
+                        </x-form.checkbox>
+                        <x-form.checkbox for="front_text" :checked="old('front_text', $productCustomization->front_text ?? false)">
+                            Előlap szöveg
+                        </x-form.checkbox>
+                        <x-form.checkbox for="back_image" :checked="old('back_image', $productCustomization->back_image ?? false)">
+                            Hátlap kép
+                        </x-form.checkbox>
+                        <x-form.checkbox for="back_text" :checked="old('back_text', $productCustomization->back_text ?? false)">
+                            Hátlap szöveg
+                        </x-form.checkbox>
+                        <x-form.checkbox for="inner_text" :checked="old('inner_text', $productCustomization->inner_text ?? false)">
+                            Belső oldal szöveg
+                        </x-form.checkbox>
+                        <x-form.checkbox for="other_notes" :checked="old('other_notes', $productCustomization->other_notes ?? false)">
+                            Egyéb megjegyzés
+                        </x-form.checkbox>
                     </div>
                 </x-card>
 

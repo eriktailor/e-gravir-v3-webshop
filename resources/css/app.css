@@ -92,6 +92,10 @@ div.filepond--image-bitmap {
     @apply h-full;
 }
 
+div.filepond--drop-label {
+    @apply text-gray-400;
+}
+
 .filepond--file-info {
     @apply invisible;
 }
