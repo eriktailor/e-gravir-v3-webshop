@@ -69,7 +69,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 
     // Products
-    Route::resource('products', ProductController::class)->except(['show']);;
+    Route::resource('products', ProductController::class)->except(['show']);
     Route::get('products/variation-item', [ProductController::class, 'variationItem']);
     Route::get('products/variation-row', [ProductController::class, 'variationRow']);
 

@@ -5,7 +5,7 @@
         <div class="flex justify-between items-center">
             <div class="flex-none w-28">
                 <a class="no-underline flex gap-x-2" href="/admin">
-                    <img src="{{ asset('/img/logos/logo_emblem.svg') }}" alt="E-Gravír Admin" width="25" height="25">
+                    <img src="{{ asset('img/logos/logo_emblem.svg') }}" alt="E-Gravír Admin" width="25" height="25">
                     <span class="text-white font-semibold tracking-tight text-xl">Admin</span>
                 </a>
             </div>
@@ -14,14 +14,14 @@
                     $menu_item_class = 'block w-full md:w-auto rounded-md py-1 px-2 text-gray-400 hover:text-white hover:bg-white/15';
                     $active_class = 'bg-white/15 text-white';
                 @endphp
-                <a class="{{ $menu_item_class }} {{ request()->routeIs('categories.index') ? $active_class : '' }}" href="{{ route('categories.index') }}">
-                    Kategóriák
+                <a class="{{ $menu_item_class }} {{ request()->routeIs('orders.*') ? $active_class : '' }}" href="{{ route('orders.index') }}">
+                    Rendelések
                 </a>
-                <a class="{{ $menu_item_class }} {{ request()->routeIs('products.index') ? $active_class : '' }}" href="{{ route('products.index') }}">
+                <a class="{{ $menu_item_class }} {{ request()->routeIs('products.*') ? $active_class : '' }}" href="{{ route('products.index') }}">
                     Termékek
                 </a>
-                <a class="{{ $menu_item_class }} {{ request()->routeIs('orders.index') ? $active_class : '' }}" href="{{ route('orders.index') }}">
-                    Rendelések
+                <a class="{{ $menu_item_class }} {{ request()->routeIs('categories.*') ? $active_class : '' }}" href="{{ route('categories.index') }}">
+                    Kategóriák
                 </a>
             </div>
             <div class="flex md:flex-none justify-end w-28 gap-x-3">

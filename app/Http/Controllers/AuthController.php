@@ -14,7 +14,7 @@ class AuthController extends Controller
      */
     public function showLogin()
     {
-        return view('admin.login');
+        return view('admin.auth.login');
     }
 
     /**
@@ -26,7 +26,7 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('dashboard');
+            return redirect()->intended('admin/orders');
         }
 
         return back()->withErrors([

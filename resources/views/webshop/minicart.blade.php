@@ -42,7 +42,9 @@
             <div class="flex flex-col items-center gap-y-6">
                 <img class="px-8 -mt-3" src="{{ asset('/img/empty_cart.png') }}" alt="Üres kosár">
                 <p>Jelenleg nincs termék a kosaradban.</p>
-                <x-button href="{{ route('webshop.home') }}">Vásárlás Folytatása</x-button>
+                <x-button href="{{ route('webshop.home') }}" class="w-full">
+                    Vásárlás Folytatása
+                </x-button>
             </div>
         @endforelse
     </div>
