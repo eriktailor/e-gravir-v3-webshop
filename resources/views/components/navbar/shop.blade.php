@@ -22,7 +22,7 @@
                 <button class="navbar-toggle lg:hidden pl-2 pr-1">
                     <x-icon name="align-right" class="text-gray-400 w-7 h-7"/>
                 </button>
-                <x-dropdown id="miniCart" class="mini-cart"> 
+                <x-dropdown id="miniCart" class="mini-cart {{ request()->routeIs('webshop.cart') ? 'pointer-events-none' : '' }}"> 
                     <x-slot name="trigger">
                         <a 
                             class="offcanvas-toggle cursor-pointer p-2 transition-all text-gray-500 hover:text-gray-300 block" 

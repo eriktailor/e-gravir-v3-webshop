@@ -117,7 +117,9 @@
                             <x-button href="{{ route('webshop.home') }}">Vásárlás Folytatása</x-button>
                         </div>
                     @endforelse   
-                    <x-button type="submit">Mentés és tovább a megrendeléshez</x-button>
+                    <div class="flex justify-center">
+                        <x-button type="submit">Mentés és tovább a megrendeléshez</x-button>
+                    </div>
                 </div>
 
             </form>
