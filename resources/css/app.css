@@ -59,7 +59,7 @@ INPUTS
 /* --------------------------------------------------------------
 DROPDOWN
 -------------------------------------------------------------- */
-.dropdown-menu a {
+.dropdown-menu a:not(.button) {
     @apply px-2 py-1 rounded-md hover:bg-gray-100 text-gray-500;
 }
 
@@ -67,7 +67,7 @@ DROPDOWN
 MINICART
 -------------------------------------------------------------- */
 .mini-cart {
-    
+
     .dropdown-menu {
         @apply min-w-[350px] p-4;
     }

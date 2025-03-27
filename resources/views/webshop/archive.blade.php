@@ -6,7 +6,7 @@
 
     <x-header.image :title="'Gravírozott ' . $category->name" :image="$category->image" :description="$category->description"/>
 
-    <main class="bg-orange-100 relative z-40">
+    <main class="bg-orange-100 relative">
         <div class="container">
             @if($products->count())
                 <ul class="archive-products grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 py-6">

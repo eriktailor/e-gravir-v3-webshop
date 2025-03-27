@@ -3,30 +3,25 @@
         <x-heading level="h3">Kosaram</x-heading>
         <x-button.chip icon="x" class="dropdown-close"/>
     </div>
-    <p class="text-gray-400 mb-2">A kosárban lévő termékeket a következő oldalon tudod majd személyre szabni.</p>
+    <p class="text-gray-400 mb-6">A kosárban lévő termékeket a következő oldalon tudod majd személyre szabni.</p>
     @forelse(session('cart', []) as $id => $item)
         @for($i = 0; $i < $item['quantity']; $i++)
-            <div class="cart-item flex gap-x-4 border-b border-gray-300">
+            <div class="cart-item flex gap-x-4 border-b border-gray-300 mb-4 pb-4">
                 <div class="relative w-16 h-16 flex-none">
                     <img src="{{ $item['image'] ?? asset('/img/noimage.webp') }}" 
                         alt="{{ $item['name'] }}" 
                         class="w-full h-full object-cover rounded-lg" />
                 </div>            
-                <div class="flex flex-col grow">
+                <div class="flex flex-col grow text-sm">
                     <div class="flex justify-between flex-nowrap">
-                        <x-heading level="h4" class="mb-2 mr-3">
+                        <x-heading level="h5" class="mb-1.5 mr-3">
                             {{ $item['name'] }}
                         </x-heading>
                         <x-button.chip icon="trash" class="remove-cart-item flex-none h-9 -mt-2 -mr-2" data-id="{{ $id }}"/>
                     </div>
-                    <div class="flex justify-between">
-                        <a href="#sideCustomizer" class="offcanvas-toggle text-sm text-red-600 underline underline-offset-2 hover:no-underline">
-                            Testreszabás
-                        </a>
-                        <span class="text-sm text-gray-400">
-                            {{ $item['price'] }} Ft
-                        </span>
-                    </div>
+                    <span class="text-sm font-normal">
+                        {{ $item['price'] }} Ft
+                    </span>
                 </div>           
             </div>
         @endfor
@@ -37,6 +32,17 @@
             <x-button href="{{ route('webshop.home') }}">Vásárlás Folytatása</x-button>
         </div>
     @endforelse
+
+    <div class="cart-footer flex-none {{ count(session('cart', [])) ? '' : 'hidden' }}">
+        <x-heading level="h4" class="flex justify-between mb-3">
+            <span>Összesen:</span>
+            <span class="font-normal">{{ number_format(cart_total(), 0, ',', ' ') }} Ft</span>
+        </x-heading>
+        <x-button href="{{ route('webshop.checkout') }}" class="w-full">
+            Tovább a testreszabáshoz
+        </x-button>
+    </div>
+
 </div>
 
 {{-- <aside id="sideCart" class="offcanvas nav-cart fixed inset-0 z-50 invisible opacity-0 transition-opacity duration-300" data-cart-count="{{ count(session('cart', [])) }}">
