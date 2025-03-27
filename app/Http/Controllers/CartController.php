@@ -35,6 +35,7 @@ class CartController extends Controller
             'name' => $product->name,
             'price' => $product->price,
             'image' => $product->firstImageUrl(),
+            'extra_price' => 0,
             'quantity' => 1,
         ];
     

@@ -61,10 +61,25 @@ class WebshopController extends Controller
         if (!isset($cart[$id])) {
             return response()->json(['error' => 'Nincs ilyen termék a kosárban'], 404);
         }
-    
+        dd('customizing...', $cart[$id]['extra_price']);
+
         // handle FilePond image
         $file = $request->file('file');
-        $path = $file->store('uploads', 'public');
+        $path = $file?->store('uploads', 'public');
+
+        // Get product extra price
+        $productId = $cart[$id]['product_id'];
+        $product = Product::findOrFail($productId);
+        $baseExtra = $product->extra_price ?? 0;
+
+        // Számoljuk az extra árakat
+        $extraPrice = 0;
+        if ($request->has('engrave_second_page')) {
+            $extraPrice += $baseExtra;
+        }
+        if ($request->has('engrave_third_page')) {
+            $extraPrice += $baseExtra;
+        }
     
         // save customization
         $cart[$id]['customization'] = [
@@ -76,6 +91,8 @@ class WebshopController extends Controller
             'inner_text' => $request->input('customizeInnerText'),
             'front_image' => Storage::url($path),
         ];
+
+        $cart[$id]['extra_price'] = $extraPrice;
     
         session()->put('cart', $cart);
     

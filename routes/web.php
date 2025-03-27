@@ -85,6 +85,12 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 });
 
+
+// Debug cart session
+Route::get('debug/cart', function() {
+    return session('cart');
+});
+
 /* 
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Imagick\Driver;
