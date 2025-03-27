@@ -83,7 +83,7 @@
                                         >
                                             A hátoldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
                                         </x-form.checkbox>
-                                        <div class="{{ $engraveSecond == false ? 'hidden' : '' }}" id="toggleSecondPageOptions-{{ $cartItemId }}">
+                                        <div class="hidden" id="secondPageOptions-{{ $cartItemId }}">
                                             @if($custom?->back_image)
                                                 <div class="form-group">
                                                     <x-form.upload for="customizations[{{ $cartItemId }}][back_image]" id="customizeBackImage-{{ $loop->index }}" label="Hátlap képe"/>
@@ -95,6 +95,19 @@
                                                 </div>
                                             @endif
                                         </div>
+
+                                        @push('scripts')
+                                            <script>
+                                                if ($('input[name="customizations[{{ $cartItemId }}][engrave_second_page]"]').is(':checked')) {
+                                                    console.log('checked');
+                                                    $('#secondPageOptions-{{ $cartItemId }}').removeClass('hidden');
+                                                } else {
+                                                    console.log('unchecked');
+                                                    $('#secondPageOptions-{{ $cartItemId }}').addClass('hidden');
+                                                }
+                                                
+                                            </script>
+                                        @endpush
 
                                         <x-form.checkbox 
                                             for="customizations[{{ $cartItemId }}][engrave_third_page]"
