@@ -47,55 +47,65 @@
                                         $custom = $customizations[$productId] ?? null;
                                     @endphp
                                     <input type="hidden" name="cart_item_id" value="{{ $cartItemId }}" />
-
-                                    @if($custom?->front_image)
-                                        <div class="form-group">
-                                            <x-form.upload for="customizations[{{ $cartItemId }}][front_image]" label="Előlap képe"/>
-                                        </div>
-                                    @endif
-                                    @if($custom?->front_text)
-                                        <div class="form-group">
-                                            <x-form.input for="customizations[{{ $cartItemId }}][front_text]" label="Előlap szöveg"/>
-                                        </div>
-                                    @endif
-                                    @if($custom?->other_notes)
-                                        <div class="form-group">
-                                            <x-form.textarea for="customizations[{{ $cartItemId }}][other_notes]" label="Egyéb instrukció" rows="4"/>
-                                        </div>
-                                    @endif
-                
-                                    <x-form.checkbox 
-                                        for="customizations[{{ $cartItemId }}][engrave_second_page]" 
-                                        class="toggle"
-                                        data-target="#customizeBackPage">
-                                        A hátoldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
-                                    </x-form.checkbox>
-                                    <div class="hidden" id="customizeBackPage">
-                                        @if($custom?->back_image)
-                                            <div class="form-group mb-4">
-                                                <x-form.upload for="customizations[{{ $cartItemId }}][back_image]" label="Hátlap képe"/>
+                                    
+                                    {{-- Előlap mezők --}}
+                                    <div class="flex flex-col gap-y-4">
+                                        @if($custom?->front_image)
+                                            <div class="form-group">
+                                                <x-form.upload for="customizations[{{ $cartItemId }}][front_image]" id="customizeFrontImage-{{ $loop->index }}" label="Előlap képe"/>
                                             </div>
                                         @endif
-                                        @if($custom?->back_text)
+                                        @if($custom?->front_text)
                                             <div class="form-group">
-                                                <x-form.input for="customizations[{{ $cartItemId }}][front_text]" label="Hátlap szöveg"/>
+                                                <x-form.input for="customizations[{{ $cartItemId }}][front_text]" id="customizeFrontText-{{ $loop->index }}" label="Előlap szöveg"/>
+                                            </div>
+                                        @endif
+                                        @if($custom?->other_notes)
+                                            <div class="form-group">
+                                                <x-form.textarea for="customizations[{{ $cartItemId }}][other_notes]" id="customizeOtherNotes-{{ $loop->index }}" label="Egyéb instrukció" rows="4"/>
                                             </div>
                                         @endif
                                     </div>
                                     
-                                    <x-form.checkbox 
-                                        for="customizations[{{ $cartItemId }}][engrave_inner_page]" 
-                                        class="toggle"
-                                        data-target="#customizeInnerPage">
-                                        A belső oldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
-                                    </x-form.checkbox>
-                                    <div class="hidden" id="customizeInnerPage">
-                                        @if($custom?->inner_text)
-                                            <div class="form-group">
-                                                <x-form.input for="customizations[{{ $cartItemId }}][inner_text]" label="Belső szöveg"/>
-                                            </div>
-                                        @endif
+                                    {{-- Hátlap mezők --}}
+                                    <div>
+                                        <x-form.checkbox 
+                                            for="customizations[{{ $cartItemId }}][engrave_second_page]" 
+                                            class="toggle"
+                                            data-target="#customizeBackPage-{{ $loop->index }}">
+                                            A hátoldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
+                                        </x-form.checkbox>
+                                        <div class="hidden" id="customizeBackPage-{{ $loop->index }}">
+                                            @if($custom?->back_image)
+                                                <div class="form-group mb-4">
+                                                    <x-form.upload for="customizations[{{ $cartItemId }}][back_image]" id="customizeBackImage-{{ $loop->index }}" label="Hátlap képe"/>
+                                                </div>
+                                            @endif
+                                            @if($custom?->back_text)
+                                                <div class="form-group">
+                                                    <x-form.input for="customizations[{{ $cartItemId }}][back_text]" id="customizeBackText-{{ $loop->index }}" label="Hátlap szöveg"/>
+                                                </div>
+                                            @endif
+                                        </div>
                                     </div>
+                                    
+                                    {{-- Belső mezők --}}
+                                    <div>
+                                        <x-form.checkbox 
+                                            for="customizations[{{ $cartItemId }}][engrave_third_page]" 
+                                            class="toggle"
+                                            data-target="#customizeInnerPage-{{ $loop->index }}">
+                                            A belső oldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
+                                        </x-form.checkbox>
+                                        <div class="hidden" id="customizeInnerPage-{{ $loop->index }}">
+                                            @if($custom?->inner_text)
+                                                <div class="form-group">
+                                                    <x-form.input for="customizations[{{ $cartItemId }}][inner_text]" id="customizeInnerText-{{ $loop->index }}" label="Belső szöveg"/>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         @endfor
@@ -114,34 +124,3 @@
     </main>
 
 @endsection
-
-@push('scripts')
-    <script>
-        document.getElementById('submitAllCustomizations').addEventListener('click', function(e) {
-            e.preventDefault();
-
-            const masterForm = document.getElementById('customizationsMasterForm');
-            const allForms = document.querySelectorAll('form[id^="productCustomizeForm-"]');
-
-            // ürítsük ki a masterFormot (ha újrapróbáljuk)
-            masterForm.innerHTML = `@csrf`;
-
-            allForms.forEach(form => {
-                const formData = new FormData(form);
-
-                for (let [key, value] of formData.entries()) {
-                    // Tömbösítjük a mezőket: name[cartItemId][mező]
-                    const cartItemId = form.querySelector('input[name="cart_item_id"]').value;
-
-                    const input = document.createElement('input');
-                    input.type = 'hidden';
-                    input.name = `${cartItemId}[${key}]`;
-                    input.value = value;
-                    masterForm.appendChild(input);
-                }
-            });
-
-            masterForm.submit();
-        });
-    </script>
-@endpush
