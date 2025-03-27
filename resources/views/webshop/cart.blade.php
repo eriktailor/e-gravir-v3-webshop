@@ -32,17 +32,16 @@
                                     </x-tooltip>
                                 </div>
                             </div>
-                            @php
-                                $productId = $item['product_id'];
-                                $custom = $customizations[$productId] ?? null;
-                            @endphp
-                            <form action="" method="POST" id="productCustomizeForm" class="flex flex-col gap-y-4 p-6" enctype="multipart/form-data" novalidate>
+                            <form action="" method="POST" id="productCustomizeForm" class="flex flex-col gap-y-4 p-6 border-t border-gray-300" enctype="multipart/form-data" novalidate>
                                 @csrf
+                                @php
+                                    $productId = $item['product_id'];
+                                    $custom = $customizations[$productId] ?? null;
+                                @endphp
                                 <input type="hidden" name="cart_item_id" value="{{ $cartItemId }}" />
                                 @if($custom?->front_image)
                                     <div class="form-group">
-                                        <label for="customizeFrontImage" class="form-label block text-sm text-gray-500 leading-6">Előlap képe</label>
-                                        <input type="file" name="file" id="customizeFrontImage" required/>
+                                        <x-form.upload for="front_image" id="customizeFrontImage" label="Előlap képe"/>
                                     </div>
                                 @endif
                                 @if($custom?->front_text)
@@ -63,14 +62,13 @@
                                     A hátoldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
                                 </x-form.checkbox>
                                 <div class="hidden" id="customizeBackPage">
-                                    <div class="form-group mb-4">
-                                        {{-- <x-form.upload 
-                                            for="front_image" 
-                                            id="customizeBackImage" 
-                                            label="Hátlap képe"
-                                            :config="['allowMultiple' => false, 'maxFiles' => 1]"
-                                        /> --}}
-                                    </div>
+                                    @if($custom?->back_image)
+                                        <div class="form-group mb-4">
+                                            <div class="form-group">
+                                                <x-form.upload for="back_image" id="customizeBackImage" label="Hátlap képe"/>
+                                            </div>
+                                        </div>
+                                    @endif
                                     @if($custom?->back_text)
                                         <div class="form-group">
                                             <x-form.input label="Hátlap szöveg" for="customizeBackText"/>
@@ -107,17 +105,3 @@
     </main>
 
 @endsection
-
-@push('styles')
-    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
-@endpush
-@push('scripts')
-    <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
-    <script>
-        const inputElement = document.querySelector('#customizeFrontImage');
-        const pond = FilePond.create(inputElement, {
-            allowProcess: false,
-            storeAsFile: true // 👈 important! keeps real file for form submission
-        });
-    </script>
-@endpush

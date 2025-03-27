@@ -10,6 +10,8 @@
     $defaultConfig = [
         'labelIdle' => 'Húzd ide a képeidet vagy <span class="filepond--label-action"> kiválasztás </span>',
         'credits' => false,
+        'allowProcess' => false,
+        'storeAsFile' => true
     ];
 
     $finalConfig = array_merge($defaultConfig, $config);
