@@ -38,7 +38,6 @@
     </div>
 </nav>
 
-@include('webshop.cart')
 
 @push('scripts')
     <script>

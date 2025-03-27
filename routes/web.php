@@ -10,6 +10,7 @@ use App\Http\Controllers\WebshopController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\CartController;
 
 
 
@@ -28,6 +29,11 @@ Route::prefix('admin')->controller(AuthController::class)->group(function() {
  */
 Route::prefix('webshop')->group(function() {
 
+    Route::controller(CartController::class)->group(function() {
+        Route::get('/cart', 'index')->name('webshop.cart');
+        Route::post('/cart/add/{product}', 'addToCart')->name('cart.add');
+    });
+
     Route::controller(CheckoutController::class)->group(function() {
         Route::get('/checkout', 'index')->name('webshop.checkout');
         Route::post('/checkout/store', 'store')->name('checkout.store');
@@ -35,9 +41,6 @@ Route::prefix('webshop')->group(function() {
 
     Route::controller(WebshopController::class)->group(function() {
         Route::get('/', 'index')->name('webshop.home');
-        Route::post('/cart/add/{product}', 'addToCart')->name('cart.add');
-        Route::post('/cart/remove/{product}', 'removeFromCart')->name('cart.remove');
-        Route::post('/cart/customize/{id}', 'customizeCartItem')->name('cart.customize');
         Route::get('/{category}/{product}', 'single')->name('webshop.single');
         Route::get('/{slug}', 'archive')->name('webshop.archive'); // Keep last!
     });
@@ -79,25 +82,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 });
 
-//Route::post('/upload', [FileUploadController::class, 'upload'])->name('file.upload');
-
-
-
-// Teszt törölni
-Route::get('/filepond-test', function () {
-    return view('filepond-test');
-});
-
-use Illuminate\Support\Facades\Storage;
-Route::post('/upload', function (\Illuminate\Http\Request $request) {
-    $file = $request->file('file');
-    $path = $file->store('uploads', 'public');
-    dd(Storage::url($path));
-})->name('file.upload');
-
-Route::get('/debug/cart', function () {
-    return session('cart');
-});
 /* 
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Imagick\Driver;
