@@ -3,6 +3,7 @@
  * -----------------------------------------------------------------------------------
  */
 import initDropdown from './_dropdown';
+import { showTopbarMessage } from './_topbar';
 
 export default function initCart() {
 
@@ -12,8 +13,6 @@ export default function initCart() {
     $('.add-to-cart-btn').on('click', function(e) {
         e.preventDefault();
 
-        
-
         const productId = $(this).data('id');
         const btn = $(this);
         btn.prop('disabled', true).text('Hozzáadás...');
@@ -21,8 +20,9 @@ export default function initCart() {
         $.post("/webshop/cart/add/" + productId, { quantity: 1 })
             .done(function(response) {
                 $('#miniCart').load(location.href + ' #miniCart > *', function() {
-                    initDropdown(); // újraindítjuk a dropdown eventeket
-                    $('#miniCart .dropdown-toggle').trigger('click'); // nyitjuk a cartot
+                    initDropdown();
+                    $('#miniCart .dropdown-toggle').trigger('click');
+                    showTopbarMessage('A termék sikeresen a kosárba került!');
                 });
             })
             .fail(function() {
