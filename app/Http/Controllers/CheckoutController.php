@@ -69,8 +69,7 @@ class CheckoutController extends Controller
                     'product_id' => $item['product_id'] ?? null,
                     'product_name' => $item['name'],
                     'product_price' => $item['price'],
-                    'quantity' => $item['quantity'],
-                    'customizations' => $item['customizations'] ?? null,
+                    'customizations' => $item['customization'] ?? null,
                 ]);
             }
 

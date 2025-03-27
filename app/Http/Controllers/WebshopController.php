@@ -66,6 +66,7 @@ class WebshopController extends Controller
             $imagePath = $firstImage ? asset('storage/' . $firstImage->image_path) : asset('/img/noimage.webp');
     
             $cart[$product->id] = [
+                'product_id' => $product->id,
                 'name' => $product->name,
                 'price' => $product->price,
                 'quantity' => 1,
@@ -127,7 +128,7 @@ class WebshopController extends Controller
     
         session()->put('cart', $cart);
     
-        return response()->json(['success' => 'Testreszabás elmentve!']);
+        return redirect()->route('webshop.checkout')->with('success', 'Testreszabás elmentve!');
     }
     
     
