@@ -6,15 +6,23 @@
                     <x-form.checkbox for="select_order[' . $order->id .']"/>
                     <x-badge>#{{ $order->id }}</x-badge>
                 </div>
-                <div class="col-span-4">
-                    <x-heading level="h4" class="mb-2">{{ $order->customer_name }}</x-heading>
+                <div class="flex items-center justify-center">
+                    @foreach($order->items->take(1) as $item)
+                        <img 
+                            src="/storage/{{ $item['customizations']['front_image'] }}" 
+                            alt="#{{ $order->id }} rendelés kép"
+                            class="w-14 h-14 object-cover object-center rounded-full -mr-4 border-3 border-white mr-3">
+                    @endforeach
+                </div>
+                <div class="col-span-3">
+                    <x-heading level="h4" class="mb-1">{{ $order->customer_name }}</x-heading>
                     <p class="text-gray-400 text-sm">{{ $order->customer_email }}</p>
                 </div>
                 <div class="col-span-2">
-                    <div class="font-medium text-red-600 mb-2">{{ $order->order_total }} Ft</div>
+                    <div class="font-medium text-red-600 mb-1">{{ $order->order_total }} Ft</div>
                     <div class="text-sm text-gray-400">{{ $order->items->count() }} termék</div>
                 </div>
-                <div class="col-span-2 flex gap-x-8">
+                <div class="col-span-2 flex items-center gap-x-8">
                     <div>
                         @php
                             $delivery_icon = config('checkout.delivery_methods')[$order->delivery_method]['icon'] ?? 'package';
