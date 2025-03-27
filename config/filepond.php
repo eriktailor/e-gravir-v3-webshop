@@ -39,7 +39,7 @@ return [
     |
     */
     'middleware' => [
-        'web', 'auth',
+        'web',
     ],
 
     /*
@@ -61,7 +61,7 @@ return [
     | deleted while running 'artisan filepond:clear' command.
     |
     */
-    'expiration' => 30,
+    'expiration' => 120,
 
     /*
     |--------------------------------------------------------------------------
@@ -97,7 +97,7 @@ return [
     'validation_rules' => [
         'required',
         'file',
-        'max:5000',
+        'max:12000',
     ],
 
     /*

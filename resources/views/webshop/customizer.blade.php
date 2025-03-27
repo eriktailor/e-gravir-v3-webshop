@@ -85,7 +85,7 @@
         server: {
             url: "{{ config('filepond.server.url') }}",
             headers: {
-                'X-CSRF-TOKEN': "{{ @csrf_token() }}",
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
             }
         }
     });

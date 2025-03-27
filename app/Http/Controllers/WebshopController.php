@@ -127,7 +127,7 @@ class WebshopController extends Controller
     
         session()->put('cart', $cart);
     
-        return response()->json(['message' => 'Testreszabás elmentve!']);
+        return response()->json(['success' => 'Testreszabás elmentve!']);
     }
     
     
