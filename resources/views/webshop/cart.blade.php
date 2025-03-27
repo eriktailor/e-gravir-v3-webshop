@@ -76,14 +76,17 @@
                                     {{-- Extra gravírozás mezők --}}
                                     <div class="flex flex-col gap-4 mt-4">
 
+                                        {{-- Hátlap gravírozás --}}
                                         <x-form.checkbox 
                                             for="customizations[{{ $cartItemId }}][engrave_second_page]"
                                             name="customizations[{{ $cartItemId }}][engrave_second_page]"
                                             :checked="$engraveSecond"
+                                            data-id="{{ $cartItemId }}"
+                                            data-toggle-target="secondPageOptions"
                                         >
                                             A hátoldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
                                         </x-form.checkbox>
-                                        <div class="hidden" id="secondPageOptions-{{ $cartItemId }}">
+                                        <div id="secondPageOptions-{{ $cartItemId }}" class="{{ !$engraveSecond ? 'hidden' : '' }}">
                                             @if($custom?->back_image)
                                                 <div class="form-group">
                                                     <x-form.upload for="customizations[{{ $cartItemId }}][back_image]" id="customizeBackImage-{{ $loop->index }}" label="Hátlap képe"/>
@@ -96,25 +99,42 @@
                                             @endif
                                         </div>
 
-                                        @push('scripts')
-                                            <script>
-                                                if ($('input[name="customizations[{{ $cartItemId }}][engrave_second_page]"]').is(':checked')) {
-                                                    console.log('checked');
-                                                    $('#secondPageOptions-{{ $cartItemId }}').removeClass('hidden');
-                                                } else {
-                                                    console.log('unchecked');
-                                                    $('#secondPageOptions-{{ $cartItemId }}').addClass('hidden');
-                                                }
-                                                
-                                            </script>
-                                        @endpush
-
+                                        {{-- Belső gravírozás --}}
                                         <x-form.checkbox 
                                             for="customizations[{{ $cartItemId }}][engrave_third_page]"
                                             name="customizations[{{ $cartItemId }}][engrave_third_page]"
-                                            :checked="$engraveThird">
+                                            :checked="$engraveThird"
+                                            data-id="{{ $cartItemId }}"
+                                            data-toggle-target="thirdPageOptions">
                                             A belső oldalra is kérek gravírozást <span class="text-gray-400">(+2900 Ft)</span>
                                         </x-form.checkbox>
+                                        <div id="thirdPageOptions-{{ $cartItemId }}" class="{{ !$engraveThird ? 'hidden' : '' }}">
+                                            @if($custom?->inner_text)
+                                                <div class="form-group">
+                                                    <x-form.input for="customizations[{{ $cartItemId }}][inner_text]" id="customizeInnerText-{{ $loop->index }}" label="Belső oldal szöveg"/>
+                                                </div>
+                                            @endif
+                                        </div>
+
+                                        @push('scripts')
+                                            <script>
+                                                $(document).ready(function () {
+                                                    function toggleOptions(checkbox) {
+                                                        const targetId = $(checkbox).data('toggle-target');
+                                                        const cartItemId = $(checkbox).data('id');
+                                                        const target = $(`#${targetId}-${cartItemId}`);
+                                                        $(checkbox).is(':checked') ? target.removeClass('hidden') : target.addClass('hidden');
+                                                    }
+
+                                                    // Init + onchange
+                                                    $('input[data-toggle-target]').each(function () {
+                                                        toggleOptions(this);
+                                                    }).on('change', function () {
+                                                        toggleOptions(this);
+                                                    });
+                                                });    
+                                            </script>
+                                        @endpush
 
                                     </div>
 
