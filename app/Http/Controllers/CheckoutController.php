@@ -19,7 +19,10 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        return view('webshop.checkout');
+        $cart = session('cart', []);
+        $customizations = session('cart_customizations', []);
+
+        return view('webshop.checkout', compact('cart', 'customizations'));
     }
 
     /**
@@ -36,7 +39,7 @@ class CheckoutController extends Controller
 
         try {
             $validated = $request->validated();
-            
+
             $products_total = 0;
             foreach (session('cart') as $item) {
                 $products_total += $item['price'];
@@ -62,33 +65,35 @@ class CheckoutController extends Controller
                 'status' => 'pending',
             ]);
 
+            $customizations = session('cart_customizations', []);
+
             // OrderItems
-            foreach (session('cart') as $id => $item) {
-                OrderItem::create([
-                    'order_id' => $order->id,
-                    'product_id' => $item['product_id'] ?? null,
-                    'product_name' => $item['name'],
-                    'product_price' => $item['price'],
-                    'customizations' => $item['customization'] ?? null,
-                ]);
+            foreach (session('cart') as $cartItemId => $item) {
+                for ($i = 0; $i < $item['quantity']; $i++) {
+                    OrderItem::create([
+                        'order_id' => $order->id,
+                        'product_id' => $item['product_id'] ?? null,
+                        'product_name' => $item['name'],
+                        'product_price' => $item['price'],
+                        'customizations' => $customizations[$cartItemId] ?? null,
+                    ]);
+                }
             }
 
             DB::commit();
 
             session()->forget('cart');
+            session()->forget('cart_customizations');
 
             return redirect()->route('webshop.home')->with('success', 'Köszönjük a rendelésed!');
-        
+
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Checkout ERROR', ['message' => $e->getMessage()]);
-        
+
             return back()
                 ->withInput()
                 ->with('error', 'Hiba történt: ' . $e->getMessage());
         }
     }
-    
-    
-
 }

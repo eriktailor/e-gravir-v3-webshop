@@ -81,8 +81,10 @@ class CartController extends Controller
     
             $all[$cartItemId] = $fields;
         }
-    
-        dd($all);
+        
+        session(['cart_customizations' => $all]);
+
+        return redirect()->route('webshop.checkout');
     }
 
     

@@ -162,9 +162,3 @@
 
 @endsection
 
-@section('modals')
-
-    @include('webshop.customizer')
-
-@endsection
-

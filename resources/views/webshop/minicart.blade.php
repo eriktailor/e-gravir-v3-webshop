@@ -3,9 +3,11 @@
         <x-heading level="h3">Kosaram</x-heading>
         <x-button.chip icon="x" class="dropdown-close"/>
     </div>
-    <p class="text-gray-400 mb-4 pb-4 border-b border-gray-300 text-sm">
-        A kosárban lévő termékeket a következő oldalon tudod majd személyre szabni.
-    </p>
+    @if(count(session('cart', [])))
+        <p class="text-gray-400 mb-4 pb-4 border-b border-gray-300 text-sm">
+            A kosárban lévő termékeket a következő oldalon tudod majd személyre szabni.
+        </p>
+    @endif
     @forelse(session('cart', []) as $id => $item)
         @for($i = 0; $i < $item['quantity']; $i++)
             <div class="cart-item flex gap-x-4 border-b border-gray-300 mb-4 pb-4">
@@ -36,7 +38,7 @@
         @endfor
     @empty
         <div class="flex flex-col items-center gap-y-6">
-            <img class="px-8" src="{{ asset('/img/empty_cart.png') }}" alt="Üres kosár">
+            <img class="px-8 -mt-3" src="{{ asset('/img/empty_cart.png') }}" alt="Üres kosár">
             <p>Jelenleg nincs termék a kosaradban.</p>
             <x-button href="{{ route('webshop.home') }}">Vásárlás Folytatása</x-button>
         </div>
