@@ -71,7 +71,7 @@
                     Képek Letöltése
                 </x-button>
                 <div class="flex flex-col gap-4">
-                    @foreach($order->items as $item)
+                    @foreach($order->items as $index => $item)
                         <div class="border border-gray-300 rounded-lg flex flex-col justify-between">
                             <div class="flex gap-x-3 justify-between p-4">
                                 <div class="flex gap-x-3">
@@ -79,76 +79,86 @@
                                         {{ $item->product_name }}
                                     </x-heading>
                                 </div>
-                                <span class="text-gray-400 font-normal">
-                                    {{ $item->product_price }} Ft
-                                </span>
+                                <div class="flex gap-x-3 relative">
+                                    <span class="text-gray-400 font-normal mr-10">
+                                        {{ $item->product_price }} Ft
+                                    </span>
+                                    <x-button.chip 
+                                        icon="chevron-down" 
+                                        href="#" 
+                                        class="toggle absolute right-0 -top-1.5"
+                                        data-target="#orderedProduct-{{ $index }}"
+                                    />
+                                </div>
                             </div>
+                            
+                            <div id="orderedProduct-{{ $index }}" class="hidden">
+                                @php $custom = $item->customizations ?? []; @endphp
 
-                            @php $custom = $item->customizations ?? []; @endphp
+                                @if($custom)
 
-                            @if($custom)
+                                    @if(!empty($custom['front_image']) || !empty($custom['front_text']))
+                                        <div class="p-4 border-t border-gray-300 flex justify-between items-center gap-x-6">
+                                            <div class="flex items-center gap-x-3">
+                                                @if(!empty($custom['front_image']))
+                                                    <div>
+                                                        <img src="{{ asset('storage/' . $custom['front_image']) }}" alt="Front Image" class="w-12 h-12 rounded-lg">
+                                                    </div>
+                                                @endif
 
-                                @if(!empty($custom['front_image']) || !empty($custom['front_text']))
-                                    <div class="p-4 border-t border-gray-300 flex justify-between items-center gap-x-6">
-                                        <div class="flex items-center gap-x-3">
-                                            @if(!empty($custom['front_image']))
-                                                <div>
-                                                    <img src="{{ asset('storage/' . $custom['front_image']) }}" alt="Front Image" class="w-12 h-12 rounded-lg">
-                                                </div>
-                                            @endif
-
-                                            @if(!empty($custom['front_text']))
-                                                <div class="text-sm">
-                                                    {{ $custom['front_text'] }}
-                                                </div>
-                                            @endif
-                                        </div>
-                                        <x-badge>Előlap</x-badge>
-                                    </div>
-                                @endif
-
-                                @if(!empty($custom['back_image']) || !empty($custom['back_text']))
-                                    <div class="p-4 border-t border-gray-300 flex justify-between items-center gap-x-6">
-                                        <div class="flex items-center gap-x-3">
-                                            @if(!empty($custom['back_image']))
-                                                <div>
-                                                    <img src="{{ asset('storage/' . $custom['back_image']) }}" alt="Back Image" class="w-12 h-12 rounded-lg">
-                                                </div>
-                                            @endif
-
-                                            @if(!empty($custom['back_text']))
-                                                <div class="text-sm">
-                                                    {{ $custom['back_text'] }}
-                                                </div>
-                                            @endif
-                                        </div>
-                                        <x-badge>Hátlap</x-badge>
-                                    </div>
-                                @endif
-
-                                @if(!empty($custom['inner_text']))
-                                    <div class="p-4 border-t border-gray-300 flex justify-between items-center gap-x-6">
-                                        <div class="flex items-center gap-x-3">
-                                            <div class="text-sm">
-                                                {{ $custom['inner_text'] }}
+                                                @if(!empty($custom['front_text']))
+                                                    <div class="text-sm">
+                                                        {{ $custom['front_text'] }}
+                                                    </div>
+                                                @endif
                                             </div>
+                                            <x-badge>Előlap</x-badge>
                                         </div>
-                                        <x-badge>Belső</x-badge>
-                                    </div>
-                                @endif
+                                    @endif
 
-                                @if(!empty($custom['other_notes']))
-                                    <div class="p-4 border-t border-gray-300 flex justify-between items-center gap-x-6">
-                                        <div class="flex items-center gap-x-3">
-                                            <div class="text-sm">
-                                                {{ $custom['other_notes'] }}
+                                    @if(!empty($custom['back_image']) || !empty($custom['back_text']))
+                                        <div class="p-4 border-t border-gray-300 flex justify-between items-center gap-x-6">
+                                            <div class="flex items-center gap-x-3">
+                                                @if(!empty($custom['back_image']))
+                                                    <div>
+                                                        <img src="{{ asset('storage/' . $custom['back_image']) }}" alt="Back Image" class="w-12 h-12 rounded-lg">
+                                                    </div>
+                                                @endif
+
+                                                @if(!empty($custom['back_text']))
+                                                    <div class="text-sm">
+                                                        {{ $custom['back_text'] }}
+                                                    </div>
+                                                @endif
                                             </div>
+                                            <x-badge>Hátlap</x-badge>
                                         </div>
-                                        <x-badge>Megjegyzés</x-badge>
-                                    </div>
-                                @endif
+                                    @endif
 
-                            @endif
+                                    @if(!empty($custom['inner_text']))
+                                        <div class="p-4 border-t border-gray-300 flex justify-between items-center gap-x-6">
+                                            <div class="flex items-center gap-x-3">
+                                                <div class="text-sm">
+                                                    {{ $custom['inner_text'] }}
+                                                </div>
+                                            </div>
+                                            <x-badge>Belső</x-badge>
+                                        </div>
+                                    @endif
+
+                                    @if(!empty($custom['other_notes']))
+                                        <div class="p-4 border-t border-gray-300 flex justify-between items-center gap-x-6">
+                                            <div class="flex items-center gap-x-3">
+                                                <div class="text-sm">
+                                                    {{ $custom['other_notes'] }}
+                                                </div>
+                                            </div>
+                                            <x-badge>Megjegyzés</x-badge>
+                                        </div>
+                                    @endif
+
+                                @endif
+                            </div>
 
                         </div>
                     @endforeach

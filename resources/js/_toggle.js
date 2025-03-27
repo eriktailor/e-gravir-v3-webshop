@@ -10,6 +10,7 @@ export default function initToggle() {
      */
     $('.toggle').on('click', function(e) {
         e.stopPropagation();
+        e.preventDefault();
 
         var target = $(this).data('target');
         $(target).slideToggle();
