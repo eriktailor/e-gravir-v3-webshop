@@ -17,7 +17,14 @@
                         <x-heading level="h5" class="mb-1.5 mr-3">
                             {{ $item['name'] }}
                         </x-heading>
-                        <x-button.chip icon="trash" class="remove-cart-item flex-none h-9 -mt-2 -mr-2" data-id="{{ $id }}"/>
+                        <x-tooltip text="Törlés">
+                            <x-button.chip 
+                                icon="trash" 
+                                class="remove-cart-item"
+                                type="button"
+                                data-id="{{ $id }}"
+                            />
+                        </x-tooltip>
                     </div>
                     <span class="text-sm font-normal">
                         {{ $item['price'] }} Ft
@@ -43,7 +50,25 @@
         </x-button>
     </div>
 
+    {{-- Remove item from cart form --}}
+    <form method="POST" action="{{ route('cart.remove') }}" id="removeCartItemForm" class="hidden">
+        @csrf
+        <input type="hidden" name="cart_item_id" id="removeCartItemId">
+    </form>
+
 </div>
+
+@push('scripts')
+    <script>
+    document.querySelectorAll('.remove-cart-item').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            document.getElementById('removeCartItemId').value = id;
+            document.getElementById('removeCartItemForm').submit();
+        });
+    });
+    </script>
+@endpush
 
 {{-- <aside id="sideCart" class="offcanvas nav-cart fixed inset-0 z-50 invisible opacity-0 transition-opacity duration-300" data-cart-count="{{ count(session('cart', [])) }}">
 
