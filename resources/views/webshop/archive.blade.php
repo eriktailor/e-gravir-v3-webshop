@@ -5,7 +5,6 @@
 @section('content')
 
     <x-header.image :title="'Gravírozott ' . $category->name" :image="$category->image" :description="$category->description"/>
-        <img src="{{ url('/resize/categories/1/wallet_hero.webp?w=500') }}" />
 
     <main class="bg-orange-100 relative z-40">
         <div class="container">

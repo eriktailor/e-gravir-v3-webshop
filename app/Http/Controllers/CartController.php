@@ -27,9 +27,7 @@ class CartController extends Controller
     public function addToCart(Request $request, Product $product)
     {
         $product->load('images');
-    
         $cart = session('cart', []);
-        
         $cartItemId = uniqid();
         
         $cart[$cartItemId] = [

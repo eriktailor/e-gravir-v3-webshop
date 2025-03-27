@@ -2,7 +2,7 @@
     'alignment' => 'right'
 ])
 
-<div class="dropdown relative inline-block" {{ $attributes }}>
+<div {{ $attributes->merge(['class' => 'dropdown relative inline-block']) }}>
 
     <!-- Toggle -->
     <div class="dropdown-toggle cursor-pointer transition-all" role="button" aria-haspopup="true" aria-expanded="false">
